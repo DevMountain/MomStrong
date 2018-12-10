@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18C48a" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Goal" representedClassName="Goal" parentEntity="Progress" syncable="YES" codeGenerationType="class">
+        <attribute name="isCompleted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <attribute name="weekNumber" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="progress" maxCount="1" deletionRule="Nullify" destinationEntity="Progress" inverseName="goalSet" inverseEntity="Progress" syncable="YES"/>
+    </entity>
+    <entity name="Progress" representedClassName="Progress" syncable="YES" codeGenerationType="class">
+        <attribute name="userID" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="goalSet" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Goal" inverseName="progress" inverseEntity="Goal" syncable="YES"/>
+        <relationship name="progressPointsSet" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="WorkoutProgressPoint" inverseName="progress" inverseEntity="WorkoutProgressPoint" syncable="YES"/>
+    </entity>
+    <entity name="WorkoutProgressPoint" representedClassName="WorkoutProgressPoint" parentEntity="Progress" syncable="YES" codeGenerationType="class">
+        <attribute name="dateCompleted" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="workoutId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="progress" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Progress" inverseName="progressPointsSet" inverseEntity="Progress" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Goal" positionX="-54" positionY="-9" width="128" height="105"/>
+        <element name="Progress" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="WorkoutProgressPoint" positionX="-45" positionY="45" width="128" height="90"/>
+    </elements>
+</model>
