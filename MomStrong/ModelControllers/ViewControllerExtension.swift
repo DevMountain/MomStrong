@@ -85,6 +85,17 @@ extension UIViewController{
         guard let infoNav = UIStoryboard(name: "Info", bundle: .main).instantiateInitialViewController() else { return }
         self.present(infoNav, animated: true, completion: nil)
     }
+    
+    func customizeBackButton(){
+        let backImage = #imageLiteral(resourceName: "BackButton").withRenderingMode(.alwaysOriginal)
+        let backItem = UIBarButtonItem(image: backImage, style: .done, target: self, action: #selector(popViewController))
+        backItem.title = ""
+        navigationItem.leftBarButtonItem = backItem
+    }
+    
+    @objc func popViewController(){
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
 extension UIView{

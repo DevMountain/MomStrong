@@ -15,3 +15,15 @@ extension UIColor{
     static var backgroudGray = UIColor(red: 243/255, green: 244/255, blue: 244/255, alpha: 1)
 
 }
+
+
+extension UIView{
+    
+    func addShadow(){
+        self.layer.shadowOffset = CGSize(width: 0, height: 2)
+        self.layer.shadowRadius = (3.0 / 2.0)
+        self.layer.shadowOpacity = 0.3
+//        let rect = bounds.insetBy(dx: 1, dy: 1)
+//        self.layer.shadowPath = UIBezierPath(rect: rect).cgPath
+    }
+}

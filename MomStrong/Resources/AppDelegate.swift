@@ -16,10 +16,17 @@ let googleAppID = "2805E95E"
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+//    let barButtonAppearance = UIBarButtonItem.appearance()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
+        
+//
+//        let backButtonBackgroundImage = #imageLiteral(resourceName: "BackButton").withRenderingMode(.alwaysOriginal)
+//        barButtonAppearance.setBackButtonBackgroundImage(backButtonBackgroundImage, for: .normal, barMetrics: .default)
+        
         
         let discovery = GCKDiscoveryCriteria(applicationID: googleAppID)
         let chromeCastOptions = GCKCastOptions(discoveryCriteria: discovery)

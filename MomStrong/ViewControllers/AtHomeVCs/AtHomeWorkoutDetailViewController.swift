@@ -13,8 +13,11 @@ import GoogleCast
 class AtHomeWorkoutDetailTableViewController: UITableViewController {
     
     
-    @IBOutlet weak var videoPlayerView: VideoPlayerView!
+    @IBOutlet weak var thumbnailImageView: UIImageView!
+    @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var completedButton: UIButton!
+    @IBOutlet weak var completedBarView: UIView!
     
     let castMediaController = GCKUIMediaController()
     
@@ -35,15 +38,11 @@ class AtHomeWorkoutDetailTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavHeaderView()
-        let frame = CGRect(x: 0, y: 0, width: 24, height: 24)
-        let castButton = GCKUICastButton(frame: frame)
-        castButton.tintColor = UIColor.powerMomRed
-        let barButton = UIBarButtonItem(customView: castButton)
-        navigationItem.rightBarButtonItem = barButton
+        
+        setUpUI()
         sessionManager.add(self)
-//        castButton.addTarget(self, action: #selector(chromeCast), for: .allEvents)
-//        videoPlayerView.viewController = self
+        //        castButton.addTarget(self, action: #selector(chromeCast), for: .allEvents)
+        //        videoPlayerView.viewController = self
     }
     
     @objc func chromeCast(){
@@ -65,10 +64,55 @@ class AtHomeWorkoutDetailTableViewController: UITableViewController {
     
     func updateViews(){
         titleLabel.text = workout?.title
-        videoPlayerView.videoUrlString = workout?.videoUrl
-        videoPlayerView.thumbNail = workout?.thumbnail
-        videoPlayerView.player?.play()
+        thumbnailImageView.image = workout?.thumbnail
+        updateCompletedButton()
     }
+    
+    func setUpUI(){
+        setNavHeaderView()
+        self.customizeBackButton()
+        
+        let frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+        let castButton = GCKUICastButton(frame: frame)
+        castButton.tintColor = UIColor.powerMomRed
+        let barButton = UIBarButtonItem(customView: castButton)
+        navigationItem.rightBarButtonItem = barButton
+    }
+    
+    func updateCompletedButton(){
+        guard let workout = workout else { return }
+        guard let isCompleted = UserController.shared.currentUser?.hasCompleted(workout: workout) else { return }
+        isCompleted ? markWorkoutComplete() : markWorkoutIncomplete()
+    }
+    
+    func markWorkoutComplete(){
+        UIView.animate(withDuration: 0.2) {
+            self.completedButton.setImage(#imageLiteral(resourceName: "IDidThis"), for: .normal)
+            self.completedBarView.backgroundColor = UIColor.powerMomRed
+        }
+    }
+    
+    func markWorkoutIncomplete(){
+        UIView.animate(withDuration: 0.2) {
+            self.completedButton.setImage(#imageLiteral(resourceName: "MarkAsComplete"), for: .normal)
+            self.completedBarView.backgroundColor = UIColor.backgroudGray
+        }
+    }
+    
+    
+    @IBAction func playButtonTapped(_ sender: Any) {
+        guard let videoUrl = workout?.videoUrl else {return}
+        presentAVPlayerVCWith(videoUrlString: videoUrl)
+    }
+    
+    @IBAction func completedButtonTapped(_ sender: Any) {
+        guard let workout = workout else { return }
+        ProgressController.shared.toggleIsCompleted(for: workout)
+        updateCompletedButton()
+    }
+    
+    
+    
 }
 
 
@@ -78,8 +122,8 @@ extension AtHomeWorkoutDetailTableViewController: GCKSessionManagerListener {
     func sessionManager(_ sessionManager: GCKSessionManager, willStart session: GCKSession) {
         print("🥶 Session manager will Start 🥶")
         guard let workout = workout else { return }
-//        let mediaInfo = buildMediaInfo(from: workout)
-//        session.remoteMediaClient?.loadMedia(mediaInfo)
+        //        let mediaInfo = buildMediaInfo(from: workout)
+        //        session.remoteMediaClient?.loadMedia(mediaInfo)
     }
     
     func sessionManager(_ sessionManager: GCKSessionManager, didStart session: GCKSession) {
@@ -136,9 +180,9 @@ extension AtHomeWorkoutDetailTableViewController: GCKSessionManagerListener {
         castSession.remoteMediaClient?.loadMedia(buildMediaInfo(from: workout!))
     }
     
-//    func pushToRemotePlayBack(){
-//        print("pushing to remote playback")
-//        
-//        castSession?.remoteMediaClient?.queueLoad([], with: <#T##GCKMediaQueueLoadOptions#>)
-//    }
+    //    func pushToRemotePlayBack(){
+    //        print("pushing to remote playback")
+    //
+    //        castSession?.remoteMediaClient?.queueLoad([], with: <#T##GCKMediaQueueLoadOptions#>)
+    //    }
 }

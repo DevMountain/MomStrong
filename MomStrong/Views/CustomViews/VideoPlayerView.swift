@@ -13,7 +13,7 @@ class VideoPlayerView: UIView {
     
     var videoUrlString: String?{
         didSet{
-            runVideo()
+//            runVideo()
         }
     }
     
@@ -24,11 +24,13 @@ class VideoPlayerView: UIView {
     }
     
     weak var viewController: UIViewController?
+    
     var thumbNailImageView: UIImageView!
+    var playButton: UIButton!
     
     func runVideo(){
         guard let videoUrlString = videoUrlString, let url = URL(string: videoUrlString) else {return}
-        thumbNailImageView.isHidden = true
+        hideThumbnailView()
         player = AVPlayer(url: url)
         player?.play()
         player?.volume = 0.5
@@ -46,6 +48,20 @@ class VideoPlayerView: UIView {
     func buildThumbnailImageView(){
         self.thumbNailImageView = UIImageView(frame: self.bounds)
         self.addSubview(thumbNailImageView)
+    }
+    
+    func hideThumbnailView(){
+        thumbNailImageView.isHidden = true
+        playButton.isHidden = true
+    }
+    
+    func buildPlayButton(){
+        let frame = CGRect(x: 0, y: 0, width: self.frame.width/2, height: self.frame.height/2)
+        
+        playButton = UIButton(frame: frame)
+        playButton.imageView?.image = #imageLiteral(resourceName: "PlayButton")
+        self.addSubview(playButton)
+        playButton.center = self.center
     }
     
     var playerLayer: AVPlayerLayer{

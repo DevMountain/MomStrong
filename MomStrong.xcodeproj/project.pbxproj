@@ -45,6 +45,7 @@
 		F78C6BD821B1BD0700922B3F /* ProgressHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78C6BD721B1BD0700922B3F /* ProgressHeaderView.swift */; };
 		F78C6BDA21B1C31900922B3F /* StyleGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78C6BD921B1C31900922B3F /* StyleGuide.swift */; };
 		F7A44BD321BDE1C60020D13F /* CalenderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A44BD221BDE1C60020D13F /* CalenderHelper.swift */; };
+		F7A44BD721BE663E0020D13F /* MegsMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A44BD621BE663E0020D13F /* MegsMessageViewController.swift */; };
 		F7D3C03A21A337AB005D6B8F /* AtHomeWorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D3C03921A337AB005D6B8F /* AtHomeWorkoutTableViewCell.swift */; };
 		F7D3C03D21A33C57005D6B8F /* AtHomeWorkoutDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D3C03C21A33C57005D6B8F /* AtHomeWorkoutDetailViewController.swift */; };
 		F7D3C03F21A33F84005D6B8F /* WorkoutSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D3C03E21A33F84005D6B8F /* WorkoutSectionTableViewCell.swift */; };
@@ -114,6 +115,7 @@
 		F78C6BD721B1BD0700922B3F /* ProgressHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHeaderView.swift; sourceTree = "<group>"; };
 		F78C6BD921B1C31900922B3F /* StyleGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleGuide.swift; sourceTree = "<group>"; };
 		F7A44BD221BDE1C60020D13F /* CalenderHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderHelper.swift; sourceTree = "<group>"; };
+		F7A44BD621BE663E0020D13F /* MegsMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MegsMessageViewController.swift; sourceTree = "<group>"; };
 		F7D3C03921A337AB005D6B8F /* AtHomeWorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtHomeWorkoutTableViewCell.swift; sourceTree = "<group>"; };
 		F7D3C03C21A33C57005D6B8F /* AtHomeWorkoutDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtHomeWorkoutDetailViewController.swift; sourceTree = "<group>"; };
 		F7D3C03E21A33F84005D6B8F /* WorkoutSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSectionTableViewCell.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				F7F0349A219DFF3600CFD0AE /* MomStrongTabBarController.swift */,
+				F7A44BD621BE663E0020D13F /* MegsMessageViewController.swift */,
 			);
 			path = OtherVCs;
 			sourceTree = "<group>";
@@ -581,6 +584,7 @@
 				F7E7F3AC21AE0B4E00BA8FF8 /* LaunchCopyViewController.swift in Sources */,
 				F75F6AFE21AB5F0A007561B3 /* WeekProgressViewController.swift in Sources */,
 				F78C6BD821B1BD0700922B3F /* ProgressHeaderView.swift in Sources */,
+				F7A44BD721BE663E0020D13F /* MegsMessageViewController.swift in Sources */,
 				F71938C921AC9A8D00D8D349 /* WorkoutController.swift in Sources */,
 				F75F6B0C21AB66B7007561B3 /* MonthCollectionViewCell.swift in Sources */,
 				F71938CB21ACB7D100D8D349 /* ProgressController.swift in Sources */,

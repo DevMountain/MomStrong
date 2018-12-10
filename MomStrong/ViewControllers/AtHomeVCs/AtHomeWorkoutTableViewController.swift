@@ -40,6 +40,7 @@ class AtHomeWorkoutTableViewController: UITableViewController {
         let workout = workouts?[indexPath.row]
         cell?.workout = workout
         cell?.delegate = self
+        cell?.workoutNumberLabel.text = "Workout \(indexPath.row)"
         return cell ?? UITableViewCell()
     }
 

@@ -41,7 +41,7 @@ class AtHomeWorkoutTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        renderUI()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -78,15 +78,15 @@ class AtHomeWorkoutTableViewCell: UITableViewCell {
     
     func markWorkoutComplete(){
         UIView.animate(withDuration: 0.2) {
-            self.completedButton.setTitle("I Did This", for: .normal)
+            self.completedButton.setImage(#imageLiteral(resourceName: "IDidThis"), for: .normal)
             self.completedBarView.backgroundColor = UIColor.powerMomRed
         }
     }
     
     func markWorkoutIncomplete(){
         UIView.animate(withDuration: 0.2) {
-            self.completedButton.setTitle("Mark As Complete", for: .normal)
-            self.completedBarView.backgroundColor = .gray
+            self.completedButton.setImage(#imageLiteral(resourceName: "MarkAsComplete"), for: .normal)
+            self.completedBarView.backgroundColor = UIColor.backgroudGray
         }
     }
     
@@ -99,4 +99,7 @@ class AtHomeWorkoutTableViewCell: UITableViewCell {
         updateIsCompleted()
     }
     
+    func renderUI(){
+        bgView.addShadow()
+    }
 }
