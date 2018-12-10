@@ -23,6 +23,7 @@ class GymWorkoutTableViewCell: UITableViewCell {
     @IBOutlet weak var workoutSectionsTableView: SelfSizingTableView!
     @IBOutlet weak var completedButton: UIButton!
     @IBOutlet weak var completedBarView: UIView!
+    @IBOutlet weak var bgView: UIView!
     
     var workout: Workout?{
         didSet{
@@ -31,7 +32,7 @@ class GymWorkoutTableViewCell: UITableViewCell {
             workoutSectionsTableView.rowHeight = UITableView.automaticDimension
             workoutSectionsTableView.estimatedRowHeight = 900
             updateViews()
-            updateIsCompleted()
+            updateIsCompletedButton()
         }
     }
     
@@ -39,7 +40,7 @@ class GymWorkoutTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-//        tableViewHeight.constant = workoutSectionsTableView.contentSize.height
+        setUpUI()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -55,10 +56,10 @@ class GymWorkoutTableViewCell: UITableViewCell {
     
     @IBAction func completedButtonTapped(_ sender: Any) {
         delegate?.markAsCompleted(sender: self)
-        updateIsCompleted()
+        updateIsCompletedButton()
     }
     
-    func updateIsCompleted(){
+    func updateIsCompletedButton(){
         guard let currentUser = UserController.shared.currentUser,
             let workout = workout else { return }
         let isComplete = currentUser.hasCompleted(workout: workout)
@@ -67,16 +68,21 @@ class GymWorkoutTableViewCell: UITableViewCell {
     
     func markWorkoutComplete(){
         UIView.animate(withDuration: 0.2) {
-            self.completedButton.setTitle("I Did This", for: .normal)
+            self.completedButton.setImage(#imageLiteral(resourceName: "IDidThis"), for: .normal)
             self.completedBarView.backgroundColor = UIColor.powerMomRed
         }
     }
     
     func markWorkoutIncomplete(){
         UIView.animate(withDuration: 0.2) {
-            self.completedButton.setTitle("Mark As Complete", for: .normal)
-            self.completedBarView.backgroundColor = .gray
+            self.completedButton.setImage(#imageLiteral(resourceName: "MarkAsComplete"), for: .normal)
+            self.completedBarView.backgroundColor = UIColor.backgroudGray
         }
+    }
+    
+    func setUpUI(){
+        bgView.layer.masksToBounds = false
+        bgView.addShadow()
     }
     
 }
@@ -105,6 +111,9 @@ extension GymWorkoutTableViewCell: UITableViewDataSource, UITableViewDelegate{
         guard let workoutSection = workout?.circuits[section] else {return nil}
         let header = tableView.dequeueReusableCell(withIdentifier: "workoutSectionCell") as? WorkoutSectionHeaderTableViewCell
         header?.workoutSection = workoutSection
+        if section == 0{
+            header?.sectionDividerView.backgroundColor = .powerMomRed
+        }
         return header
     }
     

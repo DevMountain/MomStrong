@@ -22,6 +22,7 @@ class GymWorkoutTableViewController: UITableViewController {
             self.workouts = workouts
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                self.updateProgressHeaderView()
             }
         }
         
@@ -37,15 +38,15 @@ class GymWorkoutTableViewController: UITableViewController {
     }
 
     func updateProgressHeaderView(){
-        progressHeaderView.progress = calculateWeeklyProgress() ?? 0
+        progressHeaderView.progress = calculateWeeklyProgress()
         progressHeaderView.workoutType = "GymRat Workouts"
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "gymWorkoutCell", for: indexPath) as? GymWorkoutTableViewCell
         let workout = workouts?[indexPath.row]
-        cell?.workout = workout
         cell?.delegate = self
+        cell?.workout = workout
         return cell ?? UITableViewCell()
     }
     

@@ -58,13 +58,16 @@ class GymExerciseTableViewCell: UITableViewCell {
     }
     
     func setUpUI(){
-        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(thumbNailWasTapped))
-        doubleTap.numberOfTapsRequired = 1
+        let tap = UITapGestureRecognizer(target: self, action: #selector(thumbNailWasTapped))
+        tap.numberOfTapsRequired = 1
         thumbnailImageView.isUserInteractionEnabled = true
-        thumbnailImageView.addGestureRecognizer(doubleTap)
+        self.isUserInteractionEnabled = true
+        thumbnailImageView.superview?.isUserInteractionEnabled = true
+        thumbnailImageView.addGestureRecognizer(tap)
     }
     
     @objc func thumbNailWasTapped(){
+        print("tapped")
         guard !isLoading,
             let urlString = fullExercise?.videoUrl,
             let url = URL(string: urlString) else {return}

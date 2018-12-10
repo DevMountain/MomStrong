@@ -12,6 +12,7 @@ class WorkoutSectionHeaderTableViewCell: UITableViewCell {
   
     @IBOutlet weak var sectionTitleLabel: UILabel!
     @IBOutlet weak var sectionDescriptionLabel: UILabel!
+    @IBOutlet weak var sectionDividerView: UIView!
     
     
     var workoutSection: Circuit?{

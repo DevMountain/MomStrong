@@ -13,16 +13,15 @@ class ProgressViewController: UIViewController, SegmentProgressViewControllerDel
     @IBOutlet weak var numberCompletedLabel: UILabel!
     @IBOutlet weak var timeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var completedLabel: UILabel!
-    @IBOutlet weak var percentProgressLabel: UILabel!
-    @IBOutlet weak var weekLabel: UILabel!
     @IBOutlet weak var weekContainerView: UIView!
     @IBOutlet weak var monthContainerView: UIView!
     @IBOutlet weak var yearContainerView: UIView!
-    @IBOutlet weak var workoutProgressView: UIProgressView!
+    @IBOutlet weak var progressHeaderView: ProgressHeaderView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpRootViewNavBar()
+        setUpUI()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -66,10 +65,10 @@ class ProgressViewController: UIViewController, SegmentProgressViewControllerDel
     }
     
     func setProgressView(for timePeriod: TimePeriod){
-        guard let progressPercentage = ProgressController.shared.getCurrentPercentageOfProgress(for: timePeriod) else { return }
-        percentProgressLabel.text = progressPercentage.asPercentString
-        workoutProgressView.setProgress(progressPercentage, animated: true)
-//        numberCompletedLabel.text = "\()\()"
+        progressHeaderView.progress = ProgressController.shared.getCurrentPercentageOfProgress(for: timePeriod)
+        let possible = UserController.shared.currentUser?.numberOfAvailableWorkouts(for: timePeriod)
+        let completed = ProgressController.shared.numberOfCompletedWorkouts(for: timePeriod)
+        numberCompletedLabel.text = "\(completed) of \(possible ?? 0) Completed"
     }
     
     func updateProgressView(){
@@ -82,5 +81,20 @@ class ProgressViewController: UIViewController, SegmentProgressViewControllerDel
             let destination = segue.destination as? WeekProgressViewController
             destination?.delegate = self
         }
+    }
+    
+    func setUpUI(){
+        timeSegmentedControl.addShadow()
+        timeSegmentedControl.layer.masksToBounds = true
+//        timeSegmentedControl.layer.cornerRadius = 0
+        
+        timeSegmentedControl.layer.borderWidth = 0
+        timeSegmentedControl.backgroundColor = .white
+        timeSegmentedControl.setTitleTextAttributes([
+            NSAttributedString.Key.foregroundColor: UIColor.lightGray
+            ], for: .normal)
+        
+        progressHeaderView.titleImageView.isHidden = true
+        progressHeaderView.layoutIfNeeded()
     }
 }

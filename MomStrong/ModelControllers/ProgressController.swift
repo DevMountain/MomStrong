@@ -101,6 +101,19 @@ class ProgressController{
         return Float(completedWorkoutCount)/Float(availabeWorkoutCount)
     }
     
+    func numberOfCompletedWorkouts(for timePeriod: TimePeriod, user: User? = UserController.shared.currentUser) -> Int{
+        guard let user = user else { return 0}
+        switch timePeriod{
+        case .Week:
+            return user.progress.goals.count
+        case .Month:
+            guard let currentMonth = CalendarHelper().dateComponentsNow.month else { return 0 }
+            return filterProgressPointsFor(month: currentMonth, user: user).count
+        case .Year:
+            return user.progress.progressPoints.count
+        }
+    }
+    
     func filterProgressPointsFor(month: Int, user: User) -> [WorkoutProgressPoint]{
         return user.progress.progressPoints.filter{
             if let dateCompleted = $0.dateCompleted{

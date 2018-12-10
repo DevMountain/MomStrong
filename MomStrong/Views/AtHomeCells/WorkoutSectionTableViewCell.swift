@@ -42,13 +42,8 @@ extension WorkoutSectionTableViewCell: UITableViewDataSource, UITableViewDelegat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath)
-//        let setGroup = workoutSection?.setGroups[indexPath.row]
-//        cell.textLabel?.text = setGroup?.exercise.name
-//        cell.detailTextLabel?.text = "\(setGroup?.sets ?? [])"
-        
-        let exercise = workoutSection?.excercises[indexPath.row]
-        cell.textLabel?.text = exercise?.title
-        cell.detailTextLabel?.text = exercise?.description
+        guard let exercise = workoutSection?.excercises[indexPath.row] else { return UITableViewCell() }
+        cell.textLabel?.text = "\(exercise.title)  X  \(exercise.description)"
         return cell
     }
     

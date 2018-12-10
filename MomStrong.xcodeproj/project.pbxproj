@@ -22,7 +22,6 @@
 		F75F6AF421A63F75007561B3 /* WorkoutSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F75F6AF321A63F75007561B3 /* WorkoutSectionHeaderView.xib */; };
 		F75F6AF821A88F25007561B3 /* WorkoutSectionHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75F6AF721A88F25007561B3 /* WorkoutSectionHeaderTableViewCell.swift */; };
 		F75F6AFA21A9E2A7007561B3 /* SelfSizingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75F6AF921A9E2A7007561B3 /* SelfSizingTableView.swift */; };
-		F75F6AFC21A9E839007561B3 /* RoundedDropShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75F6AFB21A9E839007561B3 /* RoundedDropShadowView.swift */; };
 		F75F6AFE21AB5F0A007561B3 /* WeekProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75F6AFD21AB5F0A007561B3 /* WeekProgressViewController.swift */; };
 		F75F6B0021AB5F16007561B3 /* MonthProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75F6AFF21AB5F16007561B3 /* MonthProgressViewController.swift */; };
 		F75F6B0221AB5F20007561B3 /* YearProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75F6B0121AB5F20007561B3 /* YearProgressViewController.swift */; };
@@ -92,7 +91,6 @@
 		F75F6AF321A63F75007561B3 /* WorkoutSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkoutSectionHeaderView.xib; sourceTree = "<group>"; };
 		F75F6AF721A88F25007561B3 /* WorkoutSectionHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSectionHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		F75F6AF921A9E2A7007561B3 /* SelfSizingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfSizingTableView.swift; sourceTree = "<group>"; };
-		F75F6AFB21A9E839007561B3 /* RoundedDropShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedDropShadowView.swift; sourceTree = "<group>"; };
 		F75F6AFD21AB5F0A007561B3 /* WeekProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekProgressViewController.swift; sourceTree = "<group>"; };
 		F75F6AFF21AB5F16007561B3 /* MonthProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthProgressViewController.swift; sourceTree = "<group>"; };
 		F75F6B0121AB5F20007561B3 /* YearProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearProgressViewController.swift; sourceTree = "<group>"; };
@@ -259,7 +257,6 @@
 			isa = PBXGroup;
 			children = (
 				F75F6AF921A9E2A7007561B3 /* SelfSizingTableView.swift */,
-				F75F6AFB21A9E839007561B3 /* RoundedDropShadowView.swift */,
 				F70C157421BAD99200159C80 /* VideoPlayerView.swift */,
 			);
 			path = CustomViews;
@@ -555,7 +552,6 @@
 				F71938C721AC978A00D8D349 /* Circuit.swift in Sources */,
 				F75F6B1821AB71E5007561B3 /* Progress.swift in Sources */,
 				F75F6B0A21AB66AC007561B3 /* CalendarCollectionViewCell.swift in Sources */,
-				F75F6AFC21A9E839007561B3 /* RoundedDropShadowView.swift in Sources */,
 				F70C157321BAD81600159C80 /* ChromeCastController.swift in Sources */,
 				F7F0349B219DFF3600CFD0AE /* MomStrongTabBarController.swift in Sources */,
 				F7E7F3B721AF5DBC00BA8FF8 /* WorkoutProgressPoint.swift in Sources */,
