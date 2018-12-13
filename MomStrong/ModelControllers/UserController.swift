@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class UserController{
     
@@ -42,7 +43,7 @@ class UserController{
     func loginUserWith(email: String, password: String, completion: @escaping (User?) -> Void){
         guard let url = URL(string: baseUrl)?.appendingPathComponent("auth").appendingPathComponent("login") else {completion(nil) ; return}
         var request = URLRequest(url: url)
-        let json = ["Email":email,"password":password]
+        let json = ["email":email,"password":password]
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
@@ -112,6 +113,53 @@ class UserController{
         guard let email = UserDefaults.standard.string(forKey: "email"),
             let password = UserDefaults.standard.string(forKey: "password") else { return nil }
         return (email, password)
+    }
+    
+    func sendResetPasswordRequestFor(email: String, completion: @escaping (Bool) -> ()){
+        //TODO: - get reset password link from cody
+        guard let url = URL(string: "http://138.197.192.102:3691/api/resetPassword") else { completion(false) ; return }
+        var request = URLRequest(url: url)
+        request.addValue(email, forHTTPHeaderField: "email")
+        request.httpMethod = "POST"
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error{
+                print("\(error.localizedDescription) \(error) in function: \(#function)")
+                completion(false)
+                return
+            }
+            
+            print(response ?? "No Response")
+            
+            guard let data = data else { completion(false) ; return }
+            completion(true)
+//            do{
+//                let decoder = JSONDecoder()
+//                let <#modelObject#> = try decoder.decode(<#Codable#>.self, from: data)
+//                completion(<#modelObject#>)
+//            }catch {
+//                print("There was as error in \(#function) :  \(error) \(error.localizedDescription)")
+//                completion(nil)
+//            }
+            }.resume()
+    }
+    
+    func checkForTwoWeekTrial() -> (valid: Bool, daysLeft: Int)?{
+        let trialId = UIDevice.current.identifierForVendor?.uuidString
+        if let date = UserDefaults.standard.value(forKey: trialId ?? "currentUser") as? Date{
+            let daysExpired = Calendar.current.dateComponents([.day], from: date, to: Date()).day!
+            let daysLeft = 14 - daysExpired
+            return (daysLeft > 0, daysLeft)
+        } else{
+            return nil
+        }
+    }
+    
+    private func createTwoWeekTrial() -> User{
+        let trialUser = User(name: "Trial Account", dob: nil, location: nil, subscription: .Both, id: 0)
+        let trialId = UIDevice.current.identifierForVendor?.uuidString
+        UserDefaults.standard.set(Date(), forKey: trialId ?? "currentUser")
+        return trialUser
     }
 }
 

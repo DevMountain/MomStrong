@@ -20,7 +20,7 @@ class Workout{
     let equipmentNeeded: [String]?
     
     //Properties from Vimeo
-    var duration: Int?
+    var duration: String?
     var thumbnailUrl: String?
     var thumbnail: UIImage?
     var videoUrl: String?
@@ -36,7 +36,7 @@ class Workout{
     }
     
     func setVideoProperties(videoInfo: VimeoInfoObject, completion: @escaping () -> ()){
-        self.duration = videoInfo.duration
+//        self.duration = videoInfo.duration
         self.thumbnailUrl = videoInfo.pictures.sizes.last?.link
         if videoInfo.files.count >= 2{
             self.videoUrl = videoInfo.files[1].link

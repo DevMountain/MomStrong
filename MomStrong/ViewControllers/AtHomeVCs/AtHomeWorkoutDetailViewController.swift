@@ -152,7 +152,7 @@ extension AtHomeWorkoutDetailTableViewController: GCKSessionManagerListener {
     func buildMediaInfo(from workout: Workout) -> GCKMediaInformation{
         let metaData = buildMediaMetaData(workout: workout)
         print(workout.videoUrl!)
-        let mediaInfo = GCKMediaInformation(contentID: workout.videoUrl!, streamType: .unknown, contentType: "video/mp4", metadata: metaData, adBreaks: nil, adBreakClips: nil, streamDuration: Double(workout.duration ?? 20) * 60, mediaTracks: nil, textTrackStyle: nil, customData: nil)
+        let mediaInfo = GCKMediaInformation(contentID: workout.videoUrl!, streamType: .unknown, contentType: "video/mp4", metadata: metaData, adBreaks: nil, adBreakClips: nil, streamDuration: 20.0*60.0, mediaTracks: nil, textTrackStyle: nil, customData: nil)
         return mediaInfo
     }
     

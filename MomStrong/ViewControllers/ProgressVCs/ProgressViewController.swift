@@ -17,18 +17,25 @@ class ProgressViewController: UIViewController, SegmentProgressViewControllerDel
     @IBOutlet weak var monthContainerView: UIView!
     @IBOutlet weak var yearContainerView: UIView!
     @IBOutlet weak var progressHeaderView: ProgressHeaderView!
+    @IBOutlet weak var timeHorizonLabel: UILabel!
+    @IBOutlet weak var headerLabelStackView: UIStackView!
+    @IBOutlet weak var leftArrowButton: UIButton!
+    @IBOutlet weak var rightArrowButton: UIButton!
+    
+    var selectedMonth: Int = CalendarHelper().currentMonth
+    var monthProgressViewController: MonthProgressViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpRootViewNavBar()
         setUpUI()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         swithTimeProgressViews()
     }
-
+    
     @IBAction func timeSegmentValueChanged(_ sender: Any) {
         swithTimeProgressViews()
     }
@@ -47,6 +54,9 @@ class ProgressViewController: UIViewController, SegmentProgressViewControllerDel
         weekContainerView.isHidden = false
         monthContainerView.isHidden = true
         yearContainerView.isHidden = true
+        UIView.animate(withDuration: 0.2) {
+            self.headerLabelStackView.isHidden = true
+        }
         setProgressView(for: .Week)
     }
     
@@ -54,6 +64,10 @@ class ProgressViewController: UIViewController, SegmentProgressViewControllerDel
         weekContainerView.isHidden = true
         monthContainerView.isHidden = false
         yearContainerView.isHidden = true
+        UIView.animate(withDuration: 0.2) {
+            self.headerLabelStackView.isHidden = false
+            self.timeHorizonLabel.text = CalendarHelper().monthName(for: self.selectedMonth)
+        }
         setProgressView(for: .Month)
     }
     
@@ -61,6 +75,10 @@ class ProgressViewController: UIViewController, SegmentProgressViewControllerDel
         weekContainerView.isHidden = true
         monthContainerView.isHidden = true
         yearContainerView.isHidden = false
+        UIView.animate(withDuration: 0.2) {
+            self.headerLabelStackView.isHidden = false
+            self.timeHorizonLabel.text = "\(CalendarHelper().currentYear)"
+        }
         setProgressView(for: .Year)
     }
     
@@ -78,15 +96,18 @@ class ProgressViewController: UIViewController, SegmentProgressViewControllerDel
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toWeekContainerView"{
-            let destination = segue.destination as? WeekProgressViewController
-            destination?.delegate = self
+            let weekVC = segue.destination as? WeekProgressViewController
+            weekVC?.delegate = self
+        } else if segue.identifier == "toMonthContainerView"{
+            let monthVC = segue.destination  as? MonthProgressViewController
+            self.monthProgressViewController = monthVC
         }
     }
     
     func setUpUI(){
         timeSegmentedControl.addShadow()
         timeSegmentedControl.layer.masksToBounds = true
-//        timeSegmentedControl.layer.cornerRadius = 0
+        //        timeSegmentedControl.layer.cornerRadius = 0
         
         timeSegmentedControl.layer.borderWidth = 0
         timeSegmentedControl.backgroundColor = .white
@@ -97,4 +118,21 @@ class ProgressViewController: UIViewController, SegmentProgressViewControllerDel
         progressHeaderView.titleImageView.isHidden = true
         progressHeaderView.layoutIfNeeded()
     }
+    
+    func incrementSelectedMonth(){
+        
+    }
+    
+    @IBAction func rightArrowTapped(_ sender: Any) {
+        selectedMonth += 1
+        timeHorizonLabel.text = CalendarHelper().monthName(for: selectedMonth)
+        monthProgressViewController?.selectedMonth = selectedMonth
+    }
+    
+    @IBAction func leftArrowTapped(_ sender: Any) {
+        selectedMonth -= 1
+        timeHorizonLabel.text = CalendarHelper().monthName(for: selectedMonth)
+        monthProgressViewController?.selectedMonth = selectedMonth
+    }
+    
 }

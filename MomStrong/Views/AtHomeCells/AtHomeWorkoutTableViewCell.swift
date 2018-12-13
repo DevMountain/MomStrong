@@ -56,7 +56,7 @@ class AtHomeWorkoutTableViewCell: UITableViewCell {
         descriptionLabel.text = workout.description
         let equipment = workout.equipmentNeeded ?? ["None"]
         equipmentLabel.text = "Equipment: " + equipment.joined(separator: " ")
-        durationLabel.text = "Duration: \(workout.duration ?? 0)"
+        durationLabel.text = "Duration: \(workout.duration ?? "FUN")"
         updateIsCompleted()
         isLoading = true
         let spinner = UIView.displaySpinner(onView: thumbnailImageView)

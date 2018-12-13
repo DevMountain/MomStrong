@@ -40,8 +40,8 @@ class WeeklyGoalTableViewCell: UITableViewCell {
     
     func updateCompletedButton(){
         guard let goal = goal else { return }
-        let buttonText = goal.isCompleted ? "Done" : "Not Done"
-        isCompletedButton.setTitle(buttonText, for: .normal)
+        let buttonImage = goal.isCompleted ? #imageLiteral(resourceName: "CompletedGoal") : #imageLiteral(resourceName: "MarkDone_Empty")
+        isCompletedButton.setImage(buttonImage, for: .normal)
     }
     
     @IBAction func completedButtonTapped(_ sender: Any) {

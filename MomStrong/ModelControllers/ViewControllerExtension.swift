@@ -96,6 +96,30 @@ extension UIViewController{
     @objc func popViewController(){
         self.navigationController?.popViewController(animated: true)
     }
+    
+    //    func presentMomStrongModalAlert(title: String, messageOne: String, messageTwo: String = "") -> MomStrongModalMessageView{
+    //        let vc = UIStoryboard(name: "ModalPresentations", bundle: nil).instantiateInitialViewController()
+    //        let popUpViewController = vc as?
+    //    }
+    
+    func presentMomStrongModalVC(title: String, messageOne: String, messageTwo: String?){
+        let vc = UIStoryboard(name: "ModalPresentations", bundle: nil).instantiateInitialViewController()
+        guard let popUpVC = vc as? ModalPopUpViewController else { return }
+        popUpVC.popUptitle = title
+        popUpVC.messageOne = messageOne
+        
+        if let messageTwo = messageTwo{
+            popUpVC.messageTwo = messageTwo
+        }else {
+            popUpVC.messageTwoLabel.isHidden = true
+        }
+        
+        self.definesPresentationContext = true
+        popUpVC.modalPresentationStyle = UIModalPresentationStyle.overFullScreen
+        popUpVC.modalTransitionStyle = .crossDissolve
+        self.present(popUpVC, animated: true)
+    }
+    
 }
 
 extension UIView{
@@ -106,7 +130,7 @@ extension UIView{
         let activityIndicator = UIActivityIndicatorView.init(style: .white)
         activityIndicator.startAnimating()
         activityIndicator.center = onView.center
-
+        
         
         DispatchQueue.main.async {
             spinnerView.addSubview(activityIndicator)

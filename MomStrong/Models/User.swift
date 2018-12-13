@@ -10,8 +10,7 @@ import Foundation
 
 class User{
     
-    var firstName: String
-    var lastName: String
+    var name: String
     var dob: Date?
     var location: String?
     var id: Int
@@ -19,19 +18,14 @@ class User{
     var subscription: Subscription
     var accountCreationDate: Date?
     
-    var fullName: String{
-        return "\(firstName) \(lastName)"
-    }
-    
     var age: Int?{
         guard let dob = dob else {return nil}
         let yearComponent = Calendar.current.dateComponents([.year], from: dob, to: Date())
         return yearComponent.year
     }
     
-    init(firstName: String, lastName: String, dob: Date?, location: String?, subscription: Subscription, id: Int, progress: Progress? = nil) {
-        self.firstName = firstName
-        self.lastName = lastName
+    init(name: String, dob: Date?, location: String?, subscription: Subscription, id: Int, progress: Progress? = nil) {
+        self.name = name
         self.dob = dob
         self.location = location
         self.subscription = subscription
@@ -44,7 +38,7 @@ class User{
     }
     
     convenience init(userService: UserService, progress: Progress?){
-        self.init(firstName: userService.name, lastName: "Last Name", dob: nil, location: nil, subscription: Subscription(rawValue: userService.subscription) ?? .None, id: userService.id, progress: progress)
+        self.init(name: userService.name, dob: nil, location: nil, subscription: Subscription(rawValue: userService.subscription) ?? .None, id: userService.id, progress: progress)
         self.accountCreationDate = Date(timeIntervalSinceNow: -60 * 60 * 24 * 30 * 5)
     }
     

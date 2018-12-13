@@ -19,7 +19,7 @@ struct WorkoutService: Decodable{
     let vimeoId: Int?
     
     //MARK: - Not in Web Endpoints
-    let duration: Int?
+    let duration: String?
     let equipmentNeeded: [String]?
     
     enum CodingKeys: String, CodingKey{

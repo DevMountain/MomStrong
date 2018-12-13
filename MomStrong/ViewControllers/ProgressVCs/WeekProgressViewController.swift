@@ -46,6 +46,9 @@ extension WeekProgressViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        guard indexPath.row < UserController.shared.currentUser?.progress.goals.count ?? 0 else { return }
+        
         if editingStyle == .delete{
             guard let goal = UserController.shared.currentUser?.progress.goals[indexPath.row] else { return }
             ProgressController.shared.delete(goal: goal)

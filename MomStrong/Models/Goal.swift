@@ -13,11 +13,12 @@ extension Goal{
     convenience init(title: String){
         self.init(context: CoreDataStack.context)
         self.title = title
+        self.progress = UserController.shared.currentUser?.progress
         self.isCompleted = false
     }
     
     func toggleIsCompleted(){
-        self.isCompleted = !self.isCompleted
+        isCompleted.toggle()
         CoreDataStack.save()
     }
 }

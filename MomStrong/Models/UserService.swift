@@ -12,7 +12,7 @@ struct UserService: Codable{
     
     let id: Int
     let subscription: String
-    let Email: String
+    let email: String
     let name: String
     let moonclerk_id: String
     let active: Bool

@@ -4,7 +4,7 @@
         <attribute name="isCompleted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <attribute name="weekNumber" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="progress" maxCount="1" deletionRule="Nullify" destinationEntity="Progress" inverseName="goalSet" inverseEntity="Progress" syncable="YES"/>
+        <relationship name="progress" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Progress" inverseName="goalSet" inverseEntity="Progress" syncable="YES"/>
     </entity>
     <entity name="Progress" representedClassName="Progress" syncable="YES" codeGenerationType="class">
         <attribute name="userID" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>

@@ -24,11 +24,19 @@ class CalendarHelper{
     }
     
     var currentMonthName: String{
-        return Calendar.current.monthSymbols[currentMonth]
+        return Calendar.current.monthSymbols[currentMonth - 1]
+    }
+    
+    var currentYear: Int{
+        return dateComponentsNow.year ?? 0
     }
     
     var numberOfDaysInCurrentMonth: Int{
         return numberOfDaysIn(month: dateComponentsNow.month ?? 0)
+    }
+    
+    func monthName(for month: Int) -> String{
+        return Calendar.current.monthSymbols[month - 1]
     }
     
     func numberOfDaysIn(month: Int) -> Int{

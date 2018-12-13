@@ -12,7 +12,8 @@ class InfoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let navBar = navigationController?.navigationBar
+        navBar?.shadowImage = UIImage()
         // Do any additional setup after loading the view.
     }
     

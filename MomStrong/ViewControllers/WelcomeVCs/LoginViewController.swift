@@ -18,7 +18,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         emailTextField.delegate = self
         passwordTextField.delegate = self
-        
+        customizeBackButton()
     }
     
     func presentLoginErrorAlert(){
@@ -27,9 +27,9 @@ class LoginViewController: UIViewController {
     
     
     @IBAction func forgotPasswordButtonTapped(_ sender: Any) {
-        let currentUser = User(firstName: "John", lastName: "Marshal", dob: nil, location: "UT", subscription: .Both, id: 12)
-        UserController.shared.currentUser = currentUser
-        self.presentMainInterface()
+//        let currentUser = User(firstName: "John", lastName: "Marshal", dob: nil, location: "UT", subscription: .Both, id: 12)
+//        UserController.shared.currentUser = currentUser
+//        self.presentMainInterface()
     }
     
     @IBAction func loginButtonTapped(_ sender: Any) {
