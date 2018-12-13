@@ -88,6 +88,28 @@ class UserController{
         }.resume()
     }
     
+    func updateUser(name: String, email: String, age: String, state: String, completion: @escaping (Bool) -> Void){
+        guard let url = URL(string: baseUrl)?.appendingPathComponent("api").appendingPathComponent("userInfo") else { completion(false) ; return }
+        let json = [
+            "name" : name,
+            "email" : email,
+            "age" : age,
+            "state" : state
+        ]
+        let request = constructRequest(url: url, method: "POST", bodyJson: json)
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error{
+                print("\(error.localizedDescription) \(error) in function: \(#function)")
+                completion(false)
+                return
+            }
+            
+            print(response ?? "No Response")
+            completion(true)
+            }.resume()
+    }
+    
 //    func addSomeProgress(){
 //        let progressPoints = [
 //            WorkoutProgressPoint(dateCompleted: Date(timeIntervalSinceNow: -24*60*60 * 3), workoutId: 13, progress: UserController.shared.currentUser?.progress),
@@ -132,9 +154,9 @@ class UserController{
     func sendResetPasswordRequestFor(email: String, completion: @escaping (Bool) -> ()){
         //TODO: - get reset password link from cody
         guard let url = URL(string: baseUrl)?.appendingPathComponent("api").appendingPathComponent("forgotpassword") else { completion(false) ; return }
-        let request = self.constructRequest(url: url, method: "POST", bodyJson: ["email" : email])
+        let request = self.constructRequest(url: url, method: "PUT", bodyJson: ["email" : email])
         
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
+        URLSession.shared.dataTask(with: request) { (_, response, error) in
             if let error = error{
                 print("\(error.localizedDescription) \(error) in function: \(#function)")
                 completion(false)
@@ -142,17 +164,8 @@ class UserController{
             }
             
             print(response ?? "No Response")
-            
-            guard let data = data else { completion(false) ; return }
             completion(true)
-//            do{
-//                let decoder = JSONDecoder()
-//                let <#modelObject#> = try decoder.decode(<#Codable#>.self, from: data)
-//                completion(<#modelObject#>)
-//            }catch {
-//                print("There was as error in \(#function) :  \(error) \(error.localizedDescription)")
-//                completion(nil)
-//            }
+            
             }.resume()
     }
     

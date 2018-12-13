@@ -10,15 +10,23 @@ import UIKit
 
 class SelfSizingTableView: UITableView {
     
-        override func reloadData() {
-            super.reloadData()
-            self.invalidateIntrinsicContentSize()
-            self.layoutIfNeeded()
-        }
-        
-        override var intrinsicContentSize: CGSize {
-            setNeedsLayout()
-            layoutIfNeeded()
-            return CGSize(width: contentSize.width, height: contentSize.height/7)
-        }
+    weak var parentTableView: SelfSizingTableView?
+    
+    override func reloadData() {
+        super.reloadData()
+        self.invalidateIntrinsicContentSize()
+        self.layoutIfNeeded()
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        setNeedsLayout()
+        layoutIfNeeded()
+        return CGSize(width: contentSize.width, height: contentSize.height)
+    }
+    
+    func updateContentSize(){
+        self.invalidateIntrinsicContentSize()
+        self.layoutIfNeeded()
+        parentTableView?.updateContentSize()
+    }
 }

@@ -56,11 +56,22 @@ class WorkoutController{
     }
     
     func fetchVideoInfo(for exercise: Exercise, completion: @escaping (Exercise?) -> ()){
-        VimeoClient.fetchVideoInformation(vimeoID: exercise.vimeoId) { (videoInfo) in
+        guard let vimeoId = exercise.vimeoId else { print("NO VIMEO ID ON EXERCISE : \(exercise.title) \(exercise.id)") ; completion(nil) ; return }
+        VimeoClient.fetchVideoInformation(vimeoID: vimeoId) { (videoInfo) in
             var exercise = exercise
             exercise.videoUrl = videoInfo?.files[1].link
             exercise.thumbnailUrl = videoInfo?.pictures.sizes.first?.linkWithPlayButton
             completion(exercise)
         }
+    }
+    
+    func pullVimeoIdFrom(vimeoUrl: String) -> Int?{
+        let range = vimeoUrl.range(of: ".com/")
+        guard let endOfBase = range?.upperBound,
+            let lastPathComponentStart = vimeoUrl.lastIndex(of: "/") else { return nil }
+        
+        let idRange = Range<String.Index>.init(uncheckedBounds: (endOfBase, lastPathComponentStart))
+        let idString  = vimeoUrl[idRange]
+        return Int(idString)
     }
 }

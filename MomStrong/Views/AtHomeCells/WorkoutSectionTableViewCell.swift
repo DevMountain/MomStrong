@@ -29,7 +29,6 @@ class WorkoutSectionTableViewCell: UITableViewCell {
     func updateViews(){
         sectionTitleLabel.text = workoutSection?.title
         sectionDescriptionLabel.text = workoutSection?.description
-        
     }
 }
 
@@ -44,6 +43,7 @@ extension WorkoutSectionTableViewCell: UITableViewDataSource, UITableViewDelegat
         let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath)
         guard let exercise = workoutSection?.excercises[indexPath.row] else { return UITableViewCell() }
         cell.textLabel?.text = "\(exercise.title)  X  \(exercise.description)"
+        
         return cell
     }
     

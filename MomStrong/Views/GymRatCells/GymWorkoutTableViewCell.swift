@@ -29,8 +29,6 @@ class GymWorkoutTableViewCell: UITableViewCell {
         didSet{
             workoutSectionsTableView.dataSource = self
             workoutSectionsTableView.delegate = self
-            workoutSectionsTableView.rowHeight = UITableView.automaticDimension
-            workoutSectionsTableView.estimatedRowHeight = 900
             updateViews()
             updateIsCompletedButton()
         }
@@ -121,9 +119,10 @@ extension GymWorkoutTableViewCell: UITableViewDataSource, UITableViewDelegate{
     {
         return 100
     }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
+    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return UITableView.automaticDimension
+//    }
     
     
     
