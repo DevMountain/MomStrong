@@ -66,6 +66,8 @@ class ProgressViewController: UIViewController, SegmentProgressViewControllerDel
         yearContainerView.isHidden = true
         UIView.animate(withDuration: 0.2) {
             self.headerLabelStackView.isHidden = false
+            self.leftArrowButton.isHidden = false
+            self.rightArrowButton.isHidden = false
             self.timeHorizonLabel.text = CalendarHelper().monthName(for: self.selectedMonth)
         }
         setProgressView(for: .Month)
@@ -77,6 +79,8 @@ class ProgressViewController: UIViewController, SegmentProgressViewControllerDel
         yearContainerView.isHidden = false
         UIView.animate(withDuration: 0.2) {
             self.headerLabelStackView.isHidden = false
+            self.leftArrowButton.isHidden = true
+            self.rightArrowButton.isHidden = true
             self.timeHorizonLabel.text = "\(CalendarHelper().currentYear)"
         }
         setProgressView(for: .Year)
@@ -124,13 +128,18 @@ class ProgressViewController: UIViewController, SegmentProgressViewControllerDel
     }
     
     @IBAction func rightArrowTapped(_ sender: Any) {
+        
         selectedMonth += 1
+        if selectedMonth > 12 { selectedMonth = 1}
+        
         timeHorizonLabel.text = CalendarHelper().monthName(for: selectedMonth)
         monthProgressViewController?.selectedMonth = selectedMonth
     }
     
     @IBAction func leftArrowTapped(_ sender: Any) {
         selectedMonth -= 1
+        if selectedMonth < 1 { selectedMonth = 12 }
+        
         timeHorizonLabel.text = CalendarHelper().monthName(for: selectedMonth)
         monthProgressViewController?.selectedMonth = selectedMonth
     }

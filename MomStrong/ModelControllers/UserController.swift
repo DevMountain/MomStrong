@@ -12,6 +12,9 @@ import UIKit
 class UserController{
     
     var currentUser: User?
+    lazy var trialUser: User = {
+        return User(name: "Trial Account", dob: nil, location: nil, subscription: .Both, id: 0)
+    }()
     
     static let shared = UserController()
     
@@ -21,6 +24,17 @@ class UserController{
         let progress = ProgressController.shared.fetchProgress(for: userService.id)
         let user = User(userService: userService, progress: progress)
         return user
+    }
+    
+    func constructRequest(url: URL, method: String, bodyJson: [String: String]) -> URLRequest{
+        var request = URLRequest(url: url)
+        let json = bodyJson
+        request.httpMethod = method
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let bodyData = try? JSONEncoder().encode(json)
+        request.httpBody = bodyData
+        return request
     }
     
     func fetchCurrentUser(completion: @escaping (User?, NetworkError?) -> Void){
@@ -41,14 +55,14 @@ class UserController{
     }
     
     func loginUserWith(email: String, password: String, completion: @escaping (User?) -> Void){
-        guard let url = URL(string: baseUrl)?.appendingPathComponent("auth").appendingPathComponent("login") else {completion(nil) ; return}
-        var request = URLRequest(url: url)
-        let json = ["email":email,"password":password]
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let bodyData = try? JSONEncoder().encode(json)
-        request.httpBody = bodyData
+        guard let url = URL(string: baseUrl)?.appendingPathComponent("auth").appendingPathComponent("login") else {completion(nil) ; return}
+        
+        let request = self.constructRequest(url: url, method: "POST", bodyJson: [
+            "email" : email,
+            "password": password
+        ])
+        
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error{
                 print("\(error.localizedDescription) \(error) in function: \(#function)")
@@ -74,14 +88,14 @@ class UserController{
         }.resume()
     }
     
-    func addSomeProgress(){
-        let progressPoints = [
-            WorkoutProgressPoint(dateCompleted: Date(timeIntervalSinceNow: -24*60*60 * 3), workoutId: 13, progress: UserController.shared.currentUser?.progress),
-            WorkoutProgressPoint(dateCompleted: Date(timeIntervalSinceNow: -24*60*60 * 7), workoutId: 13, progress: UserController.shared.currentUser?.progress),
-            WorkoutProgressPoint(dateCompleted: Date(timeIntervalSinceNow: -24*60*60 * 20), workoutId: 13, progress: UserController.shared.currentUser?.progress)
-            ]
-        currentUser?.progress.progressPoints = progressPoints
-    }
+//    func addSomeProgress(){
+//        let progressPoints = [
+//            WorkoutProgressPoint(dateCompleted: Date(timeIntervalSinceNow: -24*60*60 * 3), workoutId: 13, progress: UserController.shared.currentUser?.progress),
+//            WorkoutProgressPoint(dateCompleted: Date(timeIntervalSinceNow: -24*60*60 * 7), workoutId: 13, progress: UserController.shared.currentUser?.progress),
+//            WorkoutProgressPoint(dateCompleted: Date(timeIntervalSinceNow: -24*60*60 * 20), workoutId: 13, progress: UserController.shared.currentUser?.progress)
+//            ]
+//        currentUser?.progress.progressPoints = progressPoints
+//    }
     
     func logoutCurrentUser(completion: @escaping (Bool) -> Void){
         
@@ -117,10 +131,8 @@ class UserController{
     
     func sendResetPasswordRequestFor(email: String, completion: @escaping (Bool) -> ()){
         //TODO: - get reset password link from cody
-        guard let url = URL(string: "http://138.197.192.102:3691/api/resetPassword") else { completion(false) ; return }
-        var request = URLRequest(url: url)
-        request.addValue(email, forHTTPHeaderField: "email")
-        request.httpMethod = "POST"
+        guard let url = URL(string: baseUrl)?.appendingPathComponent("api").appendingPathComponent("forgotpassword") else { completion(false) ; return }
+        let request = self.constructRequest(url: url, method: "POST", bodyJson: ["email" : email])
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error{
@@ -155,11 +167,20 @@ class UserController{
         }
     }
     
-    private func createTwoWeekTrial() -> User{
-        let trialUser = User(name: "Trial Account", dob: nil, location: nil, subscription: .Both, id: 0)
+    @discardableResult
+    func createTwoWeekTrial() -> User{
+        let trialUser = self.trialUser
         let trialId = UIDevice.current.identifierForVendor?.uuidString
         UserDefaults.standard.set(Date(), forKey: trialId ?? "currentUser")
+        currentUser = trialUser
         return trialUser
+    }
+    
+    func fetchTrialUserData(){
+        self.currentUser = self.trialUser
+        if let progress = ProgressController.shared.fetchProgress(for: trialUser.id){
+            self.currentUser?.progress = progress
+        }
     }
 }
 

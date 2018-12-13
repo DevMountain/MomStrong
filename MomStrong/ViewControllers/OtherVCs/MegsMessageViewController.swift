@@ -9,23 +9,20 @@
 import UIKit
 
 class MegsMessageViewController: UIViewController {
-
+    
+    @IBOutlet weak var megsMessageTextView: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        megsMessageTextView.layer.masksToBounds = false
+        megsMessageTextView.addShadow()
         setNavHeaderView()
         customizeBackButton()
-        // Do any additional setup after loading the view.
+        
+        NotificationScheduler.shared.fetchMegsCurrentMessage { (message) in
+            DispatchQueue.main.async {
+                self.megsMessageTextView.text = message
+            }
+        }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

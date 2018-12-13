@@ -13,11 +13,28 @@ class NotificationSettingsViewController: UIViewController {
     @IBOutlet weak var megMessageSwitch: UISwitch!
     @IBOutlet weak var newWorkoutsSwitch: UISwitch!
     
+    var isSubscribedToNewWorkouts: Bool?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         customizeBackButton()
+        setSubscribedForNewWorkoutSwitch()
+        
     }
     
+    func setSubscribedForNewWorkoutSwitch(){
+        NotificationScheduler.shared.isUserRegisteredForNotifications { (subscribed) in
+            DispatchQueue.main.async {
+                self.isSubscribedToNewWorkouts = subscribed
+                self.newWorkoutsSwitch.setOn(subscribed, animated: true)
+            }
+        }
+    }
+    
+    func toggleSubscriptionSwitch(){
+        isSubscribedToNewWorkouts?.toggle()
+        self.newWorkoutsSwitch.setOn(isSubscribedToNewWorkouts ?? false, animated: true)
+    }
 
     /*
     // MARK: - Navigation
@@ -29,10 +46,12 @@ class NotificationSettingsViewController: UIViewController {
     }
     */
     @IBAction func newWorkoutsNotficationSwitchFlipped(_ sender: Any) {
-        
+        NotificationScheduler.shared.toggleNewWorkoutNotifications()
+        toggleSubscriptionSwitch()
     }
     
     @IBAction func megsMessageNotificationSwitchFlipped(_ sender: Any) {
+        
         
     }
 }

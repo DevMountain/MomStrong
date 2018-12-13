@@ -8,32 +8,29 @@
 
 import UIKit
 
-class PasswordResetViewController: UIViewController {
+class PasswordResetViewController: UIViewController, UITextFieldDelegate{
 
     @IBOutlet weak var emailTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         customizeBackButton()
+        emailTextField.delegate = self
         // Do any additional setup after loading the view.
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     @IBAction func sendEmailButtonTapped(_ sender: Any) {
         guard let email = emailTextField.text, !email.isEmpty else { return }
         UserController.shared.sendResetPasswordRequestFor(email: email) { (success) in
-            print(success)
+            DispatchQueue.main.async {
+                self.presentMomStrongModalVC(title: "Password Reset", messageOne: "Please check your email for a password reset link.", messageTwo: "We'll see you soon!")
+            }
         }
         emailTextField.text = ""
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

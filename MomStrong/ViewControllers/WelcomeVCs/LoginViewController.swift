@@ -37,7 +37,7 @@ class LoginViewController: UIViewController {
             let password = passwordTextField.text else { return }
         UserController.shared.loginUserWith(email: email, password: password) { (user) in
             DispatchQueue.main.async {
-                guard let user = user else { self.presentLoginErrorAlert() ; return }
+                guard let _ = user else { self.presentLoginErrorAlert() ; return }
                 self.presentMainInterface()
             }
         }

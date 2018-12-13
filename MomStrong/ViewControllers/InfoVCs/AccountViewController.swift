@@ -28,10 +28,7 @@ class AccountViewController: UIViewController {
     
     func setUpUI(){
         customizeBackButton()
-        editButton.layer.cornerRadius = 4
-        editButton.layer.borderColor = UIColor.powerMomRed.cgColor
-        editButton.tintColor = .powerMomRed
-        editButton.layer.borderWidth = 1.5
+        editButton.stylize()
         setEditButtonTitle()
     }
     

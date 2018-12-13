@@ -56,6 +56,7 @@
 		F78C6BDA21B1C31900922B3F /* StyleGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78C6BD921B1C31900922B3F /* StyleGuide.swift */; };
 		F7A44BD321BDE1C60020D13F /* CalenderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A44BD221BDE1C60020D13F /* CalenderHelper.swift */; };
 		F7A44BD721BE663E0020D13F /* MegsMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A44BD621BE663E0020D13F /* MegsMessageViewController.swift */; };
+		F7AC66F021C255B80000017A /* Button+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AC66EF21C255B80000017A /* Button+Extension.swift */; };
 		F7D3C03A21A337AB005D6B8F /* AtHomeWorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D3C03921A337AB005D6B8F /* AtHomeWorkoutTableViewCell.swift */; };
 		F7D3C03D21A33C57005D6B8F /* AtHomeWorkoutDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D3C03C21A33C57005D6B8F /* AtHomeWorkoutDetailViewController.swift */; };
 		F7D3C03F21A33F84005D6B8F /* WorkoutSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D3C03E21A33F84005D6B8F /* WorkoutSectionTableViewCell.swift */; };
@@ -136,6 +137,7 @@
 		F78C6BD921B1C31900922B3F /* StyleGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleGuide.swift; sourceTree = "<group>"; };
 		F7A44BD221BDE1C60020D13F /* CalenderHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderHelper.swift; sourceTree = "<group>"; };
 		F7A44BD621BE663E0020D13F /* MegsMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MegsMessageViewController.swift; sourceTree = "<group>"; };
+		F7AC66EF21C255B80000017A /* Button+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Button+Extension.swift"; sourceTree = "<group>"; };
 		F7D3C03921A337AB005D6B8F /* AtHomeWorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtHomeWorkoutTableViewCell.swift; sourceTree = "<group>"; };
 		F7D3C03C21A33C57005D6B8F /* AtHomeWorkoutDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtHomeWorkoutDetailViewController.swift; sourceTree = "<group>"; };
 		F7D3C03E21A33F84005D6B8F /* WorkoutSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSectionTableViewCell.swift; sourceTree = "<group>"; };
@@ -335,7 +337,6 @@
 				F789033C21BEDDC700705BC2 /* AccountViewController.swift */,
 				F789033E21BEE1FF00705BC2 /* NotificationSettingsViewController.swift */,
 				F7362B9521C1CFC900391CC7 /* ModalPopUpViewController.swift */,
-				F7362B9721C1DCB900391CC7 /* PlanListTableViewController.swift */,
 			);
 			path = InfoVCs;
 			sourceTree = "<group>";
@@ -368,6 +369,7 @@
 				F7E7F3B021AF0A0800BA8FF8 /* LoginViewController.swift */,
 				F7E7F3B221AF0A1100BA8FF8 /* SignUpViewController.swift */,
 				F789034421BF220400705BC2 /* PasswordResetViewController.swift */,
+				F7362B9721C1DCB900391CC7 /* PlanListTableViewController.swift */,
 			);
 			path = WelcomeVCs;
 			sourceTree = "<group>";
@@ -406,6 +408,7 @@
 				F77926F421B1B252007D9DF9 /* SegmentProgressViewControllerDelegate.swift */,
 				F78C6BD921B1C31900922B3F /* StyleGuide.swift */,
 				F789034221BF155D00705BC2 /* TransparentNavigationController.swift */,
+				F7AC66EF21C255B80000017A /* Button+Extension.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -613,6 +616,7 @@
 				F7E7F3B521AF0E4A00BA8FF8 /* ViewControllerExtension.swift in Sources */,
 				F7362B9621C1CFC900391CC7 /* ModalPopUpViewController.swift in Sources */,
 				F748D77C219A6B9600C4A840 /* AppDelegate.swift in Sources */,
+				F7AC66F021C255B80000017A /* Button+Extension.swift in Sources */,
 				F787C4B821B5AF3B0066D81C /* Workout.swift in Sources */,
 				F787C4B221B5A1650066D81C /* VimeoClient.swift in Sources */,
 				F789033F21BEE1FF00705BC2 /* NotificationSettingsViewController.swift in Sources */,
