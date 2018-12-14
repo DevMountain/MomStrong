@@ -14,6 +14,8 @@ struct UserService: Codable{
     let subscription: String
     let email: String
     let name: String
+    let age: Int?
+    let state: String
     let moonclerk_id: String
     let active: Bool
     let accountCreationDate: Date?

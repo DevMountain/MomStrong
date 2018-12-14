@@ -20,6 +20,9 @@ class AccountViewController: UIViewController {
     @IBOutlet weak var planDescriptionLabel: UILabel!
     
     var isBeingEdited: Bool = false
+    var accountTextFields: [UITextField]{
+        return [nameTextField, emailTextField, ageTextField, stateTextField]
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,10 +37,14 @@ class AccountViewController: UIViewController {
     
     func toggleEditting(){
         isBeingEdited.toggle()
-        emailTextField.isUserInteractionEnabled = isBeingEdited
-        ageTextField.isUserInteractionEnabled = isBeingEdited
-        stateTextField.isUserInteractionEnabled = isBeingEdited
-        if !isBeingEdited { }
+        accountTextFields.forEach{ $0.isUserInteractionEnabled = isBeingEdited }
+        accountTextFields.forEach{ toggleTextFieldStyle($0) }
+        if !isBeingEdited { updateUserInfo() }
+    }
+    
+    func toggleTextFieldStyle(_ textField: UITextField){
+        print(isBeingEdited)
+        textField.borderStyle = isBeingEdited ? .roundedRect : .none
     }
     
     func updateUserInfo(){
@@ -48,7 +55,9 @@ class AccountViewController: UIViewController {
         
         UserController.shared.updateUser(name: name, email: email, age: ageString, state: state) { (success) in
             if success{
-                self.presentMomStrongModalVC(title: "Successfully Updated", messageOne: "You're all set!", messageTwo: nil)
+                DispatchQueue.main.async {
+                    self.presentMomStrongModalVC(title: "Successfully Updated", messageOne: "You're all set!", messageTwo: nil)
+                }
             }
         }
     }

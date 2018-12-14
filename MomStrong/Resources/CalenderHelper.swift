@@ -31,6 +31,10 @@ class CalendarHelper{
         return dateComponentsNow.year ?? 0
     }
     
+    var oneWeekAgo: Date{
+        return Date(timeInterval: -60*60*24*7, since: Date())
+    }
+    
     var numberOfDaysInCurrentMonth: Int{
         return numberOfDaysIn(month: dateComponentsNow.month ?? 0)
     }

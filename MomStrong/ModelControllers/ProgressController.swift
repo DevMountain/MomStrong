@@ -61,7 +61,9 @@ class ProgressController{
         let request: NSFetchRequest<Progress> = Progress.fetchRequest()
         request.predicate = NSPredicate(format: "%K = %d","userID", userID64)
         do{
-            return try CoreDataStack.context.fetch(request).first
+            let progress = try CoreDataStack.context.fetch(request).first
+            progress?.goals = progress?.goals.filter{ $0.timeStamp ?? Date(timeIntervalSince1970: 0) > CalendarHelper().oneWeekAgo} ?? []
+            return progress
         } catch {
             print("There was as error in \(#function) :  \(error) \(error.localizedDescription)")
             return nil

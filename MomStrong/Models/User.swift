@@ -11,16 +11,16 @@ import Foundation
 class User{
     
     var name: String
-    var location: String?
+    var state: String?
     var id: Int
     var progress: Progress
     var subscription: Subscription
     var accountCreationDate: Date?
     var age: Int?
     
-    init(name: String, location: String?, subscription: Subscription, id: Int, progress: Progress? = nil) {
+    init(name: String, state: String?, age: Int?, subscription: Subscription, id: Int, progress: Progress? = nil) {
         self.name = name
-        self.location = location
+        self.state = state
         self.subscription = subscription
         self.id = id
         if let progress = progress{
@@ -31,7 +31,7 @@ class User{
     }
     
     convenience init(userService: UserService, progress: Progress?){
-        self.init(name: userService.name, location: nil, subscription: Subscription(rawValue: userService.subscription) ?? .None, id: userService.id, progress: progress)
+        self.init(name: userService.name, state: userService.state, age: userService.age ,subscription: Subscription(rawValue: userService.subscription) ?? .None, id: userService.id, progress: progress)
         self.accountCreationDate = Date(timeIntervalSinceNow: -60 * 60 * 24 * 30 * 5)
     }
     

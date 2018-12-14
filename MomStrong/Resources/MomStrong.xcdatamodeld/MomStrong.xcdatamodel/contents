@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18C48a" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Goal" representedClassName="Goal" parentEntity="Progress" syncable="YES" codeGenerationType="class">
         <attribute name="isCompleted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="timeStamp" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <attribute name="weekNumber" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="progress" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Progress" inverseName="goalSet" inverseEntity="Progress" syncable="YES"/>
@@ -17,7 +18,7 @@
         <relationship name="progress" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Progress" inverseName="progressPointsSet" inverseEntity="Progress" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Goal" positionX="-54" positionY="-9" width="128" height="105"/>
+        <element name="Goal" positionX="-54" positionY="-9" width="128" height="120"/>
         <element name="Progress" positionX="-63" positionY="-18" width="128" height="90"/>
         <element name="WorkoutProgressPoint" positionX="-45" positionY="45" width="128" height="90"/>
     </elements>

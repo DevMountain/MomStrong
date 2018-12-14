@@ -13,6 +13,7 @@ extension Goal{
     convenience init(title: String){
         self.init(context: CoreDataStack.context)
         self.title = title
+        self.timeStamp = Date()
         self.progress = UserController.shared.currentUser?.progress
         self.isCompleted = false
     }

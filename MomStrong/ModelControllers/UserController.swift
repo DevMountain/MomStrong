@@ -13,7 +13,7 @@ class UserController{
     
     var currentUser: User?
     lazy var trialUser: User = {
-        return User(name: "Trial Account", dob: nil, location: nil, subscription: .Both, id: 0)
+        return User(name: "Trial Account", state: nil, age: nil, subscription: .Both, id: 0)
     }()
     
     static let shared = UserController()
@@ -96,8 +96,8 @@ class UserController{
             "age" : age,
             "state" : state
         ]
-        let request = constructRequest(url: url, method: "POST", bodyJson: json)
-        
+        let request = constructRequest(url: url, method: "PUT", bodyJson: json)
+        print(request.url?.absoluteString ?? "NO String value")
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error{
                 print("\(error.localizedDescription) \(error) in function: \(#function)")
