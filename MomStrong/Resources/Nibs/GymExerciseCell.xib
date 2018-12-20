@@ -28,22 +28,22 @@
                     <rect key="frame" x="0.0" y="0.0" width="366" height="89"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QS6-SM-lu9">
-                            <rect key="frame" x="0.0" y="0.0" width="366" height="1"/>
-                            <color key="backgroundColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <rect key="frame" x="0.0" y="0.0" width="366" height="0.5"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="1" id="h1E-ou-eyP"/>
+                                <constraint firstAttribute="height" constant="0.5" id="h1E-ou-eyP"/>
                             </constraints>
                         </view>
                         <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wgv-IH-65r">
-                            <rect key="frame" x="0.0" y="9" width="366" height="80"/>
+                            <rect key="frame" x="0.0" y="8.5" width="366" height="80.5"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ZYT-3L-mRs">
-                                    <rect key="frame" x="0.0" y="21.5" width="366" height="37"/>
+                                    <rect key="frame" x="0.0" y="22" width="366" height="37"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Exercise 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCs-TX-Crl" customClass="CustomLabel" customModule="MomStrong" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="366" height="14.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" white="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Q3-vd-Kp7" customClass="CustomLabel" customModule="MomStrong" customModuleProvider="target">
@@ -55,7 +55,7 @@
                                     </subviews>
                                 </stackView>
                                 <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0zn-fh-PPl">
-                                    <rect key="frame" x="0.0" y="10" width="60" height="60"/>
+                                    <rect key="frame" x="0.0" y="10.5" width="60" height="60"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="60" id="guJ-vx-1gu"/>
                                         <constraint firstAttribute="width" constant="60" id="hJD-lN-YhJ"/>

@@ -75,7 +75,7 @@ class ProgressController{
         let currentDateComponents = Calendar.current.dateComponents([.day, .weekOfYear, .month, .year], from: Date())
         switch timePeriod{
         case .Week:
-            return completionRateForCurrentWeek(user: currentUser)
+            return completionPercentageForCurrentWeek()
         case .Month:
             return completionRateFor(month: currentDateComponents.month!, user: currentUser)
         case .Year:
@@ -83,17 +83,17 @@ class ProgressController{
         }
     }
     
-    func completionRateForCurrentWeek(user: User = UserController.shared.currentUser!) -> Float{
-        let totalGoals = user.progress.goals
-        let completedGoals = totalGoals.filter{ $0.isCompleted == true }
-        return Float(completedGoals.count)/Float(totalGoals.count)
+    func completedOutOfTotal(user: User = UserController.shared.currentUser!) -> (completed: Int, total: Int){
+        let totalWorkouts = user.availableWorkoutPerWeek
+        let completedWorkouts = filterProgressPointsForCurrentWeek(user: user)
+        return (completedWorkouts.count, totalWorkouts)
     }
     
-    func numberCompletedAndTotalGoalsForCurrentWeek(user: User = UserController.shared.currentUser!) -> (completed: Int, total: Int){
-        let totalGoals = user.progress.goals
-        let completedGoals = totalGoals.filter{ $0.isCompleted == true }
-        return(completedGoals.count, totalGoals.count)
+    func completionPercentageForCurrentWeek() -> Float{
+        let completedTuple = completedOutOfTotal()
+        return Float(completedTuple.completed)/Float(completedTuple.total)
     }
+    
     
     func completionRateFor(month: Int, user: User = UserController.shared.currentUser!) -> Float{
         let filteredWorkouts = filterProgressPointsFor(month: month, user: user)
@@ -131,5 +131,25 @@ class ProgressController{
                 return false
             }
         }
+    }
+    
+    func filterProgressPointsForCurrentWeek(user: User) -> [WorkoutProgressPoint]{
+        return user.progress.progressPoints.filter{
+            if let dateCompleted = $0.dateCompleted{
+                let workoutCompletedWeek = Calendar.current.component(.weekOfYear, from: dateCompleted)
+                return workoutCompletedWeek == CalendarHelper().dateComponentsNow.weekOfYear
+            }else {
+                return false
+            }
+        }
+    }
+    
+    func filterWorkoutsForCurrentWeek(user: User = UserController.shared.currentUser!, workouts: [Workout]) -> [Workout]{
+        let filtered = Array(workouts[0..<2])
+        return filtered
+    }
+    
+    func filterCompletedWorkouts(for user: User = UserController.shared.currentUser!, workouts: [Workout]) -> [Workout]{
+        return workouts.filter{ user.hasCompleted(workout: $0) }
     }
 }

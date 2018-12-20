@@ -9,7 +9,15 @@
 import Foundation
 
 struct Circuit: Decodable{
+    
+    
     var title: String
     var description: String
     var excercises: [Exercise]
+}
+
+extension Circuit: Equatable{
+    static func == (lhs: Circuit, rhs: Circuit) -> Bool {
+        return lhs.title == rhs.title && lhs.description == rhs.description
+    }
 }

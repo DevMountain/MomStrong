@@ -92,7 +92,7 @@ class ProgressViewController: UIViewController, SegmentProgressViewControllerDel
         switch timePeriod{
             
         case .Week:
-            let completedTuple = ProgressController.shared.numberCompletedAndTotalGoalsForCurrentWeek()
+            let completedTuple = ProgressController.shared.completedOutOfTotal()
             numberCompletedLabel.text = "\(completedTuple.completed) of \(completedTuple.total) Completed"
         case .Month, .Year:
             let possible = UserController.shared.currentUser?.numberOfAvailableWorkouts(for: timePeriod)

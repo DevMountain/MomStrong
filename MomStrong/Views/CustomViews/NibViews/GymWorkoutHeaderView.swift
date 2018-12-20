@@ -26,6 +26,7 @@ class GymWorkoutHeaderView: UIView {
     convenience init(with workout: Workout){
         self.init()
         commonInit()
+        workoutTitleLabel.text = nil
         workoutTitleLabel.text = workout.title
     }
     

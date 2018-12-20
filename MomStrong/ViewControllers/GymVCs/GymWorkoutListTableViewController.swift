@@ -10,6 +10,7 @@ import UIKit
 
 class GymWorkoutListTableViewController: UITableViewController {
     
+    @IBOutlet weak var progressView: ProgressHeaderView!
     var workouts: [Workout] = []
 
     override func viewDidLoad() {
@@ -19,6 +20,7 @@ class GymWorkoutListTableViewController: UITableViewController {
             self.workouts = workouts
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                self.updateProgressView()
             }
         }
     }
@@ -31,9 +33,27 @@ class GymWorkoutListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "fooBar", for: indexPath) as!GymRatWorkoutTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "gymWorkoutCell", for: indexPath) as!GymRatWorkoutTableViewCell
         let workout = workouts[indexPath.row]
+        cell.delegate = self
         cell.workout = workout
         return cell
+    }
+    
+    func updateProgressView(){
+        let weeklyCompleted = ProgressController.shared.filterWorkoutsForCurrentWeek(workouts: workouts)
+        let completed = ProgressController.shared.filterCompletedWorkouts(workouts: weeklyCompleted)
+        let percentage = Float(completed.count)/2.0
+        progressView.progress = percentage
+    }
+}
+
+extension GymWorkoutListTableViewController: GymRatWorkoutTableViewCellDelegate{
+    
+    func toggleIsCompleted(sender: UITableViewCell) {
+        guard let indexPath = tableView.indexPath(for: sender) else { return }
+        let workout = workouts[indexPath.row]
+        ProgressController.shared.toggleIsCompleted(for: workout)
+        updateProgressView()
     }
 }
