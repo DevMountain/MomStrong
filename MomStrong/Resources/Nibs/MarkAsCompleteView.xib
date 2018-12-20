@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MarkAsCompleteView" customModule="MomStrong" customModuleProvider="target">
+            <connections>
+                <outlet property="completedButton" destination="Jth-Bs-VV8" id="V3y-HI-2rp"/>
+                <outlet property="contentView" destination="1JL-aF-62B" id="kdS-LI-EdW"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1JL-aF-62B">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5dz-04-8HU">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BtX-Ur-z03">
+                            <rect key="frame" x="0.0" y="0.0" width="240" height="48"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <button opaque="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jth-Bs-VV8">
+                            <rect key="frame" x="240" y="8" width="135" height="32"/>
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <state key="normal" image="MarkAsComplete"/>
+                            <connections>
+                                <action selector="completedButtonTapped:" destination="-1" eventType="touchUpInside" id="Vbc-PD-iPq"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="0.95273298029999998" green="0.95693832639999998" blue="0.95679467920000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="5dz-04-8HU" secondAttribute="bottom" id="GtC-RZ-Hcx"/>
+                <constraint firstAttribute="height" constant="48" id="Vnd-px-V4B"/>
+                <constraint firstItem="5dz-04-8HU" firstAttribute="leading" secondItem="1JL-aF-62B" secondAttribute="leading" id="fX9-Hw-1Nb"/>
+                <constraint firstItem="PUL-uS-klN" firstAttribute="trailing" secondItem="5dz-04-8HU" secondAttribute="trailing" id="tI3-n0-W8H"/>
+                <constraint firstItem="5dz-04-8HU" firstAttribute="top" secondItem="1JL-aF-62B" secondAttribute="top" id="zi6-br-fcG"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="PUL-uS-klN"/>
+            <point key="canvasLocation" x="55.200000000000003" y="48.575712143928037"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="MarkAsComplete" width="152" height="32"/>
+    </resources>
+</document>

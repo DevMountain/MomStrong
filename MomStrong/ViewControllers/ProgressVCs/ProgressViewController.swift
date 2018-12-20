@@ -88,9 +88,21 @@ class ProgressViewController: UIViewController, SegmentProgressViewControllerDel
     
     func setProgressView(for timePeriod: TimePeriod){
         progressHeaderView.progress = ProgressController.shared.getCurrentPercentageOfProgress(for: timePeriod)
-        let possible = UserController.shared.currentUser?.numberOfAvailableWorkouts(for: timePeriod)
-        let completed = ProgressController.shared.numberOfCompletedWorkouts(for: timePeriod)
-        numberCompletedLabel.text = "\(completed) of \(possible ?? 0) Completed"
+        
+        switch timePeriod{
+            
+        case .Week:
+            let completedTuple = ProgressController.shared.numberCompletedAndTotalGoalsForCurrentWeek()
+            numberCompletedLabel.text = "\(completedTuple.completed) of \(completedTuple.total) Completed"
+        case .Month, .Year:
+            let possible = UserController.shared.currentUser?.numberOfAvailableWorkouts(for: timePeriod)
+            let completed = ProgressController.shared.numberOfCompletedWorkouts(for: timePeriod, user: UserController.shared.currentUser, month: selectedMonth)
+            numberCompletedLabel.text = "\(completed) of \(possible ?? 0) Completed"
+//        case .Year:
+//            let possible = UserController.shared.currentUser?.numberOfAvailableWorkouts(for: timePeriod)
+//            let completed = ProgressController.shared.numberOfCompletedWorkouts(for: timePeriod)
+//            numberCompletedLabel.text = "\(completed) of \(possible ?? 0) Completed"
+        }
     }
     
     func updateProgressView(){
@@ -116,10 +128,10 @@ class ProgressViewController: UIViewController, SegmentProgressViewControllerDel
         timeSegmentedControl.layer.borderWidth = 0
         timeSegmentedControl.backgroundColor = .white
         timeSegmentedControl.setTitleTextAttributes([
-            NSAttributedString.Key.foregroundColor: UIColor.lightGray
+            NSAttributedString.Key.foregroundColor: UIColor.lightGray,
+            NSAttributedString.Key.font : UIFont(name: "Poppins-Regular", size: 17)
             ], for: .normal)
-        
-        progressHeaderView.titleImageView.isHidden = true
+        progressHeaderView.workoutTitleLabel.isHidden = true
         progressHeaderView.layoutIfNeeded()
     }
     
@@ -134,6 +146,7 @@ class ProgressViewController: UIViewController, SegmentProgressViewControllerDel
         
         timeHorizonLabel.text = CalendarHelper().monthName(for: selectedMonth)
         monthProgressViewController?.selectedMonth = selectedMonth
+        setProgressView(for: .Month)
     }
     
     @IBAction func leftArrowTapped(_ sender: Any) {
@@ -142,6 +155,7 @@ class ProgressViewController: UIViewController, SegmentProgressViewControllerDel
         
         timeHorizonLabel.text = CalendarHelper().monthName(for: selectedMonth)
         monthProgressViewController?.selectedMonth = selectedMonth
+        setProgressView(for: .Month)
     }
     
 }

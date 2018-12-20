@@ -30,7 +30,8 @@ class WeeklyGoalTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        goalTextField.delegate = self
+        setUpKeyboardForGoalTextField()
+        
     }
     
     func updateViews(){
@@ -56,5 +57,19 @@ extension WeeklyGoalTableViewCell: UITextFieldDelegate{
         delegate?.textFieldShouldReturn(sender: self)
         textField.resignFirstResponder()
         return true
+    }
+    
+    @objc func resignKeyboard(){
+        goalTextField.resignFirstResponder()
+    }
+    
+    func setUpKeyboardForGoalTextField(){
+        let toolbar = UIToolbar()
+        toolbar.setItems([UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(resignKeyboard))], animated: false)
+        toolbar.tintColor = .powerMomRed
+        toolbar.isUserInteractionEnabled = true
+        toolbar.sizeToFit()
+        goalTextField.inputAccessoryView = toolbar
+        goalTextField.delegate = self
     }
 }

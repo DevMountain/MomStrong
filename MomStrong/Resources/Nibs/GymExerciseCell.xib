@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GymExerciseCell" customModule="MomStrong" customModuleProvider="target">
+            <connections>
+                <outlet property="contentStackView" destination="wgv-IH-65r" id="5SP-Ac-6Cu"/>
+                <outlet property="contentView" destination="KtX-VE-SaJ" id="Z8w-F5-R5c"/>
+                <outlet property="exerciseDescriptionLabel" destination="4Q3-vd-Kp7" id="cla-nh-B7k"/>
+                <outlet property="exerciseThumbnailImageView" destination="0zn-fh-PPl" id="xAQ-ic-gcI"/>
+                <outlet property="exerciseTitle" destination="XCs-TX-Crl" id="vdf-Cj-PFV"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="KtX-VE-SaJ">
+            <rect key="frame" x="0.0" y="0.0" width="366" height="89"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Lm0-8l-LCN">
+                    <rect key="frame" x="0.0" y="0.0" width="366" height="89"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QS6-SM-lu9">
+                            <rect key="frame" x="0.0" y="0.0" width="366" height="1"/>
+                            <color key="backgroundColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="h1E-ou-eyP"/>
+                            </constraints>
+                        </view>
+                        <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wgv-IH-65r">
+                            <rect key="frame" x="0.0" y="9" width="366" height="80"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ZYT-3L-mRs">
+                                    <rect key="frame" x="0.0" y="21.5" width="366" height="37"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Exercise 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCs-TX-Crl" customClass="CustomLabel" customModule="MomStrong" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="366" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Q3-vd-Kp7" customClass="CustomLabel" customModule="MomStrong" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="22.5" width="366" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0zn-fh-PPl">
+                                    <rect key="frame" x="0.0" y="10" width="60" height="60"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="60" id="guJ-vx-1gu"/>
+                                        <constraint firstAttribute="width" constant="60" id="hJD-lN-YhJ"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <viewLayoutGuide key="safeArea" id="WlF-VU-wQ5"/>
+                        </stackView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="W5x-ZL-UIS" firstAttribute="bottom" secondItem="Lm0-8l-LCN" secondAttribute="bottom" id="34T-KV-Ghb"/>
+                <constraint firstItem="W5x-ZL-UIS" firstAttribute="trailing" secondItem="Lm0-8l-LCN" secondAttribute="trailing" id="Hrk-Gf-hwN"/>
+                <constraint firstItem="Lm0-8l-LCN" firstAttribute="leading" secondItem="KtX-VE-SaJ" secondAttribute="leading" id="ShM-58-e4i"/>
+                <constraint firstItem="Lm0-8l-LCN" firstAttribute="top" secondItem="W5x-ZL-UIS" secondAttribute="top" id="hsq-08-BoU"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="W5x-ZL-UIS"/>
+            <point key="canvasLocation" x="-427.19999999999999" y="160.56971514242881"/>
+        </view>
+    </objects>
+</document>

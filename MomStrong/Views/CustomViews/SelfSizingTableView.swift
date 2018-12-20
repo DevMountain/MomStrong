@@ -21,7 +21,7 @@ class SelfSizingTableView: UITableView {
     override var intrinsicContentSize: CGSize {
         setNeedsLayout()
         layoutIfNeeded()
-        return CGSize(width: contentSize.width, height: contentSize.height)
+        return CGSize(width: contentSize.width, height: contentSize.height )
     }
     
     func updateContentSize(){

@@ -39,16 +39,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GCKCastContext.setSharedInstanceWith(chromeCastOptions)
         GCKLogger.sharedInstance().delegate = self
         GCKCastContext.sharedInstance().useDefaultExpandedMediaControls = true
-        
         return true
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+        
+        GCKCastContext.sharedInstance().sessionManager.currentCastSession?.end(with: .disconnect)
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
+        GCKCastContext.sharedInstance().sessionManager.currentCastSession?.end(with: .disconnect)
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
@@ -62,9 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        // Saves changes in the application's managed object context before the application terminates.
-        //        self.saveContext()
+        GCKCastContext.sharedInstance().sessionManager.currentCastSession?.end(with: .stopCasting)
     }
     
     // MARK: - Core Data stack
@@ -130,6 +128,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate{
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        UserDefaults.standard.set(deviceToken, forKey: "deviceToken")
+        UserDefaults.standard.set(true, forKey: "MegsMessageSubscription")
         NotificationScheduler.shared.submitRegisteredAPN(token: deviceToken) { (success) in
             print(success ? "Successfully sent User Token" : "Something Failed sending the APN device token")
         }

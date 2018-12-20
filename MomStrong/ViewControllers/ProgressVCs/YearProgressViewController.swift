@@ -29,10 +29,10 @@ extension YearProgressViewController: UICollectionViewDataSource, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = yearlyProgressCollectionView.dequeueReusableCell(withReuseIdentifier: "monthCell", for: indexPath) as? MonthCollectionViewCell
         let month = indexPath.row
-        let percentageComplete = ProgressController.shared.completionRateFor(month: month)
+        let percentageComplete = ProgressController.shared.completionRateFor(month: month + 1)
         cell?.monthLabel.text = Calendar.current.monthSymbols[month]
         cell?.percentCompleteLabel.text = percentageComplete.asPercentString
-        
+        cell?.addShadow()
         return cell ?? UICollectionViewCell()
     }
 }

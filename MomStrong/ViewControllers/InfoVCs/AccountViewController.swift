@@ -14,19 +14,22 @@ class AccountViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var ageTextField: UITextField!
     @IBOutlet weak var stateTextField: UITextField!
-    @IBOutlet weak var planLabel: UILabel!
     @IBOutlet weak var editButton: UIButton!
-    @IBOutlet weak var subscribedImageView: UIImageView!
-    @IBOutlet weak var planDescriptionLabel: UILabel!
+    @IBOutlet weak var plansTableView: UITableView!
+    
     
     var isBeingEdited: Bool = false
     var accountTextFields: [UITextField]{
         return [nameTextField, emailTextField, ageTextField, stateTextField]
     }
+    var plans: [Plan] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
+        updateViews()
+        self.plans = UserController.shared.loadAllPlans()
+        plansTableView.dataSource = self
     }
     
     func setUpUI(){
@@ -34,7 +37,7 @@ class AccountViewController: UIViewController {
         editButton.stylize()
         setEditButtonTitle()
     }
-    
+
     func toggleEditting(){
         isBeingEdited.toggle()
         accountTextFields.forEach{ $0.isUserInteractionEnabled = isBeingEdited }
@@ -74,6 +77,7 @@ class AccountViewController: UIViewController {
         ageTextField.text = "\(currentUser.age ?? 0)"
 //        emailTextField.text = currentUser.email
     }
+    
 
     @IBAction func editButtonTapped(_ sender: Any) {
         toggleEditting()
@@ -86,5 +90,21 @@ class AccountViewController: UIViewController {
     
     @IBAction func upgradeButtonTapped(_ sender: Any) {
         self.presentMomStrongModalVC(title: "Please Visit Our Site", messageOne: "Unfortunately we don't support subsction purchases from within the app.  Please check our website to adjust your settings.", messageTwo: nil)
+    }
+}
+
+extension AccountViewController: UITableViewDataSource{
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return plans.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customPlanCell", for: indexPath) as? PlanTableViewCell
+        let plan = plans[indexPath.row]
+        guard let user = UserController.shared.currentUser else { return UITableViewCell() }
+        let isSubscribed = UserController.shared.plan(for: user.subscription) == plan
+        cell?.updateViews(with: plan, isSubscribed: isSubscribed)
+        return cell ?? UITableViewCell()
     }
 }

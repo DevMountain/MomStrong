@@ -16,12 +16,14 @@ class MegsMessageViewController: UIViewController {
         super.viewDidLoad()
         megsMessageTextView.layer.masksToBounds = false
         megsMessageTextView.addShadow()
+        megsMessageTextView.font = UIFont(name: "Poppins-Regular", size: 12)
         setNavHeaderView()
         customizeBackButton()
-        
+        let spinner = UIView.displaySpinner(onView: self.view)
         NotificationScheduler.shared.fetchMegsCurrentMessage { (message) in
             DispatchQueue.main.async {
                 self.megsMessageTextView.text = message
+                UIView.removeSpinner(spinner: spinner)
             }
         }
     }

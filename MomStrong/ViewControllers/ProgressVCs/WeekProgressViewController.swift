@@ -11,14 +11,17 @@ import UIKit
 class WeekProgressViewController: UIViewController {
     
     @IBOutlet weak var goalsTableView: SelfSizingTableView!
+    @IBOutlet weak var tableViewBGView: UIView!
     
     weak var delegate: SegmentProgressViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableViewBGView.addShadow()
         goalsTableView.dataSource = self
         goalsTableView.delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         // Do any additional setup after loading the view.
     }
     

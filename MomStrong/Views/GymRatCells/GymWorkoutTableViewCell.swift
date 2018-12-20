@@ -15,6 +15,7 @@ protocol GymWorkoutTableViewCellDelegate: class{
     
     func presentAVPlayerVC(with AVPlayer: AVPlayer)
     
+    func resizeTableView()
 }
 
 class GymWorkoutTableViewCell: UITableViewCell {
@@ -23,7 +24,7 @@ class GymWorkoutTableViewCell: UITableViewCell {
     @IBOutlet weak var workoutSectionsTableView: SelfSizingTableView!
     @IBOutlet weak var completedButton: UIButton!
     @IBOutlet weak var completedBarView: UIView!
-    @IBOutlet weak var bgView: UIView!
+//    @IBOutlet weak var bgView: UIView!
     
     var workout: Workout?{
         didSet{
@@ -34,12 +35,17 @@ class GymWorkoutTableViewCell: UITableViewCell {
         }
     }
     
+    var headerHeights: [CGFloat] = []
+    
+    var isFirstRow: Bool = true
+    
     weak var delegate: GymWorkoutTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         setUpUI()
     }
+    
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -79,8 +85,8 @@ class GymWorkoutTableViewCell: UITableViewCell {
     }
     
     func setUpUI(){
-        bgView.layer.masksToBounds = false
-        bgView.addShadow()
+//        bgView.layer.masksToBounds = false
+//        bgView.addShadow()
     }
     
 }
@@ -92,38 +98,53 @@ extension GymWorkoutTableViewCell: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return workout?.circuits[section].excercises.count ?? 0
+        guard let workout = workout else { return 0 }
+        return (workout.circuits[section].excercises.count + 1)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as? GymExerciseTableViewCell
-        let workoutSection = workout?.circuits[indexPath.section]
-        cell?.exercise = workoutSection?.excercises[indexPath.row]
-        cell?.delegate = delegate
-//        if indexPath.section == (workout?.workoutSections.count ?? 0 - 1) && indexPath.row == (workoutSection?.setGroups.count ?? 0 - 1){
-//        }
-        return cell ?? UITableViewCell()
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let workoutSection = workout?.circuits[section] else {return nil}
-        let header = tableView.dequeueReusableCell(withIdentifier: "workoutSectionCell") as? WorkoutSectionHeaderTableViewCell
-        header?.workoutSection = workoutSection
-        if section == 0{
-            header?.sectionDividerView.backgroundColor = .powerMomRed
+        if indexPath.row == 0{
+            guard let workoutSection = workout?.circuits[indexPath.section] else {return UITableViewCell()}
+            let header = tableView.dequeueReusableCell(withIdentifier: "workoutSectionCell") as! WorkoutSectionHeaderTableViewCell
+            header.workoutSection = workoutSection
+            if indexPath.section == 0{
+                header.sectionDividerView.backgroundColor = .powerMomRed
+            }
+            return header
+        }else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as? GymExerciseTableViewCell
+            let workoutSection = workout?.circuits[indexPath.section]
+            cell?.exercise = workoutSection?.excercises[indexPath.row - 1]
+            cell?.delegate = delegate
+            return cell ?? UITableViewCell()
         }
-        return header
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
-    {
-        return 100
-    }
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        guard let workoutSection = workout?.circuits[section] else {return nil}
+//        let header = tableView.dequeueReusableCell(withIdentifier: "workoutSectionCell") as? WorkoutSectionHeaderTableViewCell
+//        header?.workoutSection = workoutSection
+//        if section == 0{
+//            header?.sectionDividerView.backgroundColor = .powerMomRed
+//        }
+////        if let height = header?.intrinsicContentSize.height{
+////            print(height)
+////            headerHeights.append(height)
+////        }
+//        return header
+//    }
+//
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
+//        return 100
+//    }
     
 //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 //        return UITableView.automaticDimension
 //    }
     
-    
-    
+    func isLastRow(for indexPath: IndexPath) -> Bool {
+        guard let workoutSections = workout?.circuits else { return false }
+        let circuit = workoutSections[indexPath.section]
+        return (indexPath.section == workoutSections.count - 1) && (indexPath.row == circuit.excercises.count - 1)
+    }
 }

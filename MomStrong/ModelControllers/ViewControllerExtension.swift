@@ -79,7 +79,7 @@ extension UIViewController{
     
     @objc func pushMegsMessage(){
         guard let megsMessageVC = UIStoryboard(name: "MegsMessage", bundle: .main).instantiateInitialViewController() else {return}
-        self.navigationController?.pushViewController(megsMessageVC, animated: true)
+        self.present(megsMessageVC, animated: true)
     }
     
     @objc func pushInfoStack(){
@@ -98,11 +98,6 @@ extension UIViewController{
         self.navigationController?.popViewController(animated: true)
     }
     
-    //    func presentMomStrongModalAlert(title: String, messageOne: String, messageTwo: String = "") -> MomStrongModalMessageView{
-    //        let vc = UIStoryboard(name: "ModalPresentations", bundle: nil).instantiateInitialViewController()
-    //        let popUpViewController = vc as?
-    //    }
-    
     func presentMomStrongModalVC(title: String, messageOne: String, messageTwo: String?){
         let vc = UIStoryboard(name: "ModalPresentations", bundle: nil).instantiateInitialViewController()
         guard let popUpVC = vc as? ModalPopUpViewController else { return }
@@ -119,6 +114,20 @@ extension UIViewController{
         popUpVC.modalPresentationStyle = UIModalPresentationStyle.overFullScreen
         popUpVC.modalTransitionStyle = .crossDissolve
         self.present(popUpVC, animated: true)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height/1.5
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
     }
 }
 

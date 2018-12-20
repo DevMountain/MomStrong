@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Plan{
+struct Plan: Equatable{
     var title: String
     var description: String
 }

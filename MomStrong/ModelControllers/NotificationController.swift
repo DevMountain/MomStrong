@@ -64,7 +64,7 @@ class NotificationScheduler{
         }
     }
     
-    func submitRegisteredAPN(for user: User? = UserController.shared.currentUser, token: Data, completion: @escaping (Bool) -> ()){
+    func submitRegisteredAPN(for user: User? = UserController.shared.currentUser, token: Data?, completion: @escaping (Bool) -> ()){
         
         guard let user = user else { completion(false) ; return }
         guard var url = baseUrl?.appendingPathComponent("user/deviceToken") else { return }
@@ -83,6 +83,10 @@ class NotificationScheduler{
                 completion(true)
             }
             }.resume()
+    }
+    
+    func unsubscribeFromMegsMessageAPNs(for user: User? = UserController.shared.currentUser, completion: @escaping (Bool) -> ()){
+        submitRegisteredAPN(for: user, token: nil, completion: completion)
     }
     
     func fetchMegsCurrentMessage(completion: @escaping (String?) -> ()){

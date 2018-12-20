@@ -14,10 +14,23 @@ class PlanListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.plans = loadPlans()
+        self.plans = UserController.shared.loadAllPlans()
         self.customizeBackButton()
         self.setNavHeaderView()
+        updateTrialButton()
         twoWeekTrialButton.stylize()
+    }
+    
+    func updateTrialButton(){
+        if let trialTuple = UserController.shared.checkForTwoWeekTrial(){
+            if !trialTuple.valid {
+                twoWeekTrialButton.isHidden = true
+            }else{
+                twoWeekTrialButton.setTitle("Contune Your Trial - \(trialTuple.daysLeft) days remaining!", for: .normal)
+            }
+        }else{
+            twoWeekTrialButton.setTitle("Start Your 2 week free trial", for: .normal)
+        }
     }
     
     var plans: [Plan] = []
@@ -53,23 +66,3 @@ class PlanListTableViewController: UITableViewController {
     }
 }
 
-
-extension PlanListTableViewController{
-    
-    func loadPlans() -> [Plan]{
-        let atHome = Plan(title: "AtHome", description:
-        """
-        For only $9.99/Month you with receive two at home workouts each week. These workouts span between 20-40 minutes. Minimal equipment required. Don’t forget your water!
-        """)
-        let gymRat = Plan(title: "Gym", description:
-            """
-        For only $9.99/Month you with receive two at gym workouts each week. These workouts include step-by-step instruction for a gym workout. These workouts are between 30 to 60 minutes long. Workouts include total body and specific muscle groups.
-        """)
-        let both = Plan(title: "AtHome + Gym", description:
-            """
-        For only $16.99/Month you with receive Meg’s entire training plan. Both AtHome and Gym Plans every week!
-        """)
-        
-        return [atHome, gymRat, both]
-    }
-}

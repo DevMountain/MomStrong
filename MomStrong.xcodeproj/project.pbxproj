@@ -10,22 +10,32 @@
 		4C49E1244A0E28A4C66FC0E0 /* Pods_MomStrong.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8CACDAEDE89C9FC26351721 /* Pods_MomStrong.framework */; };
 		F70C157321BAD81600159C80 /* ChromeCastController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C157221BAD81600159C80 /* ChromeCastController.swift */; };
 		F70C157521BAD99200159C80 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C157421BAD99200159C80 /* VideoPlayerView.swift */; };
-		F70C157721BADB1100159C80 /* VideoPlayerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F70C157621BADB1100159C80 /* VideoPlayerViewController.storyboard */; };
 		F71938C721AC978A00D8D349 /* Circuit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71938C621AC978A00D8D349 /* Circuit.swift */; };
 		F71938C921AC9A8D00D8D349 /* WorkoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71938C821AC9A8D00D8D349 /* WorkoutController.swift */; };
 		F71938CB21ACB7D100D8D349 /* ProgressController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71938CA21ACB7D100D8D349 /* ProgressController.swift */; };
-		F7362B9021C1B55D00391CC7 /* MomStrongModalMessage.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7362B8F21C1B55D00391CC7 /* MomStrongModalMessage.xib */; };
-		F7362B9221C1BB9E00391CC7 /* MomStrongModalMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7362B9121C1BB9E00391CC7 /* MomStrongModalMessageView.swift */; };
+		F733A40E21C9794100C29149 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F733A40D21C9794100C29149 /* Poppins-Regular.ttf */; };
+		F733A41021C9795800C29149 /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F733A40F21C9795800C29149 /* Poppins-Thin.ttf */; };
+		F733A41221C9796200C29149 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F733A41121C9796100C29149 /* Poppins-Bold.ttf */; };
+		F733A41621C9A3BB00C29149 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F733A41521C9A3BB00C29149 /* CustomLabel.swift */; };
+		F733A41821C9A3D300C29149 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F733A41721C9A3D300C29149 /* CustomButton.swift */; };
+		F733A41A21C9AB6300C29149 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F733A41921C9AB6300C29149 /* CustomTextField.swift */; };
 		F7362B9421C1CDED00391CC7 /* ModalPresentations.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7362B9321C1CDED00391CC7 /* ModalPresentations.storyboard */; };
 		F7362B9621C1CFC900391CC7 /* ModalPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7362B9521C1CFC900391CC7 /* ModalPopUpViewController.swift */; };
 		F7362B9821C1DCB900391CC7 /* PlanListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7362B9721C1DCB900391CC7 /* PlanListTableViewController.swift */; };
 		F7362B9A21C1DE3C00391CC7 /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7362B9921C1DE3C00391CC7 /* Plan.swift */; };
+		F741A1B021CB2CE500C1538B /* GymWorkoutHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F741A1AF21CB2CE500C1538B /* GymWorkoutHeader.xib */; };
+		F741A1B221CB2D2500C1538B /* GymWorkoutHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F741A1B121CB2D2500C1538B /* GymWorkoutHeaderView.swift */; };
+		F741A1B421CB2D5500C1538B /* GymExerciseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F741A1B321CB2D5500C1538B /* GymExerciseCell.xib */; };
+		F741A1B621CB2D7900C1538B /* GymExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F741A1B521CB2D7900C1538B /* GymExerciseCell.swift */; };
+		F741A1B821CB2F5800C1538B /* GymWorkoutListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F741A1B721CB2F5800C1538B /* GymWorkoutListTableViewController.swift */; };
+		F741A1BA21CB302B00C1538B /* GymRatWorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F741A1B921CB302B00C1538B /* GymRatWorkoutTableViewCell.swift */; };
+		F741A1BE21CC180F00C1538B /* CircuitHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F741A1BD21CC180F00C1538B /* CircuitHeader.xib */; };
+		F741A1C021CC184A00C1538B /* CircuitHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F741A1BF21CC184A00C1538B /* CircuitHeaderView.swift */; };
 		F748D77C219A6B9600C4A840 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748D77B219A6B9600C4A840 /* AppDelegate.swift */; };
 		F748D781219A6B9600C4A840 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F748D77F219A6B9600C4A840 /* Main.storyboard */; };
 		F748D784219A6B9600C4A840 /* MomStrong.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F748D782219A6B9600C4A840 /* MomStrong.xcdatamodeld */; };
 		F748D786219A6B9700C4A840 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F748D785219A6B9700C4A840 /* Assets.xcassets */; };
 		F748D789219A6B9700C4A840 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F748D787219A6B9700C4A840 /* LaunchScreen.storyboard */; };
-		F75F6AF421A63F75007561B3 /* WorkoutSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F75F6AF321A63F75007561B3 /* WorkoutSectionHeaderView.xib */; };
 		F75F6AF821A88F25007561B3 /* WorkoutSectionHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75F6AF721A88F25007561B3 /* WorkoutSectionHeaderTableViewCell.swift */; };
 		F75F6AFA21A9E2A7007561B3 /* SelfSizingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75F6AF921A9E2A7007561B3 /* SelfSizingTableView.swift */; };
 		F75F6AFE21AB5F0A007561B3 /* WeekProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75F6AFD21AB5F0A007561B3 /* WeekProgressViewController.swift */; };
@@ -46,7 +56,6 @@
 		F787C4B221B5A1650066D81C /* VimeoClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F787C4B121B5A1650066D81C /* VimeoClient.swift */; };
 		F787C4B421B5A2020066D81C /* VimeoInfoObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F787C4B321B5A2020066D81C /* VimeoInfoObject.swift */; };
 		F787C4B821B5AF3B0066D81C /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F787C4B721B5AF3B0066D81C /* Workout.swift */; };
-		F787C4BA21B666920066D81C /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F787C4B921B666920066D81C /* VideoPlayerViewController.swift */; };
 		F789033D21BEDDC700705BC2 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F789033C21BEDDC700705BC2 /* AccountViewController.swift */; };
 		F789033F21BEE1FF00705BC2 /* NotificationSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F789033E21BEE1FF00705BC2 /* NotificationSettingsViewController.swift */; };
 		F789034121BEE2F800705BC2 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F789034021BEE2F800705BC2 /* NotificationController.swift */; };
@@ -65,6 +74,7 @@
 		F7D3C04121A346D5005D6B8F /* GymWorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D3C04021A346D5005D6B8F /* GymWorkoutTableViewCell.swift */; };
 		F7D3C04321A346E6005D6B8F /* GymWorkoutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D3C04221A346E6005D6B8F /* GymWorkoutTableViewController.swift */; };
 		F7D3C04721A349A1005D6B8F /* GymExerciseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D3C04621A349A1005D6B8F /* GymExerciseTableViewCell.swift */; };
+		F7DE981B21C9660700722226 /* PlanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DE981A21C9660700722226 /* PlanTableViewCell.swift */; };
 		F7E7F3A821ADF94000BA8FF8 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E7F3A721ADF94000BA8FF8 /* UserService.swift */; };
 		F7E7F3AA21ADFD9D00BA8FF8 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E7F3A921ADFD9D00BA8FF8 /* CoreDataStack.swift */; };
 		F7E7F3AC21AE0B4E00BA8FF8 /* LaunchCopyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E7F3AB21AE0B4E00BA8FF8 /* LaunchCopyViewController.swift */; };
@@ -73,6 +83,8 @@
 		F7E7F3B321AF0A1100BA8FF8 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E7F3B221AF0A1100BA8FF8 /* SignUpViewController.swift */; };
 		F7E7F3B521AF0E4A00BA8FF8 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E7F3B421AF0E4A00BA8FF8 /* ViewControllerExtension.swift */; };
 		F7E7F3B721AF5DBC00BA8FF8 /* WorkoutProgressPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E7F3B621AF5DBC00BA8FF8 /* WorkoutProgressPoint.swift */; };
+		F7EFB76221CC2050008CD7FF /* MarkAsCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EFB76121CC2050008CD7FF /* MarkAsCompleteView.swift */; };
+		F7EFB76421CC2073008CD7FF /* MarkAsCompleteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7EFB76321CC2073008CD7FF /* MarkAsCompleteView.xib */; };
 		F7F03486219B904200CFD0AE /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7F03485219B904200CFD0AE /* Welcome.storyboard */; };
 		F7F03488219B971D00CFD0AE /* Info.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7F03487219B971D00CFD0AE /* Info.storyboard */; };
 		F7F0348C219BED7200CFD0AE /* WorkoutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F0348B219BED7200CFD0AE /* WorkoutService.swift */; };
@@ -90,16 +102,27 @@
 		C8CACDAEDE89C9FC26351721 /* Pods_MomStrong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MomStrong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F70C157221BAD81600159C80 /* ChromeCastController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChromeCastController.swift; sourceTree = "<group>"; };
 		F70C157421BAD99200159C80 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
-		F70C157621BADB1100159C80 /* VideoPlayerViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VideoPlayerViewController.storyboard; sourceTree = "<group>"; };
 		F71938C621AC978A00D8D349 /* Circuit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circuit.swift; sourceTree = "<group>"; };
 		F71938C821AC9A8D00D8D349 /* WorkoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutController.swift; sourceTree = "<group>"; };
 		F71938CA21ACB7D100D8D349 /* ProgressController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressController.swift; sourceTree = "<group>"; };
-		F7362B8F21C1B55D00391CC7 /* MomStrongModalMessage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MomStrongModalMessage.xib; sourceTree = "<group>"; };
-		F7362B9121C1BB9E00391CC7 /* MomStrongModalMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomStrongModalMessageView.swift; sourceTree = "<group>"; };
+		F733A40D21C9794100C29149 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		F733A40F21C9795800C29149 /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Thin.ttf"; sourceTree = "<group>"; };
+		F733A41121C9796100C29149 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		F733A41521C9A3BB00C29149 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
+		F733A41721C9A3D300C29149 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		F733A41921C9AB6300C29149 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		F7362B9321C1CDED00391CC7 /* ModalPresentations.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ModalPresentations.storyboard; sourceTree = "<group>"; };
 		F7362B9521C1CFC900391CC7 /* ModalPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalPopUpViewController.swift; sourceTree = "<group>"; };
 		F7362B9721C1DCB900391CC7 /* PlanListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanListTableViewController.swift; sourceTree = "<group>"; };
 		F7362B9921C1DE3C00391CC7 /* Plan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plan.swift; sourceTree = "<group>"; };
+		F741A1AF21CB2CE500C1538B /* GymWorkoutHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GymWorkoutHeader.xib; sourceTree = "<group>"; };
+		F741A1B121CB2D2500C1538B /* GymWorkoutHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymWorkoutHeaderView.swift; sourceTree = "<group>"; };
+		F741A1B321CB2D5500C1538B /* GymExerciseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GymExerciseCell.xib; sourceTree = "<group>"; };
+		F741A1B521CB2D7900C1538B /* GymExerciseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymExerciseCell.swift; sourceTree = "<group>"; };
+		F741A1B721CB2F5800C1538B /* GymWorkoutListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymWorkoutListTableViewController.swift; sourceTree = "<group>"; };
+		F741A1B921CB302B00C1538B /* GymRatWorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymRatWorkoutTableViewCell.swift; sourceTree = "<group>"; };
+		F741A1BD21CC180F00C1538B /* CircuitHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CircuitHeader.xib; sourceTree = "<group>"; };
+		F741A1BF21CC184A00C1538B /* CircuitHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitHeaderView.swift; sourceTree = "<group>"; };
 		F748D778219A6B9600C4A840 /* MomStrong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MomStrong.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F748D77B219A6B9600C4A840 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F748D780219A6B9600C4A840 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -108,7 +131,6 @@
 		F748D788219A6B9700C4A840 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F748D78A219A6B9700C4A840 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F749BC5821B84E7500F8A009 /* MomStrong.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MomStrong.entitlements; sourceTree = "<group>"; };
-		F75F6AF321A63F75007561B3 /* WorkoutSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkoutSectionHeaderView.xib; sourceTree = "<group>"; };
 		F75F6AF721A88F25007561B3 /* WorkoutSectionHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSectionHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		F75F6AF921A9E2A7007561B3 /* SelfSizingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfSizingTableView.swift; sourceTree = "<group>"; };
 		F75F6AFD21AB5F0A007561B3 /* WeekProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekProgressViewController.swift; sourceTree = "<group>"; };
@@ -129,7 +151,6 @@
 		F787C4B121B5A1650066D81C /* VimeoClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VimeoClient.swift; sourceTree = "<group>"; };
 		F787C4B321B5A2020066D81C /* VimeoInfoObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VimeoInfoObject.swift; sourceTree = "<group>"; };
 		F787C4B721B5AF3B0066D81C /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
-		F787C4B921B666920066D81C /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		F789033C21BEDDC700705BC2 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		F789033E21BEE1FF00705BC2 /* NotificationSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsViewController.swift; sourceTree = "<group>"; };
 		F789034021BEE2F800705BC2 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
@@ -148,6 +169,7 @@
 		F7D3C04021A346D5005D6B8F /* GymWorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GymWorkoutTableViewCell.swift; path = MomStrong/Views/GymRatCells/GymWorkoutTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		F7D3C04221A346E6005D6B8F /* GymWorkoutTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymWorkoutTableViewController.swift; sourceTree = "<group>"; };
 		F7D3C04621A349A1005D6B8F /* GymExerciseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymExerciseTableViewCell.swift; sourceTree = "<group>"; };
+		F7DE981A21C9660700722226 /* PlanTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanTableViewCell.swift; sourceTree = "<group>"; };
 		F7E7F3A721ADF94000BA8FF8 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		F7E7F3A921ADFD9D00BA8FF8 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		F7E7F3AB21AE0B4E00BA8FF8 /* LaunchCopyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchCopyViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +178,8 @@
 		F7E7F3B221AF0A1100BA8FF8 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		F7E7F3B421AF0E4A00BA8FF8 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewControllerExtension.swift; path = MomStrong/ModelControllers/ViewControllerExtension.swift; sourceTree = SOURCE_ROOT; };
 		F7E7F3B621AF5DBC00BA8FF8 /* WorkoutProgressPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutProgressPoint.swift; sourceTree = "<group>"; };
+		F7EFB76121CC2050008CD7FF /* MarkAsCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkAsCompleteView.swift; sourceTree = "<group>"; };
+		F7EFB76321CC2073008CD7FF /* MarkAsCompleteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MarkAsCompleteView.xib; sourceTree = "<group>"; };
 		F7F03485219B904200CFD0AE /* Welcome.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
 		F7F03487219B971D00CFD0AE /* Info.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Info.storyboard; sourceTree = "<group>"; };
 		F7F0348B219BED7200CFD0AE /* WorkoutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutService.swift; sourceTree = "<group>"; };
@@ -196,6 +220,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F733A40C21C9793100C29149 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F733A40F21C9795800C29149 /* Poppins-Thin.ttf */,
+				F733A40D21C9794100C29149 /* Poppins-Regular.ttf */,
+				F733A41121C9796100C29149 /* Poppins-Bold.ttf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
 		F748D76F219A6B9600C4A840 = {
 			isa = PBXGroup;
 			children = (
@@ -217,6 +251,7 @@
 		F748D77A219A6B9600C4A840 /* MomStrong */ = {
 			isa = PBXGroup;
 			children = (
+				F733A40C21C9793100C29149 /* fonts */,
 				F749BC5821B84E7500F8A009 /* MomStrong.entitlements */,
 				F7D3C03B21A337B1005D6B8F /* Views */,
 				F7F03495219DD48700CFD0AE /* ViewControllers */,
@@ -230,9 +265,11 @@
 		F75F6AF521A88991007561B3 /* Nibs */ = {
 			isa = PBXGroup;
 			children = (
-				F75F6AF321A63F75007561B3 /* WorkoutSectionHeaderView.xib */,
 				F78C6BD521B1BC8600922B3F /* ProgressHeaderView.xib */,
-				F7362B8F21C1B55D00391CC7 /* MomStrongModalMessage.xib */,
+				F741A1AF21CB2CE500C1538B /* GymWorkoutHeader.xib */,
+				F741A1B321CB2D5500C1538B /* GymExerciseCell.xib */,
+				F741A1BD21CC180F00C1538B /* CircuitHeader.xib */,
+				F7EFB76321CC2073008CD7FF /* MarkAsCompleteView.xib */,
 			);
 			path = Nibs;
 			sourceTree = "<group>";
@@ -247,7 +284,6 @@
 				F748D787219A6B9700C4A840 /* LaunchScreen.storyboard */,
 				F7F03498219DF53100CFD0AE /* Progress.storyboard */,
 				F75F6B1B21AB86A2007561B3 /* MegsMessage.storyboard */,
-				F70C157621BADB1100159C80 /* VideoPlayerViewController.storyboard */,
 				F7362B9321C1CDED00391CC7 /* ModalPresentations.storyboard */,
 			);
 			path = Storyboards;
@@ -288,7 +324,15 @@
 			children = (
 				F75F6AF921A9E2A7007561B3 /* SelfSizingTableView.swift */,
 				F70C157421BAD99200159C80 /* VideoPlayerView.swift */,
-				F7362B9121C1BB9E00391CC7 /* MomStrongModalMessageView.swift */,
+				F733A41521C9A3BB00C29149 /* CustomLabel.swift */,
+				F733A41721C9A3D300C29149 /* CustomButton.swift */,
+				F733A41921C9AB6300C29149 /* CustomTextField.swift */,
+				F741A1B121CB2D2500C1538B /* GymWorkoutHeaderView.swift */,
+				F741A1B521CB2D7900C1538B /* GymExerciseCell.swift */,
+				F741A1B721CB2F5800C1538B /* GymWorkoutListTableViewController.swift */,
+				F7EFB76121CC2050008CD7FF /* MarkAsCompleteView.swift */,
+				F741A1B921CB302B00C1538B /* GymRatWorkoutTableViewCell.swift */,
+				F741A1BF21CC184A00C1538B /* CircuitHeaderView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -363,6 +407,7 @@
 				F75F6B0E21AB66ED007561B3 /* AtHomeCells */,
 				F75F6B0F21AB66FD007561B3 /* GymRatCells */,
 				F75F6B0D21AB66C3007561B3 /* Progress */,
+				F7DE981A21C9660700722226 /* PlanTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -428,7 +473,6 @@
 				F75F6B1D21AB87D6007561B3 /* InfoVCs */,
 				F75F6B1E21AB87E1007561B3 /* OtherVCs */,
 				F7E7F3AF21AF09A700BA8FF8 /* WelcomeVCs */,
-				F787C4B921B666920066D81C /* VideoPlayerViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -468,8 +512,12 @@
 				TargetAttributes = {
 					F748D777219A6B9600C4A840 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 						SystemCapabilities = {
 							com.apple.AccessWiFi = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -500,17 +548,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				F748D789219A6B9700C4A840 /* LaunchScreen.storyboard in Resources */,
+				F733A41021C9795800C29149 /* Poppins-Thin.ttf in Resources */,
 				F7362B9421C1CDED00391CC7 /* ModalPresentations.storyboard in Resources */,
-				F70C157721BADB1100159C80 /* VideoPlayerViewController.storyboard in Resources */,
-				F75F6AF421A63F75007561B3 /* WorkoutSectionHeaderView.xib in Resources */,
+				F741A1B421CB2D5500C1538B /* GymExerciseCell.xib in Resources */,
+				F733A40E21C9794100C29149 /* Poppins-Regular.ttf in Resources */,
 				F75F6B1C21AB86A2007561B3 /* MegsMessage.storyboard in Resources */,
+				F733A41221C9796200C29149 /* Poppins-Bold.ttf in Resources */,
+				F7EFB76421CC2073008CD7FF /* MarkAsCompleteView.xib in Resources */,
+				F741A1B021CB2CE500C1538B /* GymWorkoutHeader.xib in Resources */,
 				F7F03486219B904200CFD0AE /* Welcome.storyboard in Resources */,
 				F78C6BD621B1BC8600922B3F /* ProgressHeaderView.xib in Resources */,
 				F748D786219A6B9700C4A840 /* Assets.xcassets in Resources */,
 				F7F03488219B971D00CFD0AE /* Info.storyboard in Resources */,
 				F7F03499219DF53100CFD0AE /* Progress.storyboard in Resources */,
 				F7F03497219DF4B700CFD0AE /* Gymrat.storyboard in Resources */,
-				F7362B9021C1B55D00391CC7 /* MomStrongModalMessage.xib in Resources */,
+				F741A1BE21CC180F00C1538B /* CircuitHeader.xib in Resources */,
 				F748D781219A6B9600C4A840 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -594,6 +646,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F71938C721AC978A00D8D349 /* Circuit.swift in Sources */,
+				F741A1B221CB2D2500C1538B /* GymWorkoutHeaderView.swift in Sources */,
 				F75F6B1821AB71E5007561B3 /* Progress.swift in Sources */,
 				F75F6B0A21AB66AC007561B3 /* CalendarCollectionViewCell.swift in Sources */,
 				F7362B9821C1DCB900391CC7 /* PlanListTableViewController.swift in Sources */,
@@ -604,11 +657,16 @@
 				F7E7F3B321AF0A1100BA8FF8 /* SignUpViewController.swift in Sources */,
 				F77926F521B1B252007D9DF9 /* SegmentProgressViewControllerDelegate.swift in Sources */,
 				F7D3C03A21A337AB005D6B8F /* AtHomeWorkoutTableViewCell.swift in Sources */,
+				F733A41821C9A3D300C29149 /* CustomButton.swift in Sources */,
 				F7A44BD321BDE1C60020D13F /* CalenderHelper.swift in Sources */,
 				F75F6B0421AB5FED007561B3 /* ProgressViewController.swift in Sources */,
+				F7DE981B21C9660700722226 /* PlanTableViewCell.swift in Sources */,
 				F7E7F3AA21ADFD9D00BA8FF8 /* CoreDataStack.swift in Sources */,
+				F741A1C021CC184A00C1538B /* CircuitHeaderView.swift in Sources */,
 				F7D3C03F21A33F84005D6B8F /* WorkoutSectionTableViewCell.swift in Sources */,
+				F7EFB76221CC2050008CD7FF /* MarkAsCompleteView.swift in Sources */,
 				F7D3C04121A346D5005D6B8F /* GymWorkoutTableViewCell.swift in Sources */,
+				F733A41621C9A3BB00C29149 /* CustomLabel.swift in Sources */,
 				F78C6BDA21B1C31900922B3F /* StyleGuide.swift in Sources */,
 				F7F0349D219E0E0600CFD0AE /* AtHomeWorkoutTableViewController.swift in Sources */,
 				F7362B9A21C1DE3C00391CC7 /* Plan.swift in Sources */,
@@ -626,11 +684,11 @@
 				F787C4B821B5AF3B0066D81C /* Workout.swift in Sources */,
 				F787C4B221B5A1650066D81C /* VimeoClient.swift in Sources */,
 				F789033F21BEE1FF00705BC2 /* NotificationSettingsViewController.swift in Sources */,
-				F7362B9221C1BB9E00391CC7 /* MomStrongModalMessageView.swift in Sources */,
 				F789033D21BEDDC700705BC2 /* AccountViewController.swift in Sources */,
 				F782C8B121C31F2B00D255F5 /* FollowViewController.swift in Sources */,
 				F7D3C04321A346E6005D6B8F /* GymWorkoutTableViewController.swift in Sources */,
 				F7F03493219BEF2100CFD0AE /* User.swift in Sources */,
+				F741A1B821CB2F5800C1538B /* GymWorkoutListTableViewController.swift in Sources */,
 				F7E7F3AC21AE0B4E00BA8FF8 /* LaunchCopyViewController.swift in Sources */,
 				F75F6AFE21AB5F0A007561B3 /* WeekProgressViewController.swift in Sources */,
 				F78C6BD821B1BD0700922B3F /* ProgressHeaderView.swift in Sources */,
@@ -639,11 +697,13 @@
 				F7AC66F221C31CC80000017A /* ShareViewController.swift in Sources */,
 				F71938C921AC9A8D00D8D349 /* WorkoutController.swift in Sources */,
 				F75F6B0C21AB66B7007561B3 /* MonthCollectionViewCell.swift in Sources */,
+				F741A1BA21CB302B00C1538B /* GymRatWorkoutTableViewCell.swift in Sources */,
 				F71938CB21ACB7D100D8D349 /* ProgressController.swift in Sources */,
 				F75F6B0621AB648C007561B3 /* WeeklyGoalTableViewCell.swift in Sources */,
 				F75F6B1521AB67C7007561B3 /* UserController.swift in Sources */,
-				F787C4BA21B666920066D81C /* VideoPlayerViewController.swift in Sources */,
+				F733A41A21C9AB6300C29149 /* CustomTextField.swift in Sources */,
 				F748D784219A6B9600C4A840 /* MomStrong.xcdatamodeld in Sources */,
+				F741A1B621CB2D7900C1538B /* GymExerciseCell.swift in Sources */,
 				F787C4B421B5A2020066D81C /* VimeoInfoObject.swift in Sources */,
 				F7E7F3B121AF0A0800BA8FF8 /* LoginViewController.swift in Sources */,
 				F75F6AF821A88F25007561B3 /* WorkoutSectionHeaderTableViewCell.swift in Sources */,
@@ -800,16 +860,19 @@
 			baseConfigurationReference = 3F14A4A0D86105821CBE2F5A /* Pods-MomStrong.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MomStrong/MomStrong.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 77U2457882;
 				INFOPLIST_FILE = "$(SRCROOT)/MomStrong/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.trevoradcock.MomStrong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -820,10 +883,12 @@
 			baseConfigurationReference = 830AB205AB4B322D7623A596 /* Pods-MomStrong.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MomStrong/MomStrong.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 77U2457882;
 				INFOPLIST_FILE = "$(SRCROOT)/MomStrong/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -23,6 +23,7 @@ class User{
         self.state = state
         self.subscription = subscription
         self.id = id
+        self.age = age
         if let progress = progress{
             self.progress = progress
         }else {

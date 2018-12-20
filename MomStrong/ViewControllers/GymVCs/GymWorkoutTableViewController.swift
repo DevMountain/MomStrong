@@ -25,11 +25,8 @@ class GymWorkoutTableViewController: UITableViewController {
                 self.updateProgressHeaderView()
             }
         }
-        
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 900
     }
-
+    
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,6 +44,12 @@ class GymWorkoutTableViewController: UITableViewController {
         let workout = workouts?[indexPath.row]
         cell?.delegate = self
         cell?.workout = workout
+        
+//        if indexPath.row == ((workouts?.count ?? 1) - 1){
+//            self.tableView.invalidateIntrinsicContentSize()
+//            self.tableView.layoutIfNeeded()
+//        }
+        
         return cell ?? UITableViewCell()
     }
     
@@ -57,14 +60,20 @@ class GymWorkoutTableViewController: UITableViewController {
         return Float(completedWorkouts.count)/Float(workouts.count)
     }
     
-//    
+    func resizeTableView(){
+        self.tableView.invalidateIntrinsicContentSize()
+        self.tableView.setNeedsLayout()
+        self.tableView.layoutIfNeeded()
+    }
+    
+    
 //    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
 //        return UITableView.automaticDimension
 //    }
     
 //    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 //        let cell = tableView.cellForRow(at: indexPath)
-//        return cell?.intrinsicContentSize.height ?? 1000
+//        return cell?.intrinsicContentSize.height ?? 2000
 //    }
 }
 

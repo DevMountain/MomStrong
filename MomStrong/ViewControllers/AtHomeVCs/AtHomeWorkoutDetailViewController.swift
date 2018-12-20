@@ -19,15 +19,12 @@ class AtHomeWorkoutDetailTableViewController: UITableViewController {
     @IBOutlet weak var completedButton: UIButton!
     @IBOutlet weak var completedBarView: UIView!
     
-    let castMediaController = GCKUIMediaController()
-    
     var sessionManager: GCKSessionManager{
         return GCKCastContext.sharedInstance().sessionManager
     }
     var castSession: GCKCastSession?{
         return GCKCastContext.sharedInstance().sessionManager.currentCastSession
     }
-    
     
     var workout: Workout?{
         didSet{
@@ -36,30 +33,39 @@ class AtHomeWorkoutDetailTableViewController: UITableViewController {
         }
     }
     
+    let castMediaController = GCKUIMediaController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUpUI()
         sessionManager.add(self)
-        //        castButton.addTarget(self, action: #selector(chromeCast), for: .allEvents)
-        //        videoPlayerView.viewController = self
     }
     
-    @objc func chromeCast(){
-        guard let workout = workout else { return }
-        let mediaInfo = buildMediaInfo(from: workout)
-        castSession?.remoteMediaClient?.loadMedia(mediaInfo)
-        GCKCastContext.sharedInstance().presentDefaultExpandedMediaControls()
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        print("# of Section\(workout?.circuits.count ?? 0)")
         return workout?.circuits.count ?? 0
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let workout = workout else {return 0}
+        print("# of items in section #\(section) is \(workout.circuits[section].excercises.count + 1)")
+        return workout.circuits[section].excercises.count + 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "workoutSectionCell", for: indexPath) as? WorkoutSectionTableViewCell
-        cell?.workoutSection = workout?.circuits[indexPath.row]
-        return cell ?? UITableViewCell()
+        if indexPath.row == 0{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "workoutSectionCell", for: indexPath) as! WorkoutSectionTableViewCell
+            cell.workoutSection = workout?.circuits[indexPath.section]
+            return cell
+        }else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath)
+            print("# of Circuits: \(workout?.circuits.count ?? 0)")
+            print("# of Exercises: \(workout?.circuits[indexPath.section].excercises.count ?? 0)")
+            guard let exercise =  workout?.circuits[indexPath.section].excercises[indexPath.row - 1] else {return UITableViewCell() }
+            cell.textLabel?.text = "\(exercise.title)  X  \(exercise.description)"
+            return cell
+        }
     }
     
     func updateViews(){
@@ -72,11 +78,11 @@ class AtHomeWorkoutDetailTableViewController: UITableViewController {
         setNavHeaderView()
         self.customizeBackButton()
         
-        let frame = CGRect(x: 0, y: 0, width: 24, height: 24)
-        let castButton = GCKUICastButton(frame: frame)
+        let castButton = GCKUICastButton()
         castButton.tintColor = UIColor.powerMomRed
-        let barButton = UIBarButtonItem(customView: castButton)
-        navigationItem.rightBarButtonItem = barButton
+        let castBarButton = UIBarButtonItem(customView: castButton)
+        
+        navigationItem.rightBarButtonItem = castBarButton
     }
     
     func updateCompletedButton(){
@@ -99,10 +105,13 @@ class AtHomeWorkoutDetailTableViewController: UITableViewController {
         }
     }
     
-    
-    @IBAction func playButtonTapped(_ sender: Any) {
+    @objc func presentAVPlayer(){
         guard let videoUrl = workout?.videoUrl else {return}
         presentAVPlayerVCWith(videoUrlString: videoUrl)
+    }
+    
+    @IBAction func playButtonTapped(_ sender: Any) {
+        presentAVPlayer()
     }
     
     @IBAction func completedButtonTapped(_ sender: Any) {
@@ -110,9 +119,6 @@ class AtHomeWorkoutDetailTableViewController: UITableViewController {
         ProgressController.shared.toggleIsCompleted(for: workout)
         updateCompletedButton()
     }
-    
-    
-    
 }
 
 
@@ -121,27 +127,27 @@ extension AtHomeWorkoutDetailTableViewController: GCKSessionManagerListener {
     
     func sessionManager(_ sessionManager: GCKSessionManager, willStart session: GCKSession) {
         print("🥶 Session manager will Start 🥶")
-        guard let workout = workout else { return }
-        //        let mediaInfo = buildMediaInfo(from: workout)
-        //        session.remoteMediaClient?.loadMedia(mediaInfo)
     }
     
     func sessionManager(_ sessionManager: GCKSessionManager, didStart session: GCKSession) {
         print("🥶 Session manager didStart 🥶")
+        
         playVideoRemotely()
+        
     }
     
     func sessionManager(_ sessionManager: GCKSessionManager, didResumeSession session: GCKSession) {
         print("🥶 Session manager didResumeSession 🥶")
-        switchToRemotePlay()
+//        playVideoRemotely()
     }
     
     func sessionManager(_ sessionManager: GCKSessionManager, didEnd session: GCKSession, withError error: Error?) {
+        session.remoteMediaClient?.stop()
+        switchToLocalPlayback()
         if let error = error {
             print("💩  There was an error in \(#function) ; \(error)  ; \(error.localizedDescription)  💩")
         }
         print("🥶 Session Manager Did End 🥶")
-        switchToLocalPlayback()
     }
     
     func sessionManager(_ sessionManager: GCKSessionManager, didFailToStart session: GCKSession, withError error: Error) {
@@ -167,22 +173,18 @@ extension AtHomeWorkoutDetailTableViewController: GCKSessionManagerListener {
         return metaData
     }
     
-    func switchToRemotePlay(){
-        
-    }
-    
     func switchToLocalPlayback(){
-        
+        castSession?.remoteMediaClient?.stop()
+        castSession?.end(with: .stopCasting)
     }
     
     func playVideoRemotely(){
         guard let castSession = castSession else { print("No Current Cast Session") ; return }
+        
         castSession.remoteMediaClient?.loadMedia(buildMediaInfo(from: workout!))
+        
+        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (_) in
+            GCKCastContext.sharedInstance().presentDefaultExpandedMediaControls()
+        }
     }
-    
-    //    func pushToRemotePlayBack(){
-    //        print("pushing to remote playback")
-    //
-    //        castSession?.remoteMediaClient?.queueLoad([], with: <#T##GCKMediaQueueLoadOptions#>)
-    //    }
 }

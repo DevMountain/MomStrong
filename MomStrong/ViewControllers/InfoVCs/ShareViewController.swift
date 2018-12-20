@@ -12,7 +12,7 @@ import MessageUI
 class ShareViewController: UIViewController, MFMessageComposeViewControllerDelegate {
 
     public func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
-        print("Message Compose Controller did finish with \(result)")
+        controller.dismiss(animated: true, completion: nil)
     }
     
     

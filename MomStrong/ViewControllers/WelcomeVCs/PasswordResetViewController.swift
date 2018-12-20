@@ -16,6 +16,8 @@ class PasswordResetViewController: UIViewController, UITextFieldDelegate{
         super.viewDidLoad()
         customizeBackButton()
         emailTextField.delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         // Do any additional setup after loading the view.
     }
     

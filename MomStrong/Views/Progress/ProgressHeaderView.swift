@@ -11,9 +11,9 @@ import UIKit
 class ProgressHeaderView: UIView{
     
     @IBOutlet var contentView: UIView!
-    @IBOutlet weak var titleImageView: UIImageView!
     @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var workoutProgressView: UIProgressView!
+    @IBOutlet weak var workoutTitleLabel: CustomLabel!
     
     var progress: Float?{
         didSet{
@@ -23,8 +23,7 @@ class ProgressHeaderView: UIView{
     
     var workoutType: String?{
         didSet{
-            titleImageView.image
-                = workoutType == "AtHome" ? #imageLiteral(resourceName: "AtHomeLabel") : #imageLiteral(resourceName: "GymWorkoutsLabel")
+            workoutTitleLabel.text = workoutType
         }
     }
     

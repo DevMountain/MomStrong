@@ -15,11 +15,15 @@ class NotificationSettingsViewController: UIViewController {
     
     var isSubscribedToNewWorkouts: Bool?
     
+    var isSubscribedForMegsMessage: Bool{
+        return UserDefaults.standard.bool(forKey: "MegsMessageSubscription")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         customizeBackButton()
         setSubscribedForNewWorkoutSwitch()
-        
+        megMessageSwitch.setOn(isSubscribedForMegsMessage, animated: false)
     }
     
     func setSubscribedForNewWorkoutSwitch(){
@@ -34,6 +38,20 @@ class NotificationSettingsViewController: UIViewController {
     func toggleSubscriptionSwitch(){
         isSubscribedToNewWorkouts?.toggle()
         self.newWorkoutsSwitch.setOn(isSubscribedToNewWorkouts ?? false, animated: true)
+    }
+    
+    @discardableResult
+    func toggleIsSubscriptionForMegsMessage() -> Bool{
+        let subscribed = !isSubscribedForMegsMessage
+        UserDefaults.standard.set(subscribed, forKey: "MegsMessageSubscription")
+        
+        if subscribed{ NotificationScheduler.shared.unsubscribeFromMegsMessageAPNs { (_) in }
+        }else{
+            guard let token = UserDefaults.standard.value(forKey: "deviceToken") as? Data else { return subscribed}
+            NotificationScheduler.shared.submitRegisteredAPN(token: token) { (_) in }
+        }
+        megMessageSwitch.setOn(isSubscribedForMegsMessage, animated: false)
+        return subscribed
     }
 
     /*

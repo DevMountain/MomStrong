@@ -89,7 +89,8 @@ class UserController{
     }
     
     func updateUser(name: String, email: String, age: String, state: String, completion: @escaping (Bool) -> Void){
-        guard let url = URL(string: baseUrl)?.appendingPathComponent("api").appendingPathComponent("userInfo") else { completion(false) ; return }
+        guard let user = UserController.shared.currentUser else { return }
+        guard let url = URL(string: baseUrl)?.appendingPathComponent("api").appendingPathComponent("userInfo").appendingPathComponent("\(user.id)") else { completion(false) ; return }
         let json = [
             "name" : name,
             "email" : email,
@@ -108,6 +109,45 @@ class UserController{
             print(response ?? "No Response")
             completion(true)
             }.resume()
+    }
+    
+    func plan(for subscription: Subscription) -> Plan?{
+        switch subscription {
+        case .AtHome:
+            return Plan(title: "AtHome", description:
+                """
+        For only $9.99/Month you with receive two at home workouts each week. These workouts span between 20-40 minutes. Minimal equipment required. Don’t forget your water!
+        """)
+        case .Gymrat:
+            return Plan(title: "Gym", description:
+                """
+        For only $9.99/Month you with receive two at gym workouts each week. These workouts include step-by-step instruction for a gym workout. These workouts are between 30 to 60 minutes long. Workouts include total body and specific muscle groups.
+        """)
+        case .Both:
+            return Plan(title: "AtHome + Gym", description:
+                """
+        For only $16.99/Month you with receive Meg’s entire training plan. Both AtHome and Gym Plans every week!
+        """)
+        default:
+            return nil
+        }
+    }
+    
+    func loadAllPlans() -> [Plan]{
+        let atHome = Plan(title: "AtHome", description:
+            """
+        For only $9.99/Month you with receive two at home workouts each week. These workouts span between 20-40 minutes. Minimal equipment required. Don’t forget your water!
+        """)
+        let gymRat = Plan(title: "Gym", description:
+            """
+        For only $9.99/Month you with receive two at gym workouts each week. These workouts include step-by-step instruction for a gym workout. These workouts are between 30 to 60 minutes long. Workouts include total body and specific muscle groups.
+        """)
+        let both = Plan(title: "AtHome + Gym", description:
+            """
+        For only $16.99/Month you with receive Meg’s entire training plan. Both AtHome and Gym Plans every week!
+        """)
+        
+        return [atHome, gymRat, both]
     }
     
 //    func addSomeProgress(){

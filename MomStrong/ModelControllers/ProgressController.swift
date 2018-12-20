@@ -89,6 +89,12 @@ class ProgressController{
         return Float(completedGoals.count)/Float(totalGoals.count)
     }
     
+    func numberCompletedAndTotalGoalsForCurrentWeek(user: User = UserController.shared.currentUser!) -> (completed: Int, total: Int){
+        let totalGoals = user.progress.goals
+        let completedGoals = totalGoals.filter{ $0.isCompleted == true }
+        return(completedGoals.count, totalGoals.count)
+    }
+    
     func completionRateFor(month: Int, user: User = UserController.shared.currentUser!) -> Float{
         let filteredWorkouts = filterProgressPointsFor(month: month, user: user)
         let availabeWorkouts = user.numberOfAvailableWorkouts(for: .Month)
@@ -103,13 +109,13 @@ class ProgressController{
         return Float(completedWorkoutCount)/Float(availabeWorkoutCount)
     }
     
-    func numberOfCompletedWorkouts(for timePeriod: TimePeriod, user: User? = UserController.shared.currentUser) -> Int{
+    func numberOfCompletedWorkouts(for timePeriod: TimePeriod, user: User? = UserController.shared.currentUser, month: Int? = CalendarHelper().dateComponentsNow.month) -> Int{
         guard let user = user else { return 0}
         switch timePeriod{
         case .Week:
             return user.progress.goals.count
         case .Month:
-            guard let currentMonth = CalendarHelper().dateComponentsNow.month else { return 0 }
+            guard let currentMonth = month else { return 0 }
             return filterProgressPointsFor(month: currentMonth, user: user).count
         case .Year:
             return user.progress.progressPoints.count
@@ -119,7 +125,7 @@ class ProgressController{
     func filterProgressPointsFor(month: Int, user: User) -> [WorkoutProgressPoint]{
         return user.progress.progressPoints.filter{
             if let dateCompleted = $0.dateCompleted{
-                let workoutCompletedMonth = Calendar.current.dateComponents([.month], from: dateCompleted).month
+                let workoutCompletedMonth = Calendar.current.component(.month, from: dateCompleted)
                 return month == workoutCompletedMonth
             }else {
                 return false
