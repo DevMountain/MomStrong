@@ -32,7 +32,7 @@ class User{
     }
     
     convenience init(userService: UserService, progress: Progress?){
-        self.init(name: userService.name, state: userService.state, age: userService.age ,subscription: Subscription(rawValue: userService.subscription) ?? .None, id: userService.id, progress: progress)
+        self.init(name: userService.name, state: userService.state, age: userService.age ,subscription: Subscription(rawValue: userService.subscription ?? "None") ?? .None, id: userService.id, progress: progress)
         self.accountCreationDate = Date(timeIntervalSinceNow: -60 * 60 * 24 * 30 * 5)
     }
     

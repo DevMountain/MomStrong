@@ -17,8 +17,9 @@ class MomStrongTabBarController: UITabBarController {
             var atHome = UIStoryboard(name: "Main", bundle: .main).instantiateInitialViewController(),
             var gymRat = UIStoryboard(name: "Gymrat", bundle: .main).instantiateInitialViewController(),
             let vc = UIStoryboard(name: "ModalPresentations", bundle: .main).instantiateInitialViewController(),
-            let lockVC = vc as? ModalPopUpViewController,
-            let currentUser = UserController.shared.currentUser else {return}
+            let lockVC = vc as? ModalPopUpViewController else { return }
+        
+            let currentUser = UserController.shared.currentUser!
         
         var atHomeImage: UIImage = #imageLiteral(resourceName: "LockIcon")
         var gymRatImage: UIImage = #imageLiteral(resourceName: "LockIcon")

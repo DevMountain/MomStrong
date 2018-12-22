@@ -46,7 +46,7 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func loginButtonTapped(_ sender: Any) {
-        self.resignFirstResponder()
+        [emailTextField,passwordTextField,ageTextField,stateTextField].forEach{ $0?.resignFirstResponder()}
         guard acceptedTOS else { presentSimpleAlert(title: "Whoops", message: "Please accept our Terms of Service to Continue", style: .alert) ; return }
         guard let name = nameTextField.text, !name.isEmpty,
             let email = emailTextField.text, !email.isEmpty,
@@ -56,15 +56,22 @@ class SignUpViewController: UIViewController {
         
         let spinner = UIView.displaySpinner(onView: self.view)
         UserController.shared.signUserUpForTwoWeekTrial(name: name, email: email, password: password, age: age, state: state) { (user) in
-            guard let user = user else { return }
-            UserController.shared.currentUser = user
-            UIView.removeSpinner(spinner: spinner)
-            self.presentMainInterface()
+            DispatchQueue.main.async {
+                UIView.removeSpinner(spinner: spinner)
+                if let user = user{
+                    UserController.shared.currentUser = user
+                    UserController.shared.saveUserDataLocally(email: email, password: password)
+                    self.presentMainInterface()
+                }else {
+                    self.presentSimpleAlert(title: "Whoops", message: "Looks like you've already created an account for this email.  Try logging in or resetting your password", style: .alert)
+                }
+            }
         }
     }
     
     @IBAction func termsOfServiceButton(_ sender: Any) {
-        
+        guard let tosUrl = URL(string: "https://app.moonclerk.com/pay/1zju0rh58yg5") else { return }
+        UIApplication.shared.open(tosUrl, options: [:], completionHandler: nil)
     }
 }
 

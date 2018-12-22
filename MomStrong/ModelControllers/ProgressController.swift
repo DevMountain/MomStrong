@@ -70,27 +70,33 @@ class ProgressController{
         }
     }
     
-    func getCurrentPercentageOfProgress(for timePeriod: TimePeriod) -> Float?{
+    func getCurrentPercentageOfProgress(for timePeriod: TimePeriod, month: Int = Calendar.current.dateComponents([.day, .weekOfYear, .month, .year], from: Date()).month!) -> Float?{
         guard let currentUser = UserController.shared.currentUser else {return nil}
-        let currentDateComponents = Calendar.current.dateComponents([.day, .weekOfYear, .month, .year], from: Date())
         switch timePeriod{
         case .Week:
             return completionPercentageForCurrentWeek()
         case .Month:
-            return completionRateFor(month: currentDateComponents.month!, user: currentUser)
+            return completionRateFor(month: month, user: currentUser)
         case .Year:
             return completionRateForCurrentYear(user: currentUser)
         }
     }
     
-    func completedOutOfTotal(user: User = UserController.shared.currentUser!) -> (completed: Int, total: Int){
+    func completedOutOfTotal(month: Int, user: User = UserController.shared.currentUser!) -> (completed: Int, available: Int){
+        let completedWorkouts = filterProgressPointsFor(month: month, user: user)
+        let available = user.numberOfAvailableWorkouts(for: .Month)
+        return (completedWorkouts.count, available)
+    }
+    
+    func completedOutOfTotalForCurrentWeek
+        (user: User = UserController.shared.currentUser!) -> (completed: Int, total: Int){
         let totalWorkouts = user.availableWorkoutPerWeek
         let completedWorkouts = filterProgressPointsForCurrentWeek(user: user)
         return (completedWorkouts.count, totalWorkouts)
     }
     
     func completionPercentageForCurrentWeek() -> Float{
-        let completedTuple = completedOutOfTotal()
+        let completedTuple = completedOutOfTotalForCurrentWeek()
         return Float(completedTuple.completed)/Float(completedTuple.total)
     }
     

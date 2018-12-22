@@ -15,6 +15,7 @@ class GymWorkoutListTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setUpRootViewNavBar()
         WorkoutController.shared.fetchWorkouts(type: .gymRat) { (workouts) in
             guard let workouts = workouts else { return }
             self.workouts = workouts
@@ -44,6 +45,7 @@ class GymWorkoutListTableViewController: UITableViewController {
         let weeklyCompleted = ProgressController.shared.filterWorkoutsForCurrentWeek(workouts: workouts)
         let completed = ProgressController.shared.filterCompletedWorkouts(workouts: weeklyCompleted)
         let percentage = Float(completed.count)/2.0
+        progressView.workoutTitleLabel.text = "Gym Workouts"
         progressView.progress = percentage
     }
 }

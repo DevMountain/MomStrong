@@ -35,6 +35,10 @@ class CalendarHelper{
         return Date(timeInterval: -60*60*24*7, since: Date())
     }
     
+    var twoWeeksAgo: Date {
+        return Date(timeIntervalSinceNow: -60*60*24*7*2)
+    }
+    
     var numberOfDaysInCurrentMonth: Int{
         return numberOfDaysIn(month: dateComponentsNow.month ?? 0)
     }
@@ -42,6 +46,7 @@ class CalendarHelper{
     func monthName(for month: Int) -> String{
         return Calendar.current.monthSymbols[month - 1]
     }
+    
     
     func numberOfDaysIn(month: Int) -> Int{
         let year = Calendar.current.dateComponents([.year], from: Date()).year

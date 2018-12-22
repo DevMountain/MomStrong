@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>3</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -31,6 +31,13 @@
 	<string>We access your bluetooth to connect to Google ChromeCast devices for streaming purposes.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>We use your microphone and speaker to play back video through Chromcast and Airplay</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Poppins-Regular.ttf</string>
+		<string>Poppins-Light.ttf</string>
+		<string>Poppins-ExtraLight.ttf</string>
+		<string>Poppins-SemiBold.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -51,13 +58,6 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Poppins-Regular.ttf</string>
-		<string>Poppins-Light.ttf</string>
-		<string>Poppins-ExtraLight.ttf</string>
-		<string>Poppins-SemiBold.ttf</string>
 	</array>
 </dict>
 </plist>

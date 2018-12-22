@@ -87,12 +87,12 @@ class ProgressViewController: UIViewController, SegmentProgressViewControllerDel
     }
     
     func setProgressView(for timePeriod: TimePeriod){
-        progressHeaderView.progress = ProgressController.shared.getCurrentPercentageOfProgress(for: timePeriod)
+        progressHeaderView.progress = ProgressController.shared.getCurrentPercentageOfProgress(for: timePeriod, month: selectedMonth)
         
         switch timePeriod{
             
         case .Week:
-            let completedTuple = ProgressController.shared.completedOutOfTotal()
+            let completedTuple = ProgressController.shared.completedOutOfTotalForCurrentWeek()
             numberCompletedLabel.text = "\(completedTuple.completed) of \(completedTuple.total) Completed"
         case .Month, .Year:
             let possible = UserController.shared.currentUser?.numberOfAvailableWorkouts(for: timePeriod)
@@ -129,7 +129,7 @@ class ProgressViewController: UIViewController, SegmentProgressViewControllerDel
         timeSegmentedControl.backgroundColor = .white
         timeSegmentedControl.setTitleTextAttributes([
             NSAttributedString.Key.foregroundColor: UIColor.lightGray,
-            NSAttributedString.Key.font : UIFont(name: "Poppins-Regular", size: 17)
+            NSAttributedString.Key.font : UIFont(name: "Poppins-Regular", size: 17)!
             ], for: .normal)
         progressHeaderView.workoutTitleLabel.isHidden = true
         progressHeaderView.layoutIfNeeded()

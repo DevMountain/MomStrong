@@ -13,11 +13,12 @@ class WorkoutController{
     static let shared = WorkoutController()
     
     let workouts: [Workout] = []
-    let baseUrlString = "http://138.197.192.102:3691/api/routines"
+    let baseUrlString = "https://www.momstrongmove.com/api/"
     
     //Mark: - Fetch Functions
     func fetchWorkouts(type: WorkoutType, completion: @escaping (([Workout]?) -> Void)){
-        guard let request = workoutUrlRequest(for: type) else { return }
+        guard let url = URL(string: baseUrlString)?.appendingPathComponent("schedule").appendingPathComponent("ios") else {completion(nil) ; return }
+        guard let request = workoutUrlRequest(url: url, for: type) else { return }
         URLSession.shared.dataTask(with: request) { (data, resoponse, error) in
             if let error = error{
                 print("\(error.localizedDescription) \(error) in function: \(#function)")
@@ -38,8 +39,7 @@ class WorkoutController{
         }.resume()
     }
     
-    func workoutUrlRequest(for type: WorkoutType) -> URLRequest?{
-        guard let url = URL(string: baseUrlString) else {return nil}
+    func workoutUrlRequest(url: URL, for type: WorkoutType) -> URLRequest?{
         var components = URLComponents(url: url, resolvingAgainstBaseURL: true)
         components?.queryItems = [URLQueryItem(name: "type", value: type.rawValue)]
         guard let completeURL = components?.url else { return nil }

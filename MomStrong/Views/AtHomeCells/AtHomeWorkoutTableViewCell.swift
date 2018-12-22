@@ -59,7 +59,7 @@ class AtHomeWorkoutTableViewCell: UITableViewCell {
         durationLabel.text = "Duration: \(workout.duration ?? "FUN")"
         updateIsCompleted()
         isLoading = true
-        let spinner = UIView.displaySpinner(onView: thumbnailImageView)
+        let spinner = UIView.displaySpinner(onView: self.contentView)
         WorkoutController.shared.fetchVimeoData(for: workout) { (workout) in
             DispatchQueue.main.async {
                 self.isLoading = false

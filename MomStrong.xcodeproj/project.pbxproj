@@ -47,6 +47,7 @@
 		F75F6B1821AB71E5007561B3 /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75F6B1721AB71E5007561B3 /* Progress.swift */; };
 		F75F6B1A21AB8583007561B3 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75F6B1921AB8583007561B3 /* InfoViewController.swift */; };
 		F75F6B1C21AB86A2007561B3 /* MegsMessage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F75F6B1B21AB86A2007561B3 /* MegsMessage.storyboard */; };
+		F760E1C721CDC4200027A9E6 /* PoppinsLightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F760E1C621CDC4200027A9E6 /* PoppinsLightButton.swift */; };
 		F77926F321B1B068007D9DF9 /* Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77926F221B1B068007D9DF9 /* Float.swift */; };
 		F77926F521B1B252007D9DF9 /* SegmentProgressViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77926F421B1B252007D9DF9 /* SegmentProgressViewControllerDelegate.swift */; };
 		F782C8B121C31F2B00D255F5 /* FollowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F782C8B021C31F2B00D255F5 /* FollowViewController.swift */; };
@@ -143,6 +144,7 @@
 		F75F6B1721AB71E5007561B3 /* Progress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Progress.swift; sourceTree = "<group>"; };
 		F75F6B1921AB8583007561B3 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		F75F6B1B21AB86A2007561B3 /* MegsMessage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MegsMessage.storyboard; sourceTree = "<group>"; };
+		F760E1C621CDC4200027A9E6 /* PoppinsLightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PoppinsLightButton.swift; path = Momstrong/Views/CustomViews/CustomFontElements/PoppinsLightButton.swift; sourceTree = SOURCE_ROOT; };
 		F77926F221B1B068007D9DF9 /* Float.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Float.swift; sourceTree = "<group>"; };
 		F77926F421B1B252007D9DF9 /* SegmentProgressViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentProgressViewControllerDelegate.swift; sourceTree = "<group>"; };
 		F782C8B021C31F2B00D255F5 /* FollowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowViewController.swift; sourceTree = "<group>"; };
@@ -436,6 +438,7 @@
 				F7E8188C21CD726D00492330 /* PopinsLightLabel.swift */,
 				F7E8188F21CD730300492330 /* PoppinsExtraLight.swift */,
 				F7E8189121CD732A00492330 /* PoppinsSemiBoldLabel.swift */,
+				F760E1C621CDC4200027A9E6 /* PoppinsLightButton.swift */,
 			);
 			path = CustomFontElements;
 			sourceTree = "<group>";
@@ -703,6 +706,7 @@
 				F7D3C03D21A33C57005D6B8F /* AtHomeWorkoutDetailViewController.swift in Sources */,
 				F7E8189A21CD79E600492330 /* AtHomeExerciseTableViewCell.swift in Sources */,
 				F7E7F3A821ADF94000BA8FF8 /* UserService.swift in Sources */,
+				F760E1C721CDC4200027A9E6 /* PoppinsLightButton.swift in Sources */,
 				F7E8189021CD730300492330 /* PoppinsExtraLight.swift in Sources */,
 				F75F6B0221AB5F20007561B3 /* YearProgressViewController.swift in Sources */,
 				F789034121BEE2F800705BC2 /* NotificationController.swift in Sources */,

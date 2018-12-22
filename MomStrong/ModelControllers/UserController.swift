@@ -18,11 +18,18 @@ class UserController{
     
     static let shared = UserController()
     
-    let baseUrl = "http://138.197.192.102:3691"
+    let baseUrl = "https://www.momstrongmove.com"
     
     func createUser(from userService: UserService) -> User{
         let progress = ProgressController.shared.fetchProgress(for: userService.id)
         let user = User(userService: userService, progress: progress)
+        if userService.subscription == nil{
+            if let accountCreationDate = user.accountCreationDate{
+                if accountCreationDate < CalendarHelper().twoWeeksAgo{
+                    user.subscription = .Both
+                }
+            }
+        }
         return user
     }
     
@@ -217,7 +224,7 @@ class UserController{
             "password" : password,
             "age" : age,
             "state" : state
-        ]
+            ]
         let request = constructRequest(url: url, method: "POST", bodyJson: json)
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error{
