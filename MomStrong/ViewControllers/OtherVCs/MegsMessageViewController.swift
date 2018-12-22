@@ -12,6 +12,7 @@ class MegsMessageViewController: UIViewController {
     
     @IBOutlet weak var megsMessageTextView: UITextView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         megsMessageTextView.layer.masksToBounds = false
@@ -26,5 +27,9 @@ class MegsMessageViewController: UIViewController {
                 UIView.removeSpinner(spinner: spinner)
             }
         }
+    }
+    
+    @IBAction func cancelButtonTapped(sender: Any){
+        self.dismiss(animated: true, completion: nil)
     }
 }

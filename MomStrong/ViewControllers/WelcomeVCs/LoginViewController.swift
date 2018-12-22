@@ -12,7 +12,7 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var continueTrialButton: UIButton!
+//    @IBOutlet weak var continueTrialButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -24,14 +24,14 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    func showOrHideTrialButton(){
-        continueTrialButton.isHidden = true
-        if let trialTuple = UserController.shared.checkForTwoWeekTrial(){
-            if trialTuple.valid {
-                continueTrialButton.isHidden = false
-            }
-        }
-    }
+//    func showOrHideTrialButton(){
+//        continueTrialButton.isHidden = true
+//        if let trialTuple = UserController.shared.checkForTwoWeekTrial(){
+//            if trialTuple.valid {
+//                continueTrialButton.isHidden = false
+//            }
+//        }
+//    }
     
     func presentLoginErrorAlert(){
         self.presentSimpleAlert(title: "Whoops We Couldn't Find You", message: "Try typing your username and password again", style: .alert)
@@ -55,10 +55,10 @@ class LoginViewController: UIViewController {
         }
     }
     
-    @IBAction func trialButton(_ sender: Any) {
-        UserController.shared.fetchTrialUserData()
-        self.presentMainInterface()
-    }
+//    @IBAction func trialButton(_ sender: Any) {
+//        UserController.shared.fetchTrialUserData()
+//        self.presentMainInterface()
+//    }
 }
 
 extension LoginViewController: UITextFieldDelegate{

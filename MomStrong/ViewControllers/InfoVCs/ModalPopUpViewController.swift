@@ -10,9 +10,11 @@ import UIKit
 
 class ModalPopUpViewController: UIViewController {
     
+    @IBOutlet weak var popUpbgView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var messageOneLabel: UILabel!
     @IBOutlet weak var messageTwoLabel: UILabel!
+    @IBOutlet weak var cancelButton: UIButton!
     
     var popUptitle: String = ""{
         didSet{
@@ -47,7 +49,7 @@ class ModalPopUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-        
+        popUpbgView.addShadow()
         view.isOpaque = false
     }
     

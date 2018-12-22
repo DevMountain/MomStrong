@@ -114,19 +114,19 @@ class UserController{
     func plan(for subscription: Subscription) -> Plan?{
         switch subscription {
         case .AtHome:
-            return Plan(title: "AtHome", description:
+            return Plan(title: "At Home Plan", description:
                 """
-        For only $9.99/Month you with receive two at home workouts each week. These workouts span between 20-40 minutes. Minimal equipment required. Don’t forget your water!
+        For only $9.98/month you will have access to two new 20-40 minute at-home workouts each week in both video and written form. These workouts will cover total body and specific muscle groups each week to lead you toward your health and fitness goals. The only equipment you will ever need are two 5# dumbbells, two 10# dumbbells, and a heavy resistance band. Don't forget your water!
         """)
         case .Gymrat:
-            return Plan(title: "Gym", description:
+            return Plan(title: "Gym Plan", description:
                 """
-        For only $9.99/Month you with receive two at gym workouts each week. These workouts include step-by-step instruction for a gym workout. These workouts are between 30 to 60 minutes long. Workouts include total body and specific muscle groups.
+        For only $9.99/month you will have access to two new 30-60 minute gym workouts each week. These workouts include step-by-step instructions/demonstration videos and include focused training on total body and specific muscle groups. Are you ready for the challenge?
         """)
         case .Both:
-            return Plan(title: "AtHome + Gym", description:
+            return Plan(title: "AtHome + Gym - (BEST VALUE!)", description:
                 """
-        For only $16.99/Month you with receive Meg’s entire training plan. Both AtHome and Gym Plans every week!
+        For only $14.99/month (25% off!) you will receive Meg's entire training plan! Two new at-home workouts and two new gym workouts every single week! Are you ready to crush your health and fitness goals? Let's do this.
         """)
         default:
             return nil
@@ -134,17 +134,17 @@ class UserController{
     }
     
     func loadAllPlans() -> [Plan]{
-        let atHome = Plan(title: "AtHome", description:
+        let atHome = Plan(title: "At Home Plan", description:
             """
-        For only $9.99/Month you with receive two at home workouts each week. These workouts span between 20-40 minutes. Minimal equipment required. Don’t forget your water!
+        For only $9.98/month you will have access to two new 20-40 minute at-home workouts each week in both video and written form. These workouts will cover total body and specific muscle groups each week to lead you toward your health and fitness goals. The only equipment you will ever need are two 5# dumbbells, two 10# dumbbells, and a heavy resistance band. Don't forget your water!
         """)
-        let gymRat = Plan(title: "Gym", description:
+        let gymRat = Plan(title: "Gym Plan", description:
             """
-        For only $9.99/Month you with receive two at gym workouts each week. These workouts include step-by-step instruction for a gym workout. These workouts are between 30 to 60 minutes long. Workouts include total body and specific muscle groups.
+        For only $9.99/month you will have access to two new 30-60 minute gym workouts each week. These workouts include step-by-step instructions/demonstration videos and include focused training on total body and specific muscle groups. Are you ready for the challenge?
         """)
-        let both = Plan(title: "AtHome + Gym", description:
+        let both = Plan(title: "At Home + Gym Plan", description:
             """
-        For only $16.99/Month you with receive Meg’s entire training plan. Both AtHome and Gym Plans every week!
+        For only $14.99/month (25% off!) you will receive Meg's entire training plan! Two new at-home workouts and two new gym workouts every single week! Are you ready to crush your health and fitness goals? Let's do this.
         """)
         
         return [atHome, gymRat, both]
@@ -209,32 +209,65 @@ class UserController{
             }.resume()
     }
     
-    func checkForTwoWeekTrial() -> (valid: Bool, daysLeft: Int)?{
-        let trialId = UIDevice.current.identifierForVendor?.uuidString
-        if let date = UserDefaults.standard.value(forKey: trialId ?? "currentUser") as? Date{
-            let daysExpired = Calendar.current.dateComponents([.day], from: date, to: Date()).day!
-            let daysLeft = 14 - daysExpired
-            return (daysLeft > 0, daysLeft)
-        } else{
-            return nil
-        }
+    func signUserUpForTwoWeekTrial(name: String, email: String, password: String, age: String, state: String, completion: @escaping (User?) -> ()){
+        guard let url = URL(string: baseUrl)?.appendingPathComponent("auth").appendingPathComponent("register").appendingPathComponent("1") else {completion(nil) ; return }
+        let json = [
+            "name" : name,
+            "email" : email,
+            "password" : password,
+            "age" : age,
+            "state" : state
+        ]
+        let request = constructRequest(url: url, method: "POST", bodyJson: json)
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error{
+                print("\(error.localizedDescription) \(error) in function: \(#function)")
+                completion(nil)
+                return
+            }
+            
+            print(response ?? "No Response")
+            
+            guard let data = data else {completion(nil) ; return}
+            
+            do{
+                let decoder = JSONDecoder()
+                let userService = try decoder.decode(UserService.self, from: data)
+                let user = self.createUser(from: userService)
+                completion(user)
+            }catch {
+                print("There was as error in \(#function) :  \(error) \(error.localizedDescription)")
+                completion(nil)
+            }
+            }.resume()
     }
     
-    @discardableResult
-    func createTwoWeekTrial() -> User{
-        let trialUser = self.trialUser
-        let trialId = UIDevice.current.identifierForVendor?.uuidString
-        UserDefaults.standard.set(Date(), forKey: trialId ?? "currentUser")
-        currentUser = trialUser
-        return trialUser
-    }
-    
-    func fetchTrialUserData(){
-        self.currentUser = self.trialUser
-        if let progress = ProgressController.shared.fetchProgress(for: trialUser.id){
-            self.currentUser?.progress = progress
-        }
-    }
+//    func checkForTwoWeekTrial() -> (valid: Bool, daysLeft: Int)?{
+//        let trialId = UIDevice.current.identifierForVendor?.uuidString
+//        if let date = UserDefaults.standard.value(forKey: trialId ?? "currentUser") as? Date{
+//            let daysExpired = Calendar.current.dateComponents([.day], from: date, to: Date()).day!
+//            let daysLeft = 14 - daysExpired
+//            return (daysLeft > 0, daysLeft)
+//        } else{
+//            return nil
+//        }
+//    }
+//
+//    @discardableResult
+//    func createTwoWeekTrial() -> User{
+//        let trialUser = self.trialUser
+//        let trialId = UIDevice.current.identifierForVendor?.uuidString
+//        UserDefaults.standard.set(Date(), forKey: trialId ?? "currentUser")
+//        currentUser = trialUser
+//        return trialUser
+//    }
+//
+//    func fetchTrialUserData(){
+//        self.currentUser = self.trialUser
+//        if let progress = ProgressController.shared.fetchProgress(for: trialUser.id){
+//            self.currentUser?.progress = progress
+//        }
+//    }
 }
 
 enum NetworkError{

@@ -16,12 +16,12 @@ class FollowViewController: UIViewController {
     }
     
     @IBAction func instagramButtonTapped(_ sender: Any) {
-        guard let instagramAppUrl = URL(string: "instagram://user?username=momstrongmove") else { return }
+        guard let instagramAppUrl = URL(string: "instagram://user?username=momstrongutah") else { return }
         if UIApplication.shared.canOpenURL(instagramAppUrl) {
             UIApplication.shared.open(instagramAppUrl, options: [:], completionHandler: nil)
         } else {
             //redirect to safari because the user doesn't have Instagram
-            guard let instagramWebUrl = URL(string: "https://instagram.com") else { return }
+            guard let instagramWebUrl = URL(string: "https://instagram.com/momstrongutah") else { return }
             UIApplication.shared.open(instagramWebUrl, options: [:], completionHandler: nil)
         }
     }

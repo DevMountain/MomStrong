@@ -53,8 +53,11 @@ class AtHomeWorkoutTableViewController: UITableViewController {
     }
     
     func updateProgressHeader(){
-        progressHeaderView.progress = calculateWeeklyProgress() ?? 0
-        progressHeaderView.workoutType = "AtHome"
+        guard let workouts = workouts else { return }
+        let filtered = ProgressController.shared.filterWorkoutsForCurrentWeek(workouts: workouts)
+        let completed = ProgressController.shared.filterCompletedWorkouts(workouts: filtered)
+        progressHeaderView.progress = Float(completed.count)/2.0
+        progressHeaderView.workoutType = "At Home Workouts"
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {

@@ -15,6 +15,12 @@ class ProgressHeaderView: UIView{
     @IBOutlet weak var workoutProgressView: UIProgressView!
     @IBOutlet weak var workoutTitleLabel: CustomLabel!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        let double = CGAffineTransform(scaleX: 1.0, y: 4.0)
+        workoutProgressView.transform = double
+    }
+    
     var progress: Float?{
         didSet{
             updateProgressView()

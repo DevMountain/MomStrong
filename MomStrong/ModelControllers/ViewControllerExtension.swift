@@ -125,6 +125,10 @@ extension UIViewController{
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
+        shiftFrameBackDown()
+    }
+    
+    func shiftFrameBackDown(){
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y = 0
         }

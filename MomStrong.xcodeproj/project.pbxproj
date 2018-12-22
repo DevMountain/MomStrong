@@ -14,8 +14,6 @@
 		F71938C921AC9A8D00D8D349 /* WorkoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71938C821AC9A8D00D8D349 /* WorkoutController.swift */; };
 		F71938CB21ACB7D100D8D349 /* ProgressController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71938CA21ACB7D100D8D349 /* ProgressController.swift */; };
 		F733A40E21C9794100C29149 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F733A40D21C9794100C29149 /* Poppins-Regular.ttf */; };
-		F733A41021C9795800C29149 /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F733A40F21C9795800C29149 /* Poppins-Thin.ttf */; };
-		F733A41221C9796200C29149 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F733A41121C9796100C29149 /* Poppins-Bold.ttf */; };
 		F733A41621C9A3BB00C29149 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F733A41521C9A3BB00C29149 /* CustomLabel.swift */; };
 		F733A41821C9A3D300C29149 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F733A41721C9A3D300C29149 /* CustomButton.swift */; };
 		F733A41A21C9AB6300C29149 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F733A41921C9AB6300C29149 /* CustomTextField.swift */; };
@@ -79,6 +77,13 @@
 		F7E7F3B321AF0A1100BA8FF8 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E7F3B221AF0A1100BA8FF8 /* SignUpViewController.swift */; };
 		F7E7F3B521AF0E4A00BA8FF8 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E7F3B421AF0E4A00BA8FF8 /* ViewControllerExtension.swift */; };
 		F7E7F3B721AF5DBC00BA8FF8 /* WorkoutProgressPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E7F3B621AF5DBC00BA8FF8 /* WorkoutProgressPoint.swift */; };
+		F7E8188D21CD726D00492330 /* PopinsLightLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E8188C21CD726D00492330 /* PopinsLightLabel.swift */; };
+		F7E8189021CD730300492330 /* PoppinsExtraLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E8188F21CD730300492330 /* PoppinsExtraLight.swift */; };
+		F7E8189221CD732A00492330 /* PoppinsSemiBoldLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E8189121CD732A00492330 /* PoppinsSemiBoldLabel.swift */; };
+		F7E8189421CD741E00492330 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F7E8189321CD741E00492330 /* Poppins-ExtraLight.ttf */; };
+		F7E8189621CD742A00492330 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F7E8189521CD742A00492330 /* Poppins-Light.ttf */; };
+		F7E8189821CD743600492330 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F7E8189721CD743600492330 /* Poppins-SemiBold.ttf */; };
+		F7E8189A21CD79E600492330 /* AtHomeExerciseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E8189921CD79E600492330 /* AtHomeExerciseTableViewCell.swift */; };
 		F7EFB76221CC2050008CD7FF /* MarkAsCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EFB76121CC2050008CD7FF /* MarkAsCompleteView.swift */; };
 		F7EFB76421CC2073008CD7FF /* MarkAsCompleteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7EFB76321CC2073008CD7FF /* MarkAsCompleteView.xib */; };
 		F7F03486219B904200CFD0AE /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7F03485219B904200CFD0AE /* Welcome.storyboard */; };
@@ -102,8 +107,6 @@
 		F71938C821AC9A8D00D8D349 /* WorkoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutController.swift; sourceTree = "<group>"; };
 		F71938CA21ACB7D100D8D349 /* ProgressController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressController.swift; sourceTree = "<group>"; };
 		F733A40D21C9794100C29149 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
-		F733A40F21C9795800C29149 /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Thin.ttf"; sourceTree = "<group>"; };
-		F733A41121C9796100C29149 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		F733A41521C9A3BB00C29149 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		F733A41721C9A3D300C29149 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		F733A41921C9AB6300C29149 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
@@ -170,6 +173,13 @@
 		F7E7F3B221AF0A1100BA8FF8 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		F7E7F3B421AF0E4A00BA8FF8 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewControllerExtension.swift; path = MomStrong/ModelControllers/ViewControllerExtension.swift; sourceTree = SOURCE_ROOT; };
 		F7E7F3B621AF5DBC00BA8FF8 /* WorkoutProgressPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutProgressPoint.swift; sourceTree = "<group>"; };
+		F7E8188C21CD726D00492330 /* PopinsLightLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PopinsLightLabel.swift; path = Momstrong/Views/CustomViews/CustomFontElements/PopinsLightLabel.swift; sourceTree = SOURCE_ROOT; };
+		F7E8188F21CD730300492330 /* PoppinsExtraLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PoppinsExtraLight.swift; path = Momstrong/Views/CustomViews/CustomFontElements/PoppinsExtraLight.swift; sourceTree = SOURCE_ROOT; };
+		F7E8189121CD732A00492330 /* PoppinsSemiBoldLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PoppinsSemiBoldLabel.swift; path = Momstrong/Views/CustomViews/CustomFontElements/PoppinsSemiBoldLabel.swift; sourceTree = SOURCE_ROOT; };
+		F7E8189321CD741E00492330 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
+		F7E8189521CD742A00492330 /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
+		F7E8189721CD743600492330 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		F7E8189921CD79E600492330 /* AtHomeExerciseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AtHomeExerciseTableViewCell.swift; path = Momstrong/Views/AtHomeCells/AtHomeExerciseTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		F7EFB76121CC2050008CD7FF /* MarkAsCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkAsCompleteView.swift; sourceTree = "<group>"; };
 		F7EFB76321CC2073008CD7FF /* MarkAsCompleteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MarkAsCompleteView.xib; sourceTree = "<group>"; };
 		F7F03485219B904200CFD0AE /* Welcome.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
@@ -215,9 +225,10 @@
 		F733A40C21C9793100C29149 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
-				F733A40F21C9795800C29149 /* Poppins-Thin.ttf */,
+				F7E8189521CD742A00492330 /* Poppins-Light.ttf */,
+				F7E8189721CD743600492330 /* Poppins-SemiBold.ttf */,
+				F7E8189321CD741E00492330 /* Poppins-ExtraLight.ttf */,
 				F733A40D21C9794100C29149 /* Poppins-Regular.ttf */,
-				F733A41121C9796100C29149 /* Poppins-Bold.ttf */,
 			);
 			path = fonts;
 			sourceTree = "<group>";
@@ -287,7 +298,6 @@
 				F75F6B0521AB648C007561B3 /* WeeklyGoalTableViewCell.swift */,
 				F75F6B0921AB66AC007561B3 /* CalendarCollectionViewCell.swift */,
 				F75F6B0B21AB66B7007561B3 /* MonthCollectionViewCell.swift */,
-				F78C6BD721B1BD0700922B3F /* ProgressHeaderView.swift */,
 			);
 			path = Progress;
 			sourceTree = "<group>";
@@ -297,6 +307,7 @@
 			children = (
 				F7D3C03921A337AB005D6B8F /* AtHomeWorkoutTableViewCell.swift */,
 				F7D3C03E21A33F84005D6B8F /* WorkoutSectionTableViewCell.swift */,
+				F7E8189921CD79E600492330 /* AtHomeExerciseTableViewCell.swift */,
 			);
 			path = AtHomeCells;
 			sourceTree = "<group>";
@@ -314,9 +325,7 @@
 			children = (
 				F75F6AF921A9E2A7007561B3 /* SelfSizingTableView.swift */,
 				F70C157421BAD99200159C80 /* VideoPlayerView.swift */,
-				F733A41521C9A3BB00C29149 /* CustomLabel.swift */,
-				F733A41721C9A3D300C29149 /* CustomButton.swift */,
-				F733A41921C9AB6300C29149 /* CustomTextField.swift */,
+				F7E8188E21CD728700492330 /* CustomFontElements */,
 				F7EFB76521CC4E6B008CD7FF /* NibViews */,
 			);
 			path = CustomViews;
@@ -385,6 +394,14 @@
 			path = OtherVCs;
 			sourceTree = "<group>";
 		};
+		F7AF50EE21CD660300C9E950 /* OtherViews */ = {
+			isa = PBXGroup;
+			children = (
+				F7DE981A21C9660700722226 /* PlanTableViewCell.swift */,
+			);
+			path = OtherViews;
+			sourceTree = "<group>";
+		};
 		F7D3C03B21A337B1005D6B8F /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -392,7 +409,7 @@
 				F75F6B0E21AB66ED007561B3 /* AtHomeCells */,
 				F75F6B0F21AB66FD007561B3 /* GymRatCells */,
 				F75F6B0D21AB66C3007561B3 /* Progress */,
-				F7DE981A21C9660700722226 /* PlanTableViewCell.swift */,
+				F7AF50EE21CD660300C9E950 /* OtherViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -410,9 +427,23 @@
 			path = WelcomeVCs;
 			sourceTree = "<group>";
 		};
+		F7E8188E21CD728700492330 /* CustomFontElements */ = {
+			isa = PBXGroup;
+			children = (
+				F733A41521C9A3BB00C29149 /* CustomLabel.swift */,
+				F733A41721C9A3D300C29149 /* CustomButton.swift */,
+				F733A41921C9AB6300C29149 /* CustomTextField.swift */,
+				F7E8188C21CD726D00492330 /* PopinsLightLabel.swift */,
+				F7E8188F21CD730300492330 /* PoppinsExtraLight.swift */,
+				F7E8189121CD732A00492330 /* PoppinsSemiBoldLabel.swift */,
+			);
+			path = CustomFontElements;
+			sourceTree = "<group>";
+		};
 		F7EFB76521CC4E6B008CD7FF /* NibViews */ = {
 			isa = PBXGroup;
 			children = (
+				F78C6BD721B1BD0700922B3F /* ProgressHeaderView.swift */,
 				F741A1B121CB2D2500C1538B /* GymWorkoutHeaderView.swift */,
 				F741A1B521CB2D7900C1538B /* GymExerciseCell.swift */,
 				F7EFB76121CC2050008CD7FF /* MarkAsCompleteView.swift */,
@@ -544,12 +575,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				F748D789219A6B9700C4A840 /* LaunchScreen.storyboard in Resources */,
-				F733A41021C9795800C29149 /* Poppins-Thin.ttf in Resources */,
+				F7E8189621CD742A00492330 /* Poppins-Light.ttf in Resources */,
 				F7362B9421C1CDED00391CC7 /* ModalPresentations.storyboard in Resources */,
 				F741A1B421CB2D5500C1538B /* GymExerciseCell.xib in Resources */,
 				F733A40E21C9794100C29149 /* Poppins-Regular.ttf in Resources */,
+				F7E8189421CD741E00492330 /* Poppins-ExtraLight.ttf in Resources */,
 				F75F6B1C21AB86A2007561B3 /* MegsMessage.storyboard in Resources */,
-				F733A41221C9796200C29149 /* Poppins-Bold.ttf in Resources */,
 				F7EFB76421CC2073008CD7FF /* MarkAsCompleteView.xib in Resources */,
 				F741A1B021CB2CE500C1538B /* GymWorkoutHeader.xib in Resources */,
 				F7F03486219B904200CFD0AE /* Welcome.storyboard in Resources */,
@@ -558,6 +589,7 @@
 				F7F03488219B971D00CFD0AE /* Info.storyboard in Resources */,
 				F7F03499219DF53100CFD0AE /* Progress.storyboard in Resources */,
 				F7F03497219DF4B700CFD0AE /* Gymrat.storyboard in Resources */,
+				F7E8189821CD743600492330 /* Poppins-SemiBold.ttf in Resources */,
 				F741A1BE21CC180F00C1538B /* CircuitHeader.xib in Resources */,
 				F748D781219A6B9600C4A840 /* Main.storyboard in Resources */,
 			);
@@ -669,7 +701,9 @@
 				F75F6B1A21AB8583007561B3 /* InfoViewController.swift in Sources */,
 				F789034521BF220400705BC2 /* PasswordResetViewController.swift in Sources */,
 				F7D3C03D21A33C57005D6B8F /* AtHomeWorkoutDetailViewController.swift in Sources */,
+				F7E8189A21CD79E600492330 /* AtHomeExerciseTableViewCell.swift in Sources */,
 				F7E7F3A821ADF94000BA8FF8 /* UserService.swift in Sources */,
+				F7E8189021CD730300492330 /* PoppinsExtraLight.swift in Sources */,
 				F75F6B0221AB5F20007561B3 /* YearProgressViewController.swift in Sources */,
 				F789034121BEE2F800705BC2 /* NotificationController.swift in Sources */,
 				F7E7F3B521AF0E4A00BA8FF8 /* ViewControllerExtension.swift in Sources */,
@@ -681,9 +715,11 @@
 				F789033F21BEE1FF00705BC2 /* NotificationSettingsViewController.swift in Sources */,
 				F789033D21BEDDC700705BC2 /* AccountViewController.swift in Sources */,
 				F782C8B121C31F2B00D255F5 /* FollowViewController.swift in Sources */,
+				F7E8188D21CD726D00492330 /* PopinsLightLabel.swift in Sources */,
 				F7F03493219BEF2100CFD0AE /* User.swift in Sources */,
 				F741A1B821CB2F5800C1538B /* GymWorkoutListTableViewController.swift in Sources */,
 				F7E7F3AC21AE0B4E00BA8FF8 /* LaunchCopyViewController.swift in Sources */,
+				F7E8189221CD732A00492330 /* PoppinsSemiBoldLabel.swift in Sources */,
 				F75F6AFE21AB5F0A007561B3 /* WeekProgressViewController.swift in Sources */,
 				F78C6BD821B1BD0700922B3F /* ProgressHeaderView.swift in Sources */,
 				F789034321BF155D00705BC2 /* TransparentNavigationController.swift in Sources */,

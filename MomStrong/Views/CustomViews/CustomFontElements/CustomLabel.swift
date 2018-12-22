@@ -14,14 +14,10 @@ class CustomLabel: UILabel {
         super.awakeFromNib()
         self.updateFontTo(fontName: "Poppins-Regular")
     }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
 
     func updateFontTo(fontName: String){
         let size = self.font.pointSize
-        self.font = UIFont(name: fontName, size: size)
+        self.font = UIFont(name: fontName, size: size)!
     }
     
     override var intrinsicContentSize: CGSize{

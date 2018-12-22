@@ -57,13 +57,12 @@ class AtHomeWorkoutDetailTableViewController: UITableViewController {
         if indexPath.row == 0{
             let cell = tableView.dequeueReusableCell(withIdentifier: "workoutSectionCell", for: indexPath) as! WorkoutSectionTableViewCell
             cell.workoutSection = workout?.circuits[indexPath.section]
+            if indexPath.section == 0 { cell.separatorView.isHidden = true }
             return cell
         }else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath)
-            print("# of Circuits: \(workout?.circuits.count ?? 0)")
-            print("# of Exercises: \(workout?.circuits[indexPath.section].excercises.count ?? 0)")
+            let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! AtHomeExerciseTableViewCell
             guard let exercise =  workout?.circuits[indexPath.section].excercises[indexPath.row - 1] else {return UITableViewCell() }
-            cell.textLabel?.text = "\(exercise.title)  X  \(exercise.description)"
+            cell.exerciseLabel.text = "\(exercise.title)  X  \(exercise.description)"
             return cell
         }
     }

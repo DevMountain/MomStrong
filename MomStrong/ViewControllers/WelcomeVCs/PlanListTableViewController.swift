@@ -17,21 +17,22 @@ class PlanListTableViewController: UITableViewController {
         self.plans = UserController.shared.loadAllPlans()
         self.customizeBackButton()
         self.setNavHeaderView()
-        updateTrialButton()
+//        updateTrialButton()
         twoWeekTrialButton.stylize()
+        self.navigationController?.hidesBarsOnSwipe = true
     }
     
-    func updateTrialButton(){
-        if let trialTuple = UserController.shared.checkForTwoWeekTrial(){
-            if !trialTuple.valid {
-                twoWeekTrialButton.isHidden = true
-            }else{
-                twoWeekTrialButton.setTitle("Contune Your Trial - \(trialTuple.daysLeft) days remaining!", for: .normal)
-            }
-        }else{
-            twoWeekTrialButton.setTitle("Start Your 2 week free trial", for: .normal)
-        }
-    }
+//    func updateTrialButton(){
+//        if let trialTuple = UserController.shared.checkForTwoWeekTrial(){
+//            if !trialTuple.valid {
+//                twoWeekTrialButton.isHidden = true
+//            }else{
+//                twoWeekTrialButton.setTitle("Contune Your Trial - \(trialTuple.daysLeft) days remaining!", for: .normal)
+//            }
+//        }else{
+//            twoWeekTrialButton.setTitle("Start Your 2 week free trial", for: .normal)
+//        }
+//    }
     
     var plans: [Plan] = []
 
@@ -49,20 +50,20 @@ class PlanListTableViewController: UITableViewController {
         return cell
     }
     
-    @IBAction func twoWeekTrialButtonTapped(_ sender: Any) {
-        if let trialTuple = UserController.shared.checkForTwoWeekTrial(){
-            let isTrialValid = trialTuple.valid
-            if !isTrialValid{
-                self.presentMomStrongModalVC(title: "Your Trial Has Expired", messageOne: "Please visit our website to subscribe for a full account", messageTwo: nil)
-                return
-            }else{
-                UserController.shared.fetchTrialUserData()
-                self.presentMainInterface()
-            }
-        }else{
-            UserController.shared.createTwoWeekTrial()
-            self.presentMainInterface()
-        }
-    }
+//    @IBAction func twoWeekTrialButtonTapped(_ sender: Any) {
+//        if let trialTuple = UserController.shared.checkForTwoWeekTrial(){
+//            let isTrialValid = trialTuple.valid
+//            if !isTrialValid{
+//                self.presentMomStrongModalVC(title: "Your Trial Has Expired", messageOne: "Please visit our website to subscribe for a full account", messageTwo: nil)
+//                return
+//            }else{
+//                UserController.shared.fetchTrialUserData()
+//                self.presentMainInterface()
+//            }
+//        }else{
+//            UserController.shared.createTwoWeekTrial()
+//            self.presentMainInterface()
+//        }
+//    }
 }
 

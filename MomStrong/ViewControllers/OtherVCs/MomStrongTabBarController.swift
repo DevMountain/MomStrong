@@ -14,39 +14,43 @@ class MomStrongTabBarController: UITabBarController {
         super.viewDidLoad()
 
         guard let progress = UIStoryboard(name: "Progress", bundle: .main).instantiateInitialViewController(),
-            let atHome = UIStoryboard(name: "Main", bundle: .main).instantiateInitialViewController(),
-            let gymRat = UIStoryboard(name: "Gymrat", bundle: .main).instantiateInitialViewController(),
+            var atHome = UIStoryboard(name: "Main", bundle: .main).instantiateInitialViewController(),
+            var gymRat = UIStoryboard(name: "Gymrat", bundle: .main).instantiateInitialViewController(),
+            let vc = UIStoryboard(name: "ModalPresentations", bundle: .main).instantiateInitialViewController(),
+            let lockVC = vc as? ModalPopUpViewController,
             let currentUser = UserController.shared.currentUser else {return}
         
         var atHomeImage: UIImage = #imageLiteral(resourceName: "LockIcon")
         var gymRatImage: UIImage = #imageLiteral(resourceName: "LockIcon")
-        var atHomeEnabled: Bool = false
-        var gymRatEnabled: Bool = false
+ 
+        lockVC.popUptitle = "Subscribe for Access"
+        lockVC.messageOne = "It looks like you don't have access to this plan.  Please subcribe on our site and log into the app to see more!"
+        lockVC.messageTwo = nil
+        lockVC.view.backgroundColor = UIColor.backgroudGray
+        lockVC.cancelButton.isHidden = true
+        
         
         switch currentUser.subscription {
         case .AtHome:
             atHomeImage = #imageLiteral(resourceName: "Home_Active")
-            atHomeEnabled = true
+            gymRat = lockVC
             
         case .Gymrat:
             gymRatImage = #imageLiteral(resourceName: "Gym_Active")
-            gymRatEnabled = true
+            atHome = lockVC
             
         case .Both:
             atHomeImage = #imageLiteral(resourceName: "Home_Active")
             gymRatImage = #imageLiteral(resourceName: "Gym_Active")
-            atHomeEnabled = true
-            gymRatEnabled = true
             
         case .None:
-            print("No Subscription Found")
+            gymRat = lockVC
+            atHome = lockVC
         }
         
         progress.tabBarItem = UITabBarItem(title: "Progress", image: #imageLiteral(resourceName: "ProgressIcon"), tag: 0)
         atHome.tabBarItem = UITabBarItem(title: "AtHome", image: atHomeImage, tag: 1)
         gymRat.tabBarItem = UITabBarItem(title: "GymRat", image: gymRatImage, tag: 2)
-        atHome.tabBarItem.isEnabled = atHomeEnabled
-        gymRat.tabBarItem.isEnabled = gymRatEnabled
         
         tabBar.tintColor = UIColor.powerMomRed
         self.viewControllers = [progress,atHome,gymRat]
