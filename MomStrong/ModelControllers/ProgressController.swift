@@ -151,6 +151,7 @@ class ProgressController{
     }
     
     func filterWorkoutsForCurrentWeek(user: User = UserController.shared.currentUser!, workouts: [Workout]) -> [Workout]{
+        guard workouts.count > 1 else { return [] }
         let filtered = Array(workouts[0..<2])
         return filtered
     }

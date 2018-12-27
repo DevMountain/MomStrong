@@ -17,6 +17,7 @@ class WorkoutController{
     
     //Mark: - Fetch Functions
     func fetchWorkouts(type: WorkoutType, completion: @escaping (([Workout]?) -> Void)){
+//        guard let url = URL(string: baseUrlString)?.appendingPathComponent("routines") else { return }
         guard let url = URL(string: baseUrlString)?.appendingPathComponent("schedule").appendingPathComponent("ios") else {completion(nil) ; return }
         guard let request = workoutUrlRequest(url: url, for: type) else { return }
         URLSession.shared.dataTask(with: request) { (data, resoponse, error) in
