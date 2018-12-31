@@ -13,7 +13,7 @@ class WorkoutController{
     static let shared = WorkoutController()
     
     let workouts: [Workout] = []
-    let baseUrlString = "https://www.momstrongmove.com/api/"
+    let baseUrlString = "https://www.momstrongmove.com/api"
     
     //Mark: - Fetch Functions
     func fetchWorkouts(type: WorkoutType, completion: @escaping (([Workout]?) -> Void)){
@@ -61,7 +61,7 @@ class WorkoutController{
         VimeoClient.fetchVideoInformation(vimeoID: vimeoId) { (videoInfo) in
             var exercise = exercise
             exercise.videoUrl = videoInfo?.files[1].link
-            exercise.thumbnailUrl = videoInfo?.pictures.sizes.first?.linkWithPlayButton
+            exercise.thumbnailUrl = videoInfo?.pictures.sizes.first?.link
             completion(exercise)
         }
     }

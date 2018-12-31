@@ -42,6 +42,11 @@ class AtHomeWorkoutDetailTableViewController: UITableViewController {
         sessionManager.add(self)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+         AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         print("# of Section\(workout?.circuits.count ?? 0)")
         return workout?.circuits.count ?? 0
@@ -106,6 +111,7 @@ class AtHomeWorkoutDetailTableViewController: UITableViewController {
     
     @objc func presentAVPlayer(){
         guard let videoUrl = workout?.videoUrl else {return}
+        print(videoUrl)
         presentAVPlayerVCWith(videoUrlString: videoUrl)
     }
     

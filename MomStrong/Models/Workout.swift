@@ -25,12 +25,15 @@ class Workout{
     var thumbnail: UIImage?
     var videoUrl: String?
     
-    init(workoutService: WorkoutService) {
-        self.title = workoutService.title
-        self.description = workoutService.description
-        self.type = workoutService.type
-        self.circuits = workoutService.circuits
-        self.id = workoutService.id
+    init?(workoutService: WorkoutService) {
+        
+        guard let title = workoutService.title, let description = workoutService.description, let type = workoutService.type, let circuits = workoutService.circuits, let id = workoutService.id else { return nil }
+        
+        self.title = title
+        self.description = description
+        self.type = type
+        self.circuits = circuits
+        self.id = id
         
         self.equipmentNeeded = workoutService.equipmentNeeded
         

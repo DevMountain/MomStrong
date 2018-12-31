@@ -24,8 +24,8 @@ class MomStrongTabBarController: UITabBarController {
         var atHomeImage: UIImage = #imageLiteral(resourceName: "LockIcon")
         var gymRatImage: UIImage = #imageLiteral(resourceName: "LockIcon")
  
-        lockVC.popUptitle = "Subscribe for Access"
-        lockVC.messageOne = "It looks like you don't have access to this plan.  Please subcribe on our site and log into the app to see more!"
+        lockVC.popUptitle = "Learn More"
+        lockVC.messageOne = "To learn more about Momstrong Move, please visit our website."
         lockVC.messageTwo = nil
         lockVC.view.backgroundColor = UIColor.backgroudGray
         lockVC.cancelButton.isHidden = true

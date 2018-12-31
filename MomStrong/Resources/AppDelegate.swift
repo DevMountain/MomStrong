@@ -11,14 +11,20 @@ import CoreData
 import GoogleCast
 import UserNotifications
 
-let googleAppID = "2805E95E"
+let googleAppID = "1DEA39C0"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    //    let barButtonAppearance = UIBarButtonItem.appearance()
+    //MARK: - Orientation Lock
+    /// set orientations you want to be allowed in this property by default
+    var orientationLock = UIInterfaceOrientationMask.portrait
+    
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        return self.orientationLock
+    }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         

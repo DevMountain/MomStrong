@@ -50,6 +50,7 @@ extension UIViewController{
         let controller = AVPlayerViewController()
         controller.player = AVPlayer(url: videoUrl)
         self.present(controller, animated: true, completion: {
+            AppUtility.lockOrientation(.all)
             controller.player?.play()
         })
     }
@@ -58,6 +59,7 @@ extension UIViewController{
         let controller = AVPlayerViewController()
         controller.player = player
         self.present(controller, animated: true, completion: {
+            AppUtility.lockOrientation(.all)
             controller.player?.play()
         })
     }

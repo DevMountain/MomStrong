@@ -25,6 +25,13 @@ class GymWorkoutListTableViewController: UITableViewController {
             }
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
+        self.tableView.reloadData()
+        self.updateProgressView()
+    }
 
     // MARK: - Table view data source
 

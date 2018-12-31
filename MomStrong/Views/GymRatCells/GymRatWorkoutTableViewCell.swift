@@ -50,12 +50,12 @@ class GymRatWorkoutTableViewCell: UITableViewCell {
             gymRatStackView.addArrangedSubview(circuitHeader)
             if circuit == workout.circuits.first{ circuitHeader.separatorView.backgroundColor = .powerMomRed}
             for exercise in circuit.excercises{
-                
-                let cell = GymExerciseCell(with: exercise)
+                let vc = delegate as? UIViewController
+                let cell = GymExerciseCell(with: exercise, viewController: vc)
                 gymRatStackView.addArrangedSubview(cell)
-                
             }
         }
+        updateIsCompleted()
         isConstructed = true
     }
     

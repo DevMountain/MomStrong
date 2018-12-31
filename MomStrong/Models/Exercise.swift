@@ -15,18 +15,20 @@ struct Exercise: Codable{
     let id: Int
     
     //Video and videoUrl will only be on GymRat extercises
-    var videoUrl: String?
+    var vimeoUrl: String?
     var thumbnailUrl: String?
+    var videoUrl: String?
     
     enum CodingKeys: String, CodingKey{
         case title, description, id
-        case videoUrl = "video_url"
+        case vimeoUrl = "video_url"
         case thumbnailUrl
+        case videoUrl
     }
     
     var vimeoId: Int?{
-        guard let videoUrl = videoUrl else { return nil }
-        return WorkoutController.shared.pullVimeoIdFrom(vimeoUrl: videoUrl)
+        guard let vimeoUrl = vimeoUrl else { return nil }
+        return WorkoutController.shared.pullVimeoIdFrom(vimeoUrl: vimeoUrl)
     }
     
 }

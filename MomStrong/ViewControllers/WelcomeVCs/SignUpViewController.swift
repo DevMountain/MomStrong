@@ -26,6 +26,7 @@ class SignUpViewController: UIViewController {
     }
     
     func setUpUI(){
+        self.navigationController?.isNavigationBarHidden = false
         customizeBackButton()
         acceptedbgView.addShadow()
         [emailTextField,passwordTextField,ageTextField,stateTextField].forEach{

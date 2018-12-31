@@ -22,6 +22,11 @@ class PlanListTableViewController: UITableViewController {
         self.navigationController?.hidesBarsOnSwipe = true
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
 //    func updateTrialButton(){
 //        if let trialTuple = UserController.shared.checkForTwoWeekTrial(){
 //            if !trialTuple.valid {

@@ -16,6 +16,9 @@ class GymExerciseCell: UIView {
     @IBOutlet weak var exerciseThumbnailImageView: UIImageView!
     @IBOutlet var contentStackView: UIStackView!
     
+    var viewController: UIViewController?
+    var exercise: Exercise?
+    
     override var intrinsicContentSize: CGSize {
         var height = exerciseTitle.intrinsicContentSize.height
         if exerciseDescriptionLabel.text != ""{
@@ -29,13 +32,18 @@ class GymExerciseCell: UIView {
         commonInit()
     }
     
-    convenience init(with exercise: Exercise){
+    convenience init(with exercise: Exercise, viewController: UIViewController?){
         self.init()
         commonInit()
+        
+        self.viewController = viewController
+        self.exercise = exercise
+        
         exerciseTitle.text = exercise.title
         exerciseDescriptionLabel.text = exercise.description
-        self.exerciseThumbnailImageView.isHidden = exercise.videoUrl == nil
+        self.exerciseThumbnailImageView.isHidden = exercise.vimeoUrl == nil
         WorkoutController.shared.fetchVideoInfo(for: exercise) { (exercise) in
+            self.exercise = exercise
             guard let thumbnailUrl = exercise?.thumbnailUrl else { return }
             VimeoClient.fetchThumbnail(url: thumbnailUrl, completion: { (image) in
                 DispatchQueue.main.async {
@@ -57,5 +65,22 @@ class GymExerciseCell: UIView {
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+    }
+    
+    private func presentExerciseVideoVC(){
+        guard let exercise = exercise,
+            let url = exercise.videoUrl else {
+                return
+        }
+        print(url)
+        self.viewController?.presentAVPlayerVCWith(videoUrlString: url)
+    }
+    
+    @IBAction func playButtonTapped(_ sender: UIButton) {
+        presentExerciseVideoVC()
+    }
+    
+    @IBAction func imageThumbnailTapped(_ sender: Any) {
+        presentExerciseVideoVC()
     }
 }

@@ -32,7 +32,7 @@ class MonthProgressViewController: UIViewController {
     }
 }
 
-extension MonthProgressViewController: UICollectionViewDataSource, UICollectionViewDelegate{
+extension MonthProgressViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return calendarHelper.numberOfDaysIn(month: selectedMonth)
@@ -47,5 +47,25 @@ extension MonthProgressViewController: UICollectionViewDataSource, UICollectionV
         cell?.isCompleteImage.image = workoutDays.contains(indexPath.row + 1) ? #imageLiteral(resourceName: "Checkmark_fill") : nil
         cell?.dateLabel.text = "\(indexPath.row + 1)"
         return cell ?? CalendarCollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 8.0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 8.0
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let collectionViewWidth = collectionView.frame.size.width
+        let spacing = CGFloat(64)
+        let cellWidth = (collectionViewWidth - spacing)/7
+        return CGSize(width: cellWidth, height: cellWidth)
     }
 }

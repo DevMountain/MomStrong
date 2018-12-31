@@ -89,7 +89,7 @@ class AccountViewController: UIViewController {
     }
     
     @IBAction func upgradeButtonTapped(_ sender: Any) {
-        self.presentMomStrongModalVC(title: "Please Visit Our Site", messageOne: "Unfortunately we don't support subsction purchases from within the app.  Please check our website to adjust your settings.", messageTwo: nil)
+        self.presentMomStrongModalVC(title: "Learn More", messageOne: "To learn more about Momstrong Move, please visit our website.", messageTwo: nil)
     }
 }
 

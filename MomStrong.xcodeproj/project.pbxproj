@@ -50,6 +50,7 @@
 		F760E1C721CDC4200027A9E6 /* PoppinsLightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F760E1C621CDC4200027A9E6 /* PoppinsLightButton.swift */; };
 		F77926F321B1B068007D9DF9 /* Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77926F221B1B068007D9DF9 /* Float.swift */; };
 		F77926F521B1B252007D9DF9 /* SegmentProgressViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77926F421B1B252007D9DF9 /* SegmentProgressViewControllerDelegate.swift */; };
+		F77C7C0021D6B30900A6B301 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77C7BFF21D6B30900A6B301 /* AppUtility.swift */; };
 		F782C8B121C31F2B00D255F5 /* FollowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F782C8B021C31F2B00D255F5 /* FollowViewController.swift */; };
 		F787C4B221B5A1650066D81C /* VimeoClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F787C4B121B5A1650066D81C /* VimeoClient.swift */; };
 		F787C4B421B5A2020066D81C /* VimeoInfoObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F787C4B321B5A2020066D81C /* VimeoInfoObject.swift */; };
@@ -147,6 +148,7 @@
 		F760E1C621CDC4200027A9E6 /* PoppinsLightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PoppinsLightButton.swift; path = Momstrong/Views/CustomViews/CustomFontElements/PoppinsLightButton.swift; sourceTree = SOURCE_ROOT; };
 		F77926F221B1B068007D9DF9 /* Float.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Float.swift; sourceTree = "<group>"; };
 		F77926F421B1B252007D9DF9 /* SegmentProgressViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentProgressViewControllerDelegate.swift; sourceTree = "<group>"; };
+		F77C7BFF21D6B30900A6B301 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppUtility.swift; path = Momstrong/Resources/AppUtility.swift; sourceTree = SOURCE_ROOT; };
 		F782C8B021C31F2B00D255F5 /* FollowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowViewController.swift; sourceTree = "<group>"; };
 		F787C4B121B5A1650066D81C /* VimeoClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VimeoClient.swift; sourceTree = "<group>"; };
 		F787C4B321B5A2020066D81C /* VimeoInfoObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VimeoInfoObject.swift; sourceTree = "<group>"; };
@@ -490,6 +492,7 @@
 				F78C6BD921B1C31900922B3F /* StyleGuide.swift */,
 				F789034221BF155D00705BC2 /* TransparentNavigationController.swift */,
 				F7AC66EF21C255B80000017A /* Button+Extension.swift */,
+				F77C7BFF21D6B30900A6B301 /* AppUtility.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -697,6 +700,7 @@
 				F7D3C03F21A33F84005D6B8F /* WorkoutSectionTableViewCell.swift in Sources */,
 				F7EFB76221CC2050008CD7FF /* MarkAsCompleteView.swift in Sources */,
 				F733A41621C9A3BB00C29149 /* CustomLabel.swift in Sources */,
+				F77C7C0021D6B30900A6B301 /* AppUtility.swift in Sources */,
 				F78C6BDA21B1C31900922B3F /* StyleGuide.swift in Sources */,
 				F7F0349D219E0E0600CFD0AE /* AtHomeWorkoutTableViewController.swift in Sources */,
 				F7362B9A21C1DE3C00391CC7 /* Plan.swift in Sources */,

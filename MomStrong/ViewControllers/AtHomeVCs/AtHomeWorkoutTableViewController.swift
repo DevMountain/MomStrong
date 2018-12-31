@@ -28,6 +28,12 @@ class AtHomeWorkoutTableViewController: UITableViewController {
             }
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+        self.updateProgressHeader()
+    }
 
     // MARK: - Table view data source
 

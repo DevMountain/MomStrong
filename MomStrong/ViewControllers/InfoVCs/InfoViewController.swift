@@ -14,6 +14,7 @@ class InfoViewController: UIViewController {
         super.viewDidLoad()
         let navBar = navigationController?.navigationBar
         navBar?.shadowImage = UIImage()
+        customizeBackButton()
         // Do any additional setup after loading the view.
     }
     

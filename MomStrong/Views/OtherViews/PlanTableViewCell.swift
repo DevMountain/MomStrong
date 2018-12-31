@@ -23,7 +23,8 @@ class PlanTableViewCell: UITableViewCell {
         }else {
             planDescriptionLabel.text = plan.description
         }
-        let planImage = isSubscribed ? #imageLiteral(resourceName: "SubscribedButton") : #imageLiteral(resourceName: "UpgradeButton")
-        isSubscribedImageView.image = planImage
+//        let planImage = isSubscribed ? #imageLiteral(resourceName: "SubscribedButton") : #imageLiteral(resourceName: "UpgradeButton")
+//        isSubscribedImageView.image = planImage
+        isSubscribedImageView.isHidden = !isSubscribed
     }
 }

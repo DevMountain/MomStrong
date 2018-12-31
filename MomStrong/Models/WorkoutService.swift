@@ -10,12 +10,12 @@ import Foundation
 
 struct WorkoutService: Decodable{
     
-    let title: String
-    let description: String
+    let title: String?
+    let description: String?
     let videoUrl: String?
-    let type: WorkoutType
-    let circuits: [Circuit]
-    let id: Int
+    let type: WorkoutType?
+    let circuits: [Circuit]?
+    let id: Int?
     let vimeoId: Int?
     
     //MARK: - Not in Web Endpoints

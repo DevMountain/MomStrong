@@ -12,7 +12,7 @@ class FollowViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        customizeBackButton()
     }
     
     @IBAction func instagramButtonTapped(_ sender: Any) {
@@ -22,6 +22,17 @@ class FollowViewController: UIViewController {
         } else {
             //redirect to safari because the user doesn't have Instagram
             guard let instagramWebUrl = URL(string: "https://instagram.com/momstrongutah") else { return }
+            UIApplication.shared.open(instagramWebUrl, options: [:], completionHandler: nil)
+        }
+    }
+    
+    @IBAction func momstrongMoveInstagramButtonTapped(_ sender: UIButton){
+        guard let instagramAppUrl = URL(string: "instagram://user?username=momstrongmove") else { return }
+        if UIApplication.shared.canOpenURL(instagramAppUrl) {
+            UIApplication.shared.open(instagramAppUrl, options: [:], completionHandler: nil)
+        } else {
+            //redirect to safari because the user doesn't have Instagram
+            guard let instagramWebUrl = URL(string: "https://instagram.com/momstrongmove") else { return }
             UIApplication.shared.open(instagramWebUrl, options: [:], completionHandler: nil)
         }
     }

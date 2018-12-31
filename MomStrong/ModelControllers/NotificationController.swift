@@ -13,7 +13,7 @@ class NotificationScheduler{
     
     static let shared = NotificationScheduler()
     
-    let baseUrl = URL(string: "http://138.197.192.102:3691/api")
+    let baseUrl = URL(string: "https://www.momstrongmove.com/api")
     var permissionGranted: Bool = false
     
     func requestNotificationPermission(completion: @escaping (Bool) -> ()){

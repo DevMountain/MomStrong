@@ -15,7 +15,7 @@
                 <outlet property="contentStackView" destination="wgv-IH-65r" id="5SP-Ac-6Cu"/>
                 <outlet property="contentView" destination="KtX-VE-SaJ" id="Z8w-F5-R5c"/>
                 <outlet property="exerciseDescriptionLabel" destination="4Q3-vd-Kp7" id="cla-nh-B7k"/>
-                <outlet property="exerciseThumbnailImageView" destination="0zn-fh-PPl" id="xAQ-ic-gcI"/>
+                <outlet property="exerciseThumbnailImageView" destination="FC7-FP-DJ9" id="dIu-VF-fp9"/>
                 <outlet property="exerciseTitle" destination="XCs-TX-Crl" id="vdf-Cj-PFV"/>
             </connections>
         </placeholder>
@@ -38,29 +38,54 @@
                             <rect key="frame" x="0.0" y="8.5" width="366" height="80.5"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ZYT-3L-mRs">
-                                    <rect key="frame" x="0.0" y="23" width="366" height="34.5"/>
+                                    <rect key="frame" x="0.0" y="23" width="298" height="34.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Exercise 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCs-TX-Crl" customClass="CustomLabel" customModule="MomStrong" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="366" height="14.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="298" height="14.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Q3-vd-Kp7" customClass="PoppinsLightLabel" customModule="MomStrong" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="22.5" width="366" height="12"/>
+                                            <rect key="frame" x="0.0" y="22.5" width="298" height="12"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </stackView>
-                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0zn-fh-PPl">
-                                    <rect key="frame" x="0.0" y="10.5" width="60" height="60"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pW1-s0-LJP">
+                                    <rect key="frame" x="306" y="10.5" width="60" height="60"/>
+                                    <subviews>
+                                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FC7-FP-DJ9">
+                                            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                            <gestureRecognizers/>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="BZ9-MA-Thc" appends="YES" id="6Ar-tA-5jw"/>
+                                            </connections>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftE-7N-7g1">
+                                            <rect key="frame" x="21" y="21" width="18" height="18"/>
+                                            <state key="normal" image="PlayButton"/>
+                                            <connections>
+                                                <action selector="playButtonTapped:" destination="-1" eventType="touchUpInside" id="vPw-G3-vwF"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="60" id="guJ-vx-1gu"/>
-                                        <constraint firstAttribute="width" constant="60" id="hJD-lN-YhJ"/>
+                                        <constraint firstItem="ftE-7N-7g1" firstAttribute="centerX" secondItem="pW1-s0-LJP" secondAttribute="centerX" id="3iQ-Ld-Kg2"/>
+                                        <constraint firstItem="FC7-FP-DJ9" firstAttribute="centerX" secondItem="pW1-s0-LJP" secondAttribute="centerX" id="Ddl-11-g4J"/>
+                                        <constraint firstItem="ftE-7N-7g1" firstAttribute="width" secondItem="pW1-s0-LJP" secondAttribute="width" multiplier="0.3" id="Guf-Db-Wms"/>
+                                        <constraint firstItem="FC7-FP-DJ9" firstAttribute="centerY" secondItem="pW1-s0-LJP" secondAttribute="centerY" id="PE3-OU-TgY"/>
+                                        <constraint firstItem="ftE-7N-7g1" firstAttribute="height" secondItem="pW1-s0-LJP" secondAttribute="height" multiplier="0.3" id="Slb-2K-XUS"/>
+                                        <constraint firstItem="ftE-7N-7g1" firstAttribute="centerY" secondItem="pW1-s0-LJP" secondAttribute="centerY" id="Zow-5A-IED"/>
+                                        <constraint firstItem="FC7-FP-DJ9" firstAttribute="width" secondItem="pW1-s0-LJP" secondAttribute="width" id="aE5-eq-r40"/>
+                                        <constraint firstItem="FC7-FP-DJ9" firstAttribute="height" secondItem="pW1-s0-LJP" secondAttribute="height" id="foa-l8-qJG"/>
+                                        <constraint firstAttribute="height" constant="60" id="yAn-ID-NOD"/>
+                                        <constraint firstAttribute="width" constant="60" id="ybh-9A-SnJ"/>
                                     </constraints>
-                                </imageView>
+                                </view>
                             </subviews>
                             <viewLayoutGuide key="safeArea" id="WlF-VU-wQ5"/>
                         </stackView>
@@ -78,5 +103,13 @@
             <viewLayoutGuide key="safeArea" id="W5x-ZL-UIS"/>
             <point key="canvasLocation" x="-427.19999999999999" y="160.56971514242881"/>
         </view>
+        <tapGestureRecognizer id="BZ9-MA-Thc">
+            <connections>
+                <action selector="imageThumbnailTapped:" destination="-1" id="XJv-L2-bds"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
+    <resources>
+        <image name="PlayButton" width="62" height="62"/>
+    </resources>
 </document>

@@ -20,7 +20,7 @@ class YearProgressViewController: UIViewController {
     }
 }
 
-extension YearProgressViewController: UICollectionViewDataSource, UICollectionViewDelegate{
+extension YearProgressViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return Calendar.current.monthSymbols.count
@@ -34,6 +34,26 @@ extension YearProgressViewController: UICollectionViewDataSource, UICollectionVi
         cell?.percentCompleteLabel.text = percentageComplete.asPercentString
         cell?.addShadow()
         return cell ?? UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 8.0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 8.0
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let collectionViewWidth = collectionView.frame.size.width
+        let spacing = CGFloat(8*5)
+        let cellWidth = (collectionViewWidth - spacing)/4
+        return CGSize(width: cellWidth, height: cellWidth)
     }
 }
 

@@ -10,6 +10,11 @@ import UIKit
 import MessageUI
 
 class ShareViewController: UIViewController, MFMessageComposeViewControllerDelegate {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+         customizeBackButton()
+    }
 
     public func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         controller.dismiss(animated: true, completion: nil)
