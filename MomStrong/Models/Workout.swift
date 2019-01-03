@@ -17,7 +17,7 @@ class Workout{
     let circuits: [Circuit]
     let id: Int
     var vimeoId: Int = 303939659
-    let equipmentNeeded: [String]?
+    let equipmentNeeded: String?
     
     //Properties from Vimeo
     var duration: String?
@@ -34,7 +34,7 @@ class Workout{
         self.type = type
         self.circuits = circuits
         self.id = id
-        
+        self.duration = workoutService.duration
         self.equipmentNeeded = workoutService.equipmentNeeded
         
         if let vimeoId = WorkoutController.shared.pullVimeoIdFrom(vimeoUrl: workoutService.videoUrl ?? ""){

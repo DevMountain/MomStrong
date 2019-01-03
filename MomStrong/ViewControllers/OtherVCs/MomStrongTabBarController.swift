@@ -50,8 +50,8 @@ class MomStrongTabBarController: UITabBarController {
         }
         
         progress.tabBarItem = UITabBarItem(title: "Progress", image: #imageLiteral(resourceName: "ProgressIcon"), tag: 0)
-        atHome.tabBarItem = UITabBarItem(title: "AtHome", image: atHomeImage, tag: 1)
-        gymRat.tabBarItem = UITabBarItem(title: "GymRat", image: gymRatImage, tag: 2)
+        atHome.tabBarItem = UITabBarItem(title: "At Home", image: atHomeImage, tag: 1)
+        gymRat.tabBarItem = UITabBarItem(title: "Gym Rat", image: gymRatImage, tag: 2)
         
         tabBar.tintColor = UIColor.powerMomRed
         self.viewControllers = [progress,atHome,gymRat]

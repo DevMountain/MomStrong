@@ -14,6 +14,7 @@ extension UIColor{
     
     static var backgroudGray = UIColor(red: 243/255, green: 244/255, blue: 244/255, alpha: 1)
 
+    static var softBlack = UIColor(named: "softBlack")
 }
 
 

@@ -64,7 +64,6 @@ extension WeekProgressViewController: TextFieldCellDelegate{
     
     func completedButtonTapped(sender: WeeklyGoalTableViewCell) {
         sender.goal?.toggleIsCompleted()
-        delegate?.updateProgressView()
     }
     
     

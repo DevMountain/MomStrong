@@ -9,7 +9,5 @@
 import Foundation
 
 protocol SegmentProgressViewControllerDelegate: class{
-    
-    func updateProgressView()
 
 }

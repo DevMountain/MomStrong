@@ -8,19 +8,17 @@
 
 import UIKit
 
-class ProgressViewController: UIViewController, SegmentProgressViewControllerDelegate {
+class ProgressViewController: UIViewController{
     
-    @IBOutlet weak var numberCompletedLabel: UILabel!
     @IBOutlet weak var timeSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var completedLabel: UILabel!
     @IBOutlet weak var weekContainerView: UIView!
     @IBOutlet weak var monthContainerView: UIView!
     @IBOutlet weak var yearContainerView: UIView!
-    @IBOutlet weak var progressHeaderView: ProgressHeaderView!
     @IBOutlet weak var timeHorizonLabel: UILabel!
     @IBOutlet weak var headerLabelStackView: UIStackView!
     @IBOutlet weak var leftArrowButton: UIButton!
     @IBOutlet weak var rightArrowButton: UIButton!
+    @IBOutlet weak var timeSectionLabel: UILabel!
     
     var selectedMonth: Int = CalendarHelper().currentMonth
     var monthProgressViewController: MonthProgressViewController?
@@ -55,9 +53,9 @@ class ProgressViewController: UIViewController, SegmentProgressViewControllerDel
         monthContainerView.isHidden = true
         yearContainerView.isHidden = true
         UIView.animate(withDuration: 0.2) {
+            self.timeSectionLabel.text = "Personal Goals"
             self.headerLabelStackView.isHidden = true
         }
-        setProgressView(for: .Week)
     }
     
     func showMonthContainerView(){
@@ -65,12 +63,12 @@ class ProgressViewController: UIViewController, SegmentProgressViewControllerDel
         monthContainerView.isHidden = false
         yearContainerView.isHidden = true
         UIView.animate(withDuration: 0.2) {
+            self.timeSectionLabel.text = "Days I completed my workout"
             self.headerLabelStackView.isHidden = false
             self.leftArrowButton.isHidden = false
             self.rightArrowButton.isHidden = false
             self.timeHorizonLabel.text = CalendarHelper().monthName(for: self.selectedMonth)
         }
-        setProgressView(for: .Month)
     }
     
     func showYearContainerView(){
@@ -78,43 +76,16 @@ class ProgressViewController: UIViewController, SegmentProgressViewControllerDel
         monthContainerView.isHidden = true
         yearContainerView.isHidden = false
         UIView.animate(withDuration: 0.2) {
+            self.timeSectionLabel.text = "My Year of Momstrong Move Progress"
             self.headerLabelStackView.isHidden = false
             self.leftArrowButton.isHidden = true
             self.rightArrowButton.isHidden = true
             self.timeHorizonLabel.text = "\(CalendarHelper().currentYear)"
         }
-        setProgressView(for: .Year)
-    }
-    
-    func setProgressView(for timePeriod: TimePeriod){
-        progressHeaderView.progress = ProgressController.shared.getCurrentPercentageOfProgress(for: timePeriod, month: selectedMonth)
-        
-        switch timePeriod{
-            
-        case .Week:
-            let completedTuple = ProgressController.shared.completedOutOfTotalForCurrentWeek()
-            numberCompletedLabel.text = "\(completedTuple.completed) of \(completedTuple.total) Completed"
-        case .Month, .Year:
-            let possible = UserController.shared.currentUser?.numberOfAvailableWorkouts(for: timePeriod)
-            let completed = ProgressController.shared.numberOfCompletedWorkouts(for: timePeriod, user: UserController.shared.currentUser, month: selectedMonth)
-            numberCompletedLabel.text = "\(completed) of \(possible ?? 0) Completed"
-//        case .Year:
-//            let possible = UserController.shared.currentUser?.numberOfAvailableWorkouts(for: timePeriod)
-//            let completed = ProgressController.shared.numberOfCompletedWorkouts(for: timePeriod)
-//            numberCompletedLabel.text = "\(completed) of \(possible ?? 0) Completed"
-        }
-    }
-    
-    func updateProgressView(){
-        guard let timePeriod = TimePeriod(rawValue: timeSegmentedControl.selectedSegmentIndex) else {return}
-        setProgressView(for: timePeriod)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toWeekContainerView"{
-            let weekVC = segue.destination as? WeekProgressViewController
-            weekVC?.delegate = self
-        } else if segue.identifier == "toMonthContainerView"{
+        if segue.identifier == "toMonthContainerView"{
             let monthVC = segue.destination  as? MonthProgressViewController
             self.monthProgressViewController = monthVC
         }
@@ -131,12 +102,6 @@ class ProgressViewController: UIViewController, SegmentProgressViewControllerDel
             NSAttributedString.Key.foregroundColor: UIColor.lightGray,
             NSAttributedString.Key.font : UIFont(name: "Poppins-Regular", size: 17)!
             ], for: .normal)
-        progressHeaderView.workoutTitleLabel.isHidden = true
-        progressHeaderView.layoutIfNeeded()
-    }
-    
-    func incrementSelectedMonth(){
-        
     }
     
     @IBAction func rightArrowTapped(_ sender: Any) {
@@ -146,7 +111,6 @@ class ProgressViewController: UIViewController, SegmentProgressViewControllerDel
         
         timeHorizonLabel.text = CalendarHelper().monthName(for: selectedMonth)
         monthProgressViewController?.selectedMonth = selectedMonth
-        setProgressView(for: .Month)
     }
     
     @IBAction func leftArrowTapped(_ sender: Any) {
@@ -155,7 +119,6 @@ class ProgressViewController: UIViewController, SegmentProgressViewControllerDel
         
         timeHorizonLabel.text = CalendarHelper().monthName(for: selectedMonth)
         monthProgressViewController?.selectedMonth = selectedMonth
-        setProgressView(for: .Month)
     }
     
 }

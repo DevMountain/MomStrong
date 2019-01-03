@@ -20,7 +20,6 @@ class ShareViewController: UIViewController, MFMessageComposeViewControllerDeleg
         controller.dismiss(animated: true, completion: nil)
     }
     
-    
     func presentTextMessageVC(){
         let composeVC = MFMessageComposeViewController()
         composeVC.messageComposeDelegate = self
@@ -36,6 +35,12 @@ class ShareViewController: UIViewController, MFMessageComposeViewControllerDeleg
     }
 
     @IBAction func shareButtonTapped(_ sender: Any) {
-        presentTextMessageVC()
+        let promoString =
+        """
+        Hey, I just found this app called Momstrong Move! it gives me new workouts each week and the videos are greate.  Here is the link if you want to give it a try ☺️
+        """
+        let activityViewController = UIActivityViewController(activityItems: [promoString], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        self.present(activityViewController, animated: true)
     }
 }

@@ -54,8 +54,8 @@ class AtHomeWorkoutTableViewCell: UITableViewCell {
         guard let workout = workout else { return }
         titleLabel.text = workout.title
         descriptionLabel.text = workout.description
-        let equipment = workout.equipmentNeeded ?? ["None"]
-        equipmentLabel.text = "Equipment: " + equipment.joined(separator: " ")
+        let equipment = workout.equipmentNeeded ?? "None"
+        equipmentLabel.text = "Equipment: " + equipment
         durationLabel.text = "Duration: \(workout.duration ?? "FUN")"
         updateIsCompleted()
         isLoading = true

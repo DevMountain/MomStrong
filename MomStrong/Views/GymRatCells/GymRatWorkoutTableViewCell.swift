@@ -37,6 +37,7 @@ class GymRatWorkoutTableViewCell: UITableViewCell {
     }
     
     func updateViews(){
+        updateIsCompleted()
         guard !isConstructed else  {return }
         guard let workout = workout else { return }
         let header = GymWorkoutHeaderView(with: workout)
@@ -87,5 +88,10 @@ class GymRatWorkoutTableViewCell: UITableViewCell {
     
     func renderUI(){
         bgView.addShadow()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+//        markWorkoutIncomplete()
     }
 }

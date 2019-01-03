@@ -20,7 +20,7 @@ struct WorkoutService: Decodable{
     
     //MARK: - Not in Web Endpoints
     let duration: String?
-    let equipmentNeeded: [String]?
+    let equipmentNeeded: String?
     
     enum CodingKeys: String, CodingKey{
         case title
@@ -32,7 +32,7 @@ struct WorkoutService: Decodable{
         case vimeoId
         
         case duration
-        case equipmentNeeded
+        case equipmentNeeded = "equipment"
     }
 }
 
