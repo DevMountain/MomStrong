@@ -13,7 +13,7 @@ class UserController{
     
     var currentUser: User?
     lazy var trialUser: User = {
-        return User(name: "Trial Account", state: nil, age: nil, subscription: .Both, id: 0)
+        return User(name: "Trial Account", state: nil, age: nil, subscription: .Both, id: 0, email: "tester@momstrong.com")
     }()
     
     static let shared = UserController()
@@ -86,6 +86,8 @@ class UserController{
                 }
                 self.currentUser = user
                 self.saveUserDataLocally(email: email, password: password)
+                let token = UserDefaults.standard.data(forKey: "deviceToken")
+                NotificationScheduler.shared.submitRegisteredAPN(for: user, token: token, completion: { (success) in print("Registered for APN \(success)")})
 //                self.addSomeProgress()
                 completion(user)
             }catch {
@@ -96,7 +98,13 @@ class UserController{
     }
     
     func updateUser(name: String, email: String, age: String, state: String, completion: @escaping (Bool) -> Void){
+        
         guard let user = UserController.shared.currentUser else { return }
+        user.name = name
+        user.email = email
+        user.age = Int(age) ?? user.age
+        user.state = state
+        
         guard let url = URL(string: baseUrl)?.appendingPathComponent("api").appendingPathComponent("userInfo").appendingPathComponent("\(user.id)") else { completion(false) ; return }
         let json = [
             "name" : name,
@@ -241,6 +249,8 @@ class UserController{
                 let decoder = JSONDecoder()
                 let userService = try decoder.decode(UserService.self, from: data)
                 let user = self.createUser(from: userService)
+                let token = UserDefaults.standard.data(forKey: "deviceToken")
+                NotificationScheduler.shared.submitRegisteredAPN(for: user, token: token, completion: { (success) in print("Registered for APN \(success)")})
                 completion(user)
             }catch {
                 print("There was as error in \(#function) :  \(error) \(error.localizedDescription)")

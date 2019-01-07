@@ -18,6 +18,10 @@ class YearProgressViewController: UIViewController {
         yearlyProgressCollectionView.delegate = self
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        yearlyProgressCollectionView.reloadData()
+    }
 }
 
 extension YearProgressViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{

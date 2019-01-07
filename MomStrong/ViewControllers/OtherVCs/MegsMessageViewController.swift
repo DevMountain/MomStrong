@@ -15,6 +15,7 @@ class MegsMessageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIApplication.shared.applicationIconBadgeNumber = 0
         megsMessageTextView.layer.masksToBounds = false
         megsMessageTextView.addShadow()
         megsMessageTextView.font = UIFont(name: "Poppins-Regular", size: 12)

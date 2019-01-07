@@ -12,6 +12,9 @@ import CoreData
 class ProgressController{
     
     static let shared = ProgressController()
+    private init() {
+        resetProgressAtNewYear()
+    }
     
     func createNewGoal(for user: User? = UserController.shared.currentUser, title: String){
         let goal = Goal(title: title)
@@ -32,9 +35,6 @@ class ProgressController{
     
     func toggleIsCompleted(for workout: Workout){
         guard let currentUser = UserController.shared.currentUser else { return }
-        //        let isCompleted = userProgress.progressPoints.contains(where: { (progressPoint) -> Bool in
-        //            return workout.id == progressPoint.workoutId
-        //        })
         let index = currentUser.progress.progressPoints.firstIndex(where: { $0.workoutId == workout.id })
         if let index = index{
             deleteProgressPoint(for: currentUser, index: index)
@@ -67,6 +67,21 @@ class ProgressController{
         } catch {
             print("There was as error in \(#function) :  \(error) \(error.localizedDescription)")
             return nil
+        }
+    }
+    
+    private func clearYearlyProgress(for user: User){
+        let progress = user.progress
+        CoreDataStack.context.delete(progress)
+    }
+    
+    func resetProgressAtNewYear(){
+        let year = CalendarHelper().currentYear
+        let savedYear = UserDefaults.standard.integer(forKey: "currentYear")
+        if year != savedYear{
+            guard let currentUser = UserController.shared.currentUser else { return }
+            clearYearlyProgress(for: currentUser)
+            UserDefaults.standard.set(year, forKey: "currentYear")
         }
     }
     

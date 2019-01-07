@@ -15,7 +15,7 @@
                 <outlet property="contentStackView" destination="wgv-IH-65r" id="5SP-Ac-6Cu"/>
                 <outlet property="contentView" destination="KtX-VE-SaJ" id="Z8w-F5-R5c"/>
                 <outlet property="exerciseDescriptionLabel" destination="4Q3-vd-Kp7" id="cla-nh-B7k"/>
-                <outlet property="exerciseThumbnailImageView" destination="FC7-FP-DJ9" id="dIu-VF-fp9"/>
+                <outlet property="exerciseThumbnailImageView" destination="FC7-FP-DJ9" id="xXG-tU-oI2"/>
                 <outlet property="exerciseTitle" destination="XCs-TX-Crl" id="vdf-Cj-PFV"/>
             </connections>
         </placeholder>
@@ -57,7 +57,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pW1-s0-LJP">
                                     <rect key="frame" x="306" y="10.5" width="60" height="60"/>
                                     <subviews>
-                                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FC7-FP-DJ9">
+                                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FC7-FP-DJ9" customClass="ThumbNailImageView" customModule="MomStrong" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                             <gestureRecognizers/>
                                             <connections>

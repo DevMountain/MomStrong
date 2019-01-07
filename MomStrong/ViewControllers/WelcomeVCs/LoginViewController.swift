@@ -45,7 +45,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginButtonTapped(_ sender: Any) {
-        guard let email = emailTextField.text,
+        guard let email = emailTextField.text?.lowercased(),
             let password = passwordTextField.text else { return }
         UserController.shared.loginUserWith(email: email, password: password) { (user) in
             DispatchQueue.main.async {

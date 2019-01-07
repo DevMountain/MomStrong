@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Exercise: Codable{
+class Exercise: Codable{
     
     let title: String
     let description: String

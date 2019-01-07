@@ -52,7 +52,7 @@ class AccountViewController: UIViewController {
     
     func updateUserInfo(){
         guard let name = nameTextField.text, !name.isEmpty,
-            let email = emailTextField.text, !email.isEmpty,
+            let email = emailTextField.text?.lowercased(), !email.isEmpty,
             let ageString = ageTextField.text, !ageString.isEmpty, let _ = Int(ageString),
             let state = stateTextField.text, !state.isEmpty else {return}
         
@@ -75,7 +75,7 @@ class AccountViewController: UIViewController {
         nameTextField.text = currentUser.name
         stateTextField.text = "UT"
         ageTextField.text = "\(currentUser.age ?? 0)"
-//        emailTextField.text = currentUser.email
+        emailTextField.text = currentUser.email
     }
     
 
@@ -96,7 +96,8 @@ class AccountViewController: UIViewController {
 extension AccountViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return plans.count
+        return 0
+//        return plans.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

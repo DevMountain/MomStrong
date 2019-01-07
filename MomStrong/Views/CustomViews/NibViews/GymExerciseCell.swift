@@ -13,7 +13,7 @@ class GymExerciseCell: UIView {
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var exerciseTitle: CustomLabel!
     @IBOutlet weak var exerciseDescriptionLabel: CustomLabel!
-    @IBOutlet weak var exerciseThumbnailImageView: UIImageView!
+    @IBOutlet weak var exerciseThumbnailImageView: ThumbNailImageView!
     @IBOutlet var contentStackView: UIStackView!
     
     var viewController: UIViewController?
@@ -35,22 +35,12 @@ class GymExerciseCell: UIView {
     convenience init(with exercise: Exercise, viewController: UIViewController?){
         self.init()
         commonInit()
-        
         self.viewController = viewController
         self.exercise = exercise
-        
         exerciseTitle.text = exercise.title
         exerciseDescriptionLabel.text = exercise.description
         self.exerciseThumbnailImageView.isHidden = exercise.vimeoUrl == nil
-        WorkoutController.shared.fetchVideoInfo(for: exercise) { (exercise) in
-            self.exercise = exercise
-            guard let thumbnailUrl = exercise?.thumbnailUrl else { return }
-            VimeoClient.fetchThumbnail(url: thumbnailUrl, completion: { (image) in
-                DispatchQueue.main.async {
-                    self.exerciseThumbnailImageView.image = image
-                }
-            })
-        }
+        self.exerciseThumbnailImageView.urlString = exercise.thumbnailUrl
         if exercise.description.isEmpty { exerciseDescriptionLabel.isHidden = true }
     }
     

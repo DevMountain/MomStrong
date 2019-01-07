@@ -67,6 +67,7 @@
 		F7A44BD721BE663E0020D13F /* MegsMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A44BD621BE663E0020D13F /* MegsMessageViewController.swift */; };
 		F7AC66F021C255B80000017A /* Button+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AC66EF21C255B80000017A /* Button+Extension.swift */; };
 		F7AC66F221C31CC80000017A /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AC66F121C31CC80000017A /* ShareViewController.swift */; };
+		F7AF6F3921DE727700B31B21 /* WeekSeparatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AF6F3821DE727700B31B21 /* WeekSeparatable.swift */; };
 		F7D3C03A21A337AB005D6B8F /* AtHomeWorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D3C03921A337AB005D6B8F /* AtHomeWorkoutTableViewCell.swift */; };
 		F7D3C03D21A33C57005D6B8F /* AtHomeWorkoutDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D3C03C21A33C57005D6B8F /* AtHomeWorkoutDetailViewController.swift */; };
 		F7D3C03F21A33F84005D6B8F /* WorkoutSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D3C03E21A33F84005D6B8F /* WorkoutSectionTableViewCell.swift */; };
@@ -86,6 +87,7 @@
 		F7E8189621CD742A00492330 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F7E8189521CD742A00492330 /* Poppins-Light.ttf */; };
 		F7E8189821CD743600492330 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F7E8189721CD743600492330 /* Poppins-SemiBold.ttf */; };
 		F7E8189A21CD79E600492330 /* AtHomeExerciseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E8189921CD79E600492330 /* AtHomeExerciseTableViewCell.swift */; };
+		F7EEC68B21E2B85B007D00EF /* ThumbNailImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EEC68A21E2B85B007D00EF /* ThumbNailImageView.swift */; };
 		F7EFB76221CC2050008CD7FF /* MarkAsCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EFB76121CC2050008CD7FF /* MarkAsCompleteView.swift */; };
 		F7EFB76421CC2073008CD7FF /* MarkAsCompleteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7EFB76321CC2073008CD7FF /* MarkAsCompleteView.xib */; };
 		F7F03486219B904200CFD0AE /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7F03485219B904200CFD0AE /* Welcome.storyboard */; };
@@ -165,6 +167,7 @@
 		F7A44BD621BE663E0020D13F /* MegsMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MegsMessageViewController.swift; sourceTree = "<group>"; };
 		F7AC66EF21C255B80000017A /* Button+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Button+Extension.swift"; sourceTree = "<group>"; };
 		F7AC66F121C31CC80000017A /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		F7AF6F3821DE727700B31B21 /* WeekSeparatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WeekSeparatable.swift; path = Momstrong/Resources/WeekSeparatable.swift; sourceTree = SOURCE_ROOT; };
 		F7D3C03921A337AB005D6B8F /* AtHomeWorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtHomeWorkoutTableViewCell.swift; sourceTree = "<group>"; };
 		F7D3C03C21A33C57005D6B8F /* AtHomeWorkoutDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtHomeWorkoutDetailViewController.swift; sourceTree = "<group>"; };
 		F7D3C03E21A33F84005D6B8F /* WorkoutSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSectionTableViewCell.swift; sourceTree = "<group>"; };
@@ -184,6 +187,7 @@
 		F7E8189521CD742A00492330 /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
 		F7E8189721CD743600492330 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		F7E8189921CD79E600492330 /* AtHomeExerciseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AtHomeExerciseTableViewCell.swift; path = Momstrong/Views/AtHomeCells/AtHomeExerciseTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		F7EEC68A21E2B85B007D00EF /* ThumbNailImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ThumbNailImageView.swift; path = Momstrong/Views/CustomViews/ThumbNailImageView.swift; sourceTree = SOURCE_ROOT; };
 		F7EFB76121CC2050008CD7FF /* MarkAsCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkAsCompleteView.swift; sourceTree = "<group>"; };
 		F7EFB76321CC2073008CD7FF /* MarkAsCompleteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MarkAsCompleteView.xib; sourceTree = "<group>"; };
 		F7F03485219B904200CFD0AE /* Welcome.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
@@ -327,6 +331,7 @@
 		F75F6B1021AB670A007561B3 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				F7EEC68A21E2B85B007D00EF /* ThumbNailImageView.swift */,
 				F75F6AF921A9E2A7007561B3 /* SelfSizingTableView.swift */,
 				F70C157421BAD99200159C80 /* VideoPlayerView.swift */,
 				F7E8188E21CD728700492330 /* CustomFontElements */,
@@ -493,6 +498,7 @@
 				F789034221BF155D00705BC2 /* TransparentNavigationController.swift */,
 				F7AC66EF21C255B80000017A /* Button+Extension.swift */,
 				F77C7BFF21D6B30900A6B301 /* AppUtility.swift */,
+				F7AF6F3821DE727700B31B21 /* WeekSeparatable.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -548,6 +554,9 @@
 						LastSwiftMigration = 1010;
 						SystemCapabilities = {
 							com.apple.AccessWiFi = {
+								enabled = 1;
+							};
+							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
 							com.apple.Push = {
@@ -714,6 +723,7 @@
 				F7E8189021CD730300492330 /* PoppinsExtraLight.swift in Sources */,
 				F75F6B0221AB5F20007561B3 /* YearProgressViewController.swift in Sources */,
 				F789034121BEE2F800705BC2 /* NotificationController.swift in Sources */,
+				F7EEC68B21E2B85B007D00EF /* ThumbNailImageView.swift in Sources */,
 				F7E7F3B521AF0E4A00BA8FF8 /* ViewControllerExtension.swift in Sources */,
 				F7362B9621C1CFC900391CC7 /* ModalPopUpViewController.swift in Sources */,
 				F748D77C219A6B9600C4A840 /* AppDelegate.swift in Sources */,
@@ -743,6 +753,7 @@
 				F748D784219A6B9600C4A840 /* MomStrong.xcdatamodeld in Sources */,
 				F741A1B621CB2D7900C1538B /* GymExerciseCell.swift in Sources */,
 				F787C4B421B5A2020066D81C /* VimeoInfoObject.swift in Sources */,
+				F7AF6F3921DE727700B31B21 /* WeekSeparatable.swift in Sources */,
 				F7E7F3B121AF0A0800BA8FF8 /* LoginViewController.swift in Sources */,
 				F75F6B0021AB5F16007561B3 /* MonthProgressViewController.swift in Sources */,
 				F7F0348C219BED7200CFD0AE /* WorkoutService.swift in Sources */,

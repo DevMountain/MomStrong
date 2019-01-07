@@ -14,7 +14,7 @@ protocol GymRatWorkoutTableViewCellDelegate: class{
 }
 
 class GymRatWorkoutTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var gymRatStackView: UIStackView!
     @IBOutlet weak var bgView: UIView!
     
@@ -42,11 +42,7 @@ class GymRatWorkoutTableViewCell: UITableViewCell {
         guard let workout = workout else { return }
         let header = GymWorkoutHeaderView(with: workout)
         gymRatStackView.addArrangedSubview(header)
-        
         for circuit in workout.circuits{
-            
-            
-            
             let circuitHeader = CircuitHeaderView(with: circuit)
             gymRatStackView.addArrangedSubview(circuitHeader)
             if circuit == workout.circuits.first{ circuitHeader.separatorView.backgroundColor = .powerMomRed}
@@ -58,6 +54,23 @@ class GymRatWorkoutTableViewCell: UITableViewCell {
         }
         updateIsCompleted()
         isConstructed = true
+    }
+    
+    func loadVideoContentForExercises(completion: @escaping () -> ()){
+        guard let workout = workout else { return }
+        let dispatch = DispatchGroup()
+        for circuit in workout.circuits{
+            for exercise in circuit.excercises{
+                dispatch.enter()
+                WorkoutController.shared.fetchVideoInfo(for: exercise) { (exercise) in
+                    DispatchQueue.main.async {
+                        dispatch.leave()
+                        return
+                    }
+                }
+            }
+        }
+        dispatch.notify(queue: .main, execute: completion)
     }
     
     func updateIsCompleted(){
@@ -92,6 +105,6 @@ class GymRatWorkoutTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-//        markWorkoutIncomplete()
+        //        markWorkoutIncomplete()
     }
 }

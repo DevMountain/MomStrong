@@ -57,9 +57,8 @@ class WorkoutController{
     }
     
     func fetchVideoInfo(for exercise: Exercise, completion: @escaping (Exercise?) -> ()){
-        guard let vimeoId = exercise.vimeoId else { print("NO VIMEO ID ON EXERCISE : \(exercise.title) \(exercise.id)") ; completion(nil) ; return }
+        guard let vimeoId = exercise.vimeoId else { print("NO VIMEO ID ON EXERCISE : \(exercise.title) \(exercise.id)") ; completion(exercise) ; return }
         VimeoClient.fetchVideoInformation(vimeoID: vimeoId) { (videoInfo) in
-            var exercise = exercise
             exercise.videoUrl = videoInfo?.files[1].link
             exercise.thumbnailUrl = videoInfo?.pictures.sizes.first?.link
             completion(exercise)

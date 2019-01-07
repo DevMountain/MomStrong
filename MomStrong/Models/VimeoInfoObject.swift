@@ -11,7 +11,7 @@ import Foundation
 struct VimeoInfoObject: Codable{
     
     var name: String
-    var description: String
+    var description: String?
     var pictures: VimeoPictures
     var files: [VimeoFile]
     var duration: Int

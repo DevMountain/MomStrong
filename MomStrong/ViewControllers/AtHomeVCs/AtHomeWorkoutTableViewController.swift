@@ -8,26 +8,11 @@
 
 import UIKit
 
-class AtHomeWorkoutTableViewController: UITableViewController {
+class AtHomeWorkoutTableViewController: UITableViewController, WeekSeparatable {
     
     @IBOutlet weak var progressHeaderView: ProgressHeaderView!
     
-    var workouts: [Workout]?
-    var weeks: [[Workout]]?{
-        guard let workouts = workouts else { return nil }
-        
-        var weekArray: [Workout] = []
-        var returnArray: [[Workout]] = []
-        for (index, workout) in workouts.enumerated(){
-            weekArray.append(workout)
-            if weekArray.count >= 2 || index == workouts.count - 1{
-                let week = weekArray
-                returnArray.append(week)
-                weekArray = []
-            }
-        }
-        return returnArray
-    }
+    var workouts: [Workout] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +20,7 @@ class AtHomeWorkoutTableViewController: UITableViewController {
         setUpRootViewNavBar()
         
         WorkoutController.shared.fetchWorkouts(type: .atHome) { (workouts) in
+            guard let workouts = workouts else { return }
             self.workouts = workouts
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -52,18 +38,18 @@ class AtHomeWorkoutTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return weeks?.count ?? 0
+        return weeks.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return weeks?[section].count ?? 0
+        return weeks[section].count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "atHomeCell", for: indexPath) as? AtHomeWorkoutTableViewCell
         cell?.delegate = self
-        let week = weeks?[indexPath.section]
-        let workout = week?[indexPath.row]
+        let week = weeks[indexPath.section]
+        let workout = week[indexPath.row]
         cell?.workout = workout
         cell?.workoutNumberLabel.text = "Workout \(indexPath.row + 1)"
         return cell ?? UITableViewCell()
@@ -86,11 +72,14 @@ class AtHomeWorkoutTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        guard let header = view as? UITableViewHeaderFooterView else { return }
-        header.textLabel?.textColor = UIColor.softBlack
-        header.textLabel?.font = UIFont(name: "Poppins-Light", size: 18)
-        header.textLabel?.frame = header.frame
-        header.backgroundColor = UIColor.backgroudGray
+        guard let header = view as? UITableViewHeaderFooterView, let textLabel = header.textLabel else { return }
+        textLabel.textColor = UIColor.softBlack
+        textLabel.font = UIFont(name: "Poppins-Light", size: 18)!
+        textLabel.frame = header.frame
+        let underline = UIView(frame: CGRect(x:textLabel.frame.minX + 16, y: textLabel.frame.height - 2.0, width: textLabel.frame.width - 32 , height: 2.0))
+        underline.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        header.addSubview(underline)
+
         header.backgroundView?.backgroundColor = UIColor.backgroudGray
     }
 
@@ -98,12 +87,12 @@ class AtHomeWorkoutTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as? AtHomeWorkoutDetailTableViewController
         guard let indexPath = tableView.indexPathForSelectedRow else {return}
-        let workout = weeks?[indexPath.section][indexPath.row]
+        let workout = weeks[indexPath.section][indexPath.row]
         destinationVC?.workout = workout
     }
     
     func updateProgressHeader(){
-        guard let filtered = weeks?.first else { return }
+        guard let filtered = weeks.first else { return }
         let completed = ProgressController.shared.filterCompletedWorkouts(workouts: filtered)
         progressHeaderView.progress = Float(completed.count)/2.0
         progressHeaderView.workoutType = "At Home Workouts"

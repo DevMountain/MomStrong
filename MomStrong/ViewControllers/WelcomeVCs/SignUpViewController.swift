@@ -50,7 +50,7 @@ class SignUpViewController: UIViewController {
         [emailTextField,passwordTextField,ageTextField,stateTextField].forEach{ $0?.resignFirstResponder()}
         guard acceptedTOS else { presentSimpleAlert(title: "Whoops", message: "Please accept our Terms of Service to Continue", style: .alert) ; return }
         guard let name = nameTextField.text, !name.isEmpty,
-            let email = emailTextField.text, !email.isEmpty,
+            let email = emailTextField.text?.lowercased(), !email.isEmpty,
             let password = passwordTextField.text, !password.isEmpty,
             let age = ageTextField.text, !age.isEmpty, Int(age) != nil,
             let state = stateTextField.text, !state.isEmpty else {presentSimpleAlert(title: "Whoops", message: "Looks like some of your information is missing above.", style: .alert) ; return }

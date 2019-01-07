@@ -18,14 +18,12 @@ class VimeoClient{
         guard let queryUrl = components?.url else {return nil}
         var request = URLRequest(url: queryUrl)
         request.addValue("Bearer ffe267747aa51d25cfa32eb972ee8927", forHTTPHeaderField: "Authorization")
-        print(request.url ?? "No Url from response")
         return request
     }
     
     static func fetchVideoInformation(vimeoID: Int, completion: @escaping (VimeoInfoObject?) -> ()){
         guard let url = URL(string: baseUrl)?.appendingPathComponent("\(vimeoID)"),
             let request = vimeoRequest(from: url, fields: ["name","description","pictures", "files", "duration"]) else { completion(nil) ; return }
-        
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error{
                 print("\(error.localizedDescription) \(error) in function: \(#function)")

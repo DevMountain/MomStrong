@@ -66,13 +66,18 @@ class NotificationScheduler{
     
     func submitRegisteredAPN(for user: User? = UserController.shared.currentUser, token: Data?, completion: @escaping (Bool) -> ()){
         
-        guard let user = user else { completion(false) ; return }
-        guard var url = baseUrl?.appendingPathComponent("user/deviceToken") else { return }
+        guard let user = user, let token = token else { completion(false) ; return }
+        guard var url = baseUrl?.appendingPathComponent("user").appendingPathComponent("deviceToken") else { return }
         url.appendPathComponent("\(user.id)")
         
         var request = URLRequest(url: url)
-        request.httpBody = token
-        request.httpMethod = "POST"
+        let tokenParts = token.map{ String(format: "%02.2hhx", $0) }
+        let tokenString = tokenParts.joined()
+        print(tokenString)
+        let jsonBody = ["device_token" : tokenString]
+        request.httpBody = try? JSONEncoder().encode(jsonBody)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "PUT"
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error{
@@ -80,12 +85,14 @@ class NotificationScheduler{
                 completion(false)
                 return
             }else{
+                UserDefaults.standard.set(true, forKey: "MegsMessageSubscription")
                 completion(true)
             }
             }.resume()
     }
     
     func unsubscribeFromMegsMessageAPNs(for user: User? = UserController.shared.currentUser, completion: @escaping (Bool) -> ()){
+        UserDefaults.standard.set(false, forKey: "MegsMessageSubscription")
         submitRegisteredAPN(for: user, token: nil, completion: completion)
     }
     
