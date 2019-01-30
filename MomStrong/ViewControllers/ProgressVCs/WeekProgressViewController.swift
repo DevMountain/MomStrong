@@ -25,6 +25,16 @@ class WeekProgressViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func keyboardWillShow(notification: NSNotification) {
+        super.keyboardWillShow(notification: notification)
+        delegate?.disableSegmentedControl()
+    }
+    
+    override func keyboardWillHide(notification: NSNotification) {
+        super.keyboardWillHide(notification: notification)
+        delegate?.enableSegmentedControl()
+    }
+    
 }
 
 extension WeekProgressViewController: UITableViewDataSource, UITableViewDelegate{
@@ -69,8 +79,12 @@ extension WeekProgressViewController: TextFieldCellDelegate{
     
     func textFieldShouldReturn(sender: WeeklyGoalTableViewCell) {
         guard let title = sender.goalTextField.text else {return}
-        ProgressController.shared.createNewGoal(title: title)
-        goalsTableView.reloadData()
+        if let goal = sender.goal{
+            ProgressController.shared.update(goal: goal, newtitle: title)
+        }else{
+            ProgressController.shared.createNewGoal(title: title)
+            goalsTableView.reloadData()
+        }
     }
     
 }

@@ -33,8 +33,10 @@ class NotificationScheduler{
         notificationContent.body = "The perfect opportunity for a fresh start"
         
         var triggerComponents = DateComponents()
-        triggerComponents.day = 1
+        triggerComponents.weekday = 1
         triggerComponents.hour = 6
+        triggerComponents.minute = 0
+        triggerComponents.second = 0
         let dateTrigger = UNCalendarNotificationTrigger(dateMatching: triggerComponents, repeats: true)
         let request = UNNotificationRequest(identifier: MomStrongNotifications.NewWorkouts.rawValue, content: notificationContent, trigger: dateTrigger)
         UNUserNotificationCenter.current().add(request) { (error) in
@@ -65,11 +67,9 @@ class NotificationScheduler{
     }
     
     func submitRegisteredAPN(for user: User? = UserController.shared.currentUser, token: Data?, completion: @escaping (Bool) -> ()){
-        
         guard let user = user, let token = token else { completion(false) ; return }
         guard var url = baseUrl?.appendingPathComponent("user").appendingPathComponent("deviceToken") else { return }
         url.appendPathComponent("\(user.id)")
-        
         var request = URLRequest(url: url)
         let tokenParts = token.map{ String(format: "%02.2hhx", $0) }
         let tokenString = tokenParts.joined()

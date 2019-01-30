@@ -9,17 +9,17 @@
 import UIKit
 
 protocol GymRatWorkoutTableViewCellDelegate: class{
-    
     func toggleIsCompleted(sender: UITableViewCell)
+    func presentDetailView(sender: GymRatWorkoutTableViewCell)
 }
 
 class GymRatWorkoutTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var gymRatStackView: UIStackView!
     @IBOutlet weak var bgView: UIView!
-    
     @IBOutlet weak var completedBarView: UIView!
     @IBOutlet weak var completedButton: UIButton!
+    @IBOutlet weak var workoutTitleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel : UILabel!
     
     var isConstructed: Bool = false
     
@@ -37,40 +37,9 @@ class GymRatWorkoutTableViewCell: UITableViewCell {
     }
     
     func updateViews(){
+        workoutTitleLabel.text = workout?.title
+        descriptionLabel.text = workout?.description
         updateIsCompleted()
-        guard !isConstructed else  {return }
-        guard let workout = workout else { return }
-        let header = GymWorkoutHeaderView(with: workout)
-        gymRatStackView.addArrangedSubview(header)
-        for circuit in workout.circuits{
-            let circuitHeader = CircuitHeaderView(with: circuit)
-            gymRatStackView.addArrangedSubview(circuitHeader)
-            if circuit == workout.circuits.first{ circuitHeader.separatorView.backgroundColor = .powerMomRed}
-            for exercise in circuit.excercises{
-                let vc = delegate as? UIViewController
-                let cell = GymExerciseCell(with: exercise, viewController: vc)
-                gymRatStackView.addArrangedSubview(cell)
-            }
-        }
-        updateIsCompleted()
-        isConstructed = true
-    }
-    
-    func loadVideoContentForExercises(completion: @escaping () -> ()){
-        guard let workout = workout else { return }
-        let dispatch = DispatchGroup()
-        for circuit in workout.circuits{
-            for exercise in circuit.excercises{
-                dispatch.enter()
-                WorkoutController.shared.fetchVideoInfo(for: exercise) { (exercise) in
-                    DispatchQueue.main.async {
-                        dispatch.leave()
-                        return
-                    }
-                }
-            }
-        }
-        dispatch.notify(queue: .main, execute: completion)
     }
     
     func updateIsCompleted(){
@@ -97,6 +66,10 @@ class GymRatWorkoutTableViewCell: UITableViewCell {
     @IBAction func completedButtonTapped(_ sender: Any) {
         delegate?.toggleIsCompleted(sender: self)
         updateIsCompleted()
+    }
+    
+    @IBAction func viewButtonTapped(_ sender: Any) {
+        delegate?.presentDetailView(sender: self)
     }
     
     func renderUI(){

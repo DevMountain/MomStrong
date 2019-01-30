@@ -47,12 +47,12 @@ class UserController{
     func fetchCurrentUser(completion: @escaping (User?, NetworkError?) -> Void){
         
         if let userInfo = self.fetchUserDefaultData(){
-            self.loginUserWith(email: userInfo.email, password: userInfo.password) { (user) in
+            self.loginUserWith(email: userInfo.email, password: userInfo.password) { (user, networkError) in
                 if let user = user{
                     self.currentUser = user
                     completion(user, nil)
                 }else{
-                    completion(nil, .UserNotFound)
+                    completion(nil, networkError)
                     print("No User Retrieved")
                 }
             }
@@ -61,9 +61,9 @@ class UserController{
         }
     }
     
-    func loginUserWith(email: String, password: String, completion: @escaping (User?) -> Void){
+    func loginUserWith(email: String, password: String, completion: @escaping (User?, NetworkError?) -> Void){
         
-        guard let url = URL(string: baseUrl)?.appendingPathComponent("auth").appendingPathComponent("login") else {completion(nil) ; return}
+        guard let url = URL(string: baseUrl)?.appendingPathComponent("auth").appendingPathComponent("login") else {completion(nil, NetworkError.FailedToContructURL) ; return}
         
         let request = self.constructRequest(url: url, method: "POST", bodyJson: [
             "email" : email,
@@ -73,13 +73,14 @@ class UserController{
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error{
                 print("\(error.localizedDescription) \(error) in function: \(#function)")
-                completion(nil)
+                completion(nil, NetworkError.UserNotFound)
                 return
             }
-            guard let data = data else {completion(nil) ; return}
+            guard let data = data else {completion(nil, NetworkError.UserNotFound) ; return}
             let decoder = JSONDecoder()
             do{
                 let userService = try decoder.decode(UserService.self, from: data)
+                guard userService.active else { completion(nil, NetworkError.AccountNoLongerActive) ; return }
                 let user = self.createUser(from: userService)
                 if let progress = ProgressController.shared.fetchProgress(for: user.id){
                     user.progress = progress
@@ -89,10 +90,10 @@ class UserController{
                 let token = UserDefaults.standard.data(forKey: "deviceToken")
                 NotificationScheduler.shared.submitRegisteredAPN(for: user, token: token, completion: { (success) in print("Registered for APN \(success)")})
 //                self.addSomeProgress()
-                completion(user)
+                completion(user, nil)
             }catch {
                 print("There was as error in \(#function) :  \(error) \(error.localizedDescription)")
-                completion(nil)
+                completion(nil, NetworkError.UserNotFound)
             }
         }.resume()
     }
@@ -125,55 +126,7 @@ class UserController{
             completion(true)
             }.resume()
     }
-    
-    func plan(for subscription: Subscription) -> Plan?{
-        switch subscription {
-        case .AtHome:
-            return Plan(title: "At Home Plan", description:
-                """
-        For only $9.98/month you will have access to two new 20-40 minute at-home workouts each week in both video and written form. These workouts will cover total body and specific muscle groups each week to lead you toward your health and fitness goals. The only equipment you will ever need are two 5# dumbbells, two 10# dumbbells, and a heavy resistance band. Don't forget your water!
-        """)
-        case .Gymrat:
-            return Plan(title: "Gym Plan", description:
-                """
-        For only $9.99/month you will have access to two new 30-60 minute gym workouts each week. These workouts include step-by-step instructions/demonstration videos and include focused training on total body and specific muscle groups. Are you ready for the challenge?
-        """)
-        case .Both:
-            return Plan(title: "AtHome + Gym - (BEST VALUE!)", description:
-                """
-        For only $14.99/month (25% off!) you will receive Meg's entire training plan! Two new at-home workouts and two new gym workouts every single week! Are you ready to crush your health and fitness goals? Let's do this.
-        """)
-        default:
-            return nil
-        }
-    }
-    
-    func loadAllPlans() -> [Plan]{
-        let atHome = Plan(title: "At Home Plan", description:
-            """
-        For only $9.98/month you will have access to two new 20-40 minute at-home workouts each week in both video and written form. These workouts will cover total body and specific muscle groups each week to lead you toward your health and fitness goals. The only equipment you will ever need are two 5# dumbbells, two 10# dumbbells, and a heavy resistance band. Don't forget your water!
-        """)
-        let gymRat = Plan(title: "Gym Plan", description:
-            """
-        For only $9.99/month you will have access to two new 30-60 minute gym workouts each week. These workouts include step-by-step instructions/demonstration videos and include focused training on total body and specific muscle groups. Are you ready for the challenge?
-        """)
-        let both = Plan(title: "At Home + Gym Plan", description:
-            """
-        For only $14.99/month (25% off!) you will receive Meg's entire training plan! Two new at-home workouts and two new gym workouts every single week! Are you ready to crush your health and fitness goals? Let's do this.
-        """)
-        
-        return [atHome, gymRat, both]
-    }
-    
-//    func addSomeProgress(){
-//        let progressPoints = [
-//            WorkoutProgressPoint(dateCompleted: Date(timeIntervalSinceNow: -24*60*60 * 3), workoutId: 13, progress: UserController.shared.currentUser?.progress),
-//            WorkoutProgressPoint(dateCompleted: Date(timeIntervalSinceNow: -24*60*60 * 7), workoutId: 13, progress: UserController.shared.currentUser?.progress),
-//            WorkoutProgressPoint(dateCompleted: Date(timeIntervalSinceNow: -24*60*60 * 20), workoutId: 13, progress: UserController.shared.currentUser?.progress)
-//            ]
-//        currentUser?.progress.progressPoints = progressPoints
-//    }
-    
+  
     func logoutCurrentUser(completion: @escaping (Bool) -> Void){
         
         guard let url = URL(string: self.baseUrl)?.appendingPathComponent("auth").appendingPathComponent("logout") else { completion(false) ; return }
@@ -241,8 +194,6 @@ class UserController{
                 return
             }
             
-            print(response ?? "No Response")
-            
             guard let data = data else {completion(nil) ; return}
             
             do{
@@ -259,38 +210,54 @@ class UserController{
             }.resume()
     }
     
-//    func checkForTwoWeekTrial() -> (valid: Bool, daysLeft: Int)?{
-//        let trialId = UIDevice.current.identifierForVendor?.uuidString
-//        if let date = UserDefaults.standard.value(forKey: trialId ?? "currentUser") as? Date{
-//            let daysExpired = Calendar.current.dateComponents([.day], from: date, to: Date()).day!
-//            let daysLeft = 14 - daysExpired
-//            return (daysLeft > 0, daysLeft)
-//        } else{
-//            return nil
-//        }
-//    }
-//
-//    @discardableResult
-//    func createTwoWeekTrial() -> User{
-//        let trialUser = self.trialUser
-//        let trialId = UIDevice.current.identifierForVendor?.uuidString
-//        UserDefaults.standard.set(Date(), forKey: trialId ?? "currentUser")
-//        currentUser = trialUser
-//        return trialUser
-//    }
-//
-//    func fetchTrialUserData(){
-//        self.currentUser = self.trialUser
-//        if let progress = ProgressController.shared.fetchProgress(for: trialUser.id){
-//            self.currentUser?.progress = progress
-//        }
-//    }
+    func plan(for subscription: Subscription) -> Plan?{
+        switch subscription {
+        case .AtHome:
+            return Plan(title: "At Home Plan", description:
+                """
+        For only $9.98/month you will have access to two new 20-40 minute at-home workouts each week in both video and written form. These workouts will cover total body and specific muscle groups each week to lead you toward your health and fitness goals. The only equipment you will ever need are two 5# dumbbells, two 10# dumbbells, and a heavy resistance band. Don't forget your water!
+        """)
+        case .Gymrat:
+            return Plan(title: "Gym Plan", description:
+                """
+        For only $9.99/month you will have access to two new 30-60 minute gym workouts each week. These workouts include step-by-step instructions/demonstration videos and include focused training on total body and specific muscle groups. Are you ready for the challenge?
+        """)
+        case .Both:
+            return Plan(title: "AtHome + Gym - (BEST VALUE!)", description:
+                """
+        For only $14.99/month (25% off!) you will receive Meg's entire training plan! Two new at-home workouts and two new gym workouts every single week! Are you ready to crush your health and fitness goals? Let's do this.
+        """)
+        default:
+            return nil
+        }
+    }
+    
+    func loadAllPlans() -> [Plan]{
+        let atHome = Plan(title: "At Home Plan", description:
+            """
+        For only $9.98/month you will have access to two new 20-40 minute at-home workouts each week in both video and written form. These workouts will cover total body and specific muscle groups each week to lead you toward your health and fitness goals. The only equipment you will ever need are two 5# dumbbells, two 10# dumbbells, and a heavy resistance band. Don't forget your water!
+        """)
+        let gymRat = Plan(title: "Gym Plan", description:
+            """
+        For only $9.99/month you will have access to two new 30-60 minute gym workouts each week. These workouts include step-by-step instructions/demonstration videos and include focused training on total body and specific muscle groups. Are you ready for the challenge?
+        """)
+        let both = Plan(title: "At Home + Gym Plan", description:
+            """
+        For only $14.99/month (25% off!) you will receive Meg's entire training plan! Two new at-home workouts and two new gym workouts every single week! Are you ready to crush your health and fitness goals? Let's do this.
+        """)
+        
+        return [atHome, gymRat, both]
+    }
 }
 
 enum NetworkError{
     case UserNotFound
     case LocalUserDataNotFound
-    
+    case AccountNoLongerActive
+    case FailedToContructURL
+    case NoData
+    case ErrorInServerResponse
+    case ErrorDecodingUser
     
     func description() -> String{
         switch self{
@@ -298,6 +265,16 @@ enum NetworkError{
             return "No Local User Data found in this phones UserDefaults"
         case .UserNotFound:
             return "No User Found in the database for this email and password"
+        case .AccountNoLongerActive:
+            return "The Account is No Longer Active"
+        case .FailedToContructURL:
+            return "Failed to construct url to login user"
+        case .NoData:
+            return "No Data returned"
+        case .ErrorInServerResponse:
+            return "Error in Data Task server response"
+        case .ErrorDecodingUser:
+            return "Error Decoding the User from data"
         }
     }
     

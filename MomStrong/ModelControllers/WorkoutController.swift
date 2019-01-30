@@ -6,7 +6,7 @@
 //  Copyright © 2018 trevorAdcock. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class WorkoutController{
     
@@ -14,6 +14,7 @@ class WorkoutController{
     
     let workouts: [Workout] = []
     let baseUrlString = "https://www.momstrongmove.com/api"
+    var thumbnailImageCache = NSCache<NSString, UIImage>()
     
     //Mark: - Fetch Functions
     func fetchWorkouts(type: WorkoutType, completion: @escaping (([Workout]?) -> Void)){

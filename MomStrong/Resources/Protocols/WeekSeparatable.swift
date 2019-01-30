@@ -25,6 +25,7 @@ extension WeekSeparatable{
                 weekArray = []
             }
         }
-        return returnArray
+        let object = Array(returnArray.reversed())
+        return object
     }
 }

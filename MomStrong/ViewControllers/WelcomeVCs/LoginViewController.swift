@@ -9,62 +9,58 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-    
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-//    @IBOutlet weak var continueTrialButton: UIButton!
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
-        customizeBackButton()
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+  
+  @IBOutlet weak var emailTextField: UITextField!
+  @IBOutlet weak var passwordTextField: UITextField!
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    emailTextField.delegate = self
+    passwordTextField.delegate = self
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+  }
+  
+  func presentLoginErrorAlert(error: NetworkError?){
+    var title: String!
+    var message: String
+    switch error {
+    case .AccountNoLongerActive?:
+      title = "Whoops"
+      message = "It looks like your account is no longer active"
+    case .UserNotFound?:
+      title = "Whoops, something went wrong"
+      message = "Please try entering your username and password again"
+    default:
+      title = "Whoops, something went wrong"
+      message = "Please try entering your username and password again"
     }
-    
-//    func showOrHideTrialButton(){
-//        continueTrialButton.isHidden = true
-//        if let trialTuple = UserController.shared.checkForTwoWeekTrial(){
-//            if trialTuple.valid {
-//                continueTrialButton.isHidden = false
-//            }
-//        }
-//    }
-    
-    func presentLoginErrorAlert(){
-        self.presentSimpleAlert(title: "Whoops We Couldn't Find You", message: "Try typing your username and password again", style: .alert)
+    DispatchQueue.main.async {
+      self.presentSimpleAlert(title: title, message: message, style: .alert)
     }
-    
-    
-    @IBAction func forgotPasswordButtonTapped(_ sender: Any) {
-        //        let currentUser = User(firstName: "John", lastName: "Marshal", dob: nil, location: "UT", subscription: .Both, id: 12)
-        //        UserController.shared.currentUser = currentUser
-        //        self.presentMainInterface()
-    }
-    
-    @IBAction func loginButtonTapped(_ sender: Any) {
-        guard let email = emailTextField.text?.lowercased(),
-            let password = passwordTextField.text else { return }
-        UserController.shared.loginUserWith(email: email, password: password) { (user) in
-            DispatchQueue.main.async {
-                guard let _ = user else { self.presentLoginErrorAlert() ; return }
-                self.presentMainInterface()
-            }
+  }
+  
+  @IBAction func loginButtonTapped(_ sender: Any) {
+    guard let email = emailTextField.text?.lowercased(),
+      let password = passwordTextField.text else { return }
+    UserController.shared.loginUserWith(email: email, password: password) { (user, networkError) in
+      DispatchQueue.main.async {
+        if let error = networkError{
+          print("\(error.description()) in function: \(#function)")
+          self.presentLoginErrorAlert(error: error)
+          return
         }
+        guard let _ = user else { self.presentLoginErrorAlert(error: networkError) ; return }
+        self.presentMainInterface()
+      }
     }
-    
-//    @IBAction func trialButton(_ sender: Any) {
-//        UserController.shared.fetchTrialUserData()
-//        self.presentMainInterface()
-//    }
+  }
 }
 
 extension LoginViewController: UITextFieldDelegate{
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
+  
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    textField.resignFirstResponder()
+    return true
+  }
 }

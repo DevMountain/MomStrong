@@ -9,5 +9,6 @@
 import Foundation
 
 protocol SegmentProgressViewControllerDelegate: class{
-
+    func disableSegmentedControl()
+    func enableSegmentedControl()
 }

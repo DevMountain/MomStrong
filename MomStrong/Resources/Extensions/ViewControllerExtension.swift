@@ -47,16 +47,18 @@ extension UIViewController{
     
     func presentAVPlayerVCWith(videoUrlString: String){
         guard let videoUrl = URL(string: videoUrlString) else {return}
-        let controller = AVPlayerViewController()
-        controller.player = AVPlayer(url: videoUrl)
-        self.present(controller, animated: true, completion: {
-            AppUtility.lockOrientation(.all)
-            controller.player?.play()
-        })
+        let player = AVPlayer(url: videoUrl)
+        presentAVPlayerVC(with: player)
     }
     
     func presentAVPlayerVC(with player: AVPlayer){
+        do{
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: .allowAirPlay)
+        } catch {
+            print("There was as error in \(#function) :  \(error) \(error.localizedDescription)")
+        }
         let controller = AVPlayerViewController()
+        player.volume = 0.7
         controller.player = player
         self.present(controller, animated: true, completion: {
             AppUtility.lockOrientation(.all)
@@ -127,7 +129,9 @@ extension UIViewController{
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        shiftFrameBackDown()
+      DispatchQueue.main.async {
+        self.shiftFrameBackDown()
+      }
     }
     
     func shiftFrameBackDown(){

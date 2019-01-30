@@ -60,13 +60,13 @@ class AtHomeWorkoutTableViewController: UITableViewController, WeekSeparatable {
         var text: String = ""
         switch section {
         case 0:
-            text = "This Weeks Workouts"
+            text = "This Week's Workouts"
         case 1:
-            text = "Last Week Workouts"
+            text = "Last Week's Workouts"
         case 2:
             text = "Two Weeks Ago"
         default:
-            text = "\(section) Weeks Ago"
+            text = "\(section) Week's Ago"
         }
         return text
     }

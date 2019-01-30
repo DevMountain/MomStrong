@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProgressViewController: UIViewController{
+class ProgressViewController: UIViewController {
     
     @IBOutlet weak var timeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var weekContainerView: UIView!
@@ -88,6 +88,9 @@ class ProgressViewController: UIViewController{
         if segue.identifier == "toMonthContainerView"{
             let monthVC = segue.destination  as? MonthProgressViewController
             self.monthProgressViewController = monthVC
+        }else if segue.identifier == "toWeekContainerView"{
+            let weekVC = segue.destination as? WeekProgressViewController
+            weekVC?.delegate = self
         }
     }
     
@@ -122,3 +125,16 @@ class ProgressViewController: UIViewController{
     }
     
 }
+
+extension ProgressViewController: SegmentProgressViewControllerDelegate{
+    func disableSegmentedControl() {
+        self.timeSegmentedControl.isEnabled = false
+    }
+    
+    func enableSegmentedControl() {
+        self.timeSegmentedControl.isEnabled = true
+    }
+    
+    
+}
+
