@@ -38,7 +38,7 @@ class ShareViewController: UIViewController, MFMessageComposeViewControllerDeleg
         let promoString =
         """
         Hey, I just found this app called Momstrong Move! It gives me new workouts each week and the videos are great.  Here is the link if you want to give it a try ☺️
-        https://www.momstrongutah.com
+        https://itunes.apple.com/us/app/momstrong/id1447765301?ls=1&mt=8
         """
         let activityViewController = UIActivityViewController(activityItems: [promoString], applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view
