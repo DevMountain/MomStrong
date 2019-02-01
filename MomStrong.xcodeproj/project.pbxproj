@@ -69,6 +69,7 @@
 		F7D3C03A21A337AB005D6B8F /* AtHomeWorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D3C03921A337AB005D6B8F /* AtHomeWorkoutTableViewCell.swift */; };
 		F7D3C03D21A33C57005D6B8F /* AtHomeWorkoutDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D3C03C21A33C57005D6B8F /* AtHomeWorkoutDetailViewController.swift */; };
 		F7D3C03F21A33F84005D6B8F /* WorkoutSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D3C03E21A33F84005D6B8F /* WorkoutSectionTableViewCell.swift */; };
+		F7DDA4BE2203FCCB007D0D74 /* FacebookClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DDA4BD2203FCCB007D0D74 /* FacebookClient.swift */; };
 		F7DE981B21C9660700722226 /* PlanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DE981A21C9660700722226 /* PlanTableViewCell.swift */; };
 		F7E7F3A821ADF94000BA8FF8 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E7F3A721ADF94000BA8FF8 /* UserService.swift */; };
 		F7E7F3AA21ADFD9D00BA8FF8 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E7F3A921ADFD9D00BA8FF8 /* CoreDataStack.swift */; };
@@ -167,6 +168,7 @@
 		F7D3C03921A337AB005D6B8F /* AtHomeWorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtHomeWorkoutTableViewCell.swift; sourceTree = "<group>"; };
 		F7D3C03C21A33C57005D6B8F /* AtHomeWorkoutDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtHomeWorkoutDetailViewController.swift; sourceTree = "<group>"; };
 		F7D3C03E21A33F84005D6B8F /* WorkoutSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSectionTableViewCell.swift; sourceTree = "<group>"; };
+		F7DDA4BD2203FCCB007D0D74 /* FacebookClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FacebookClient.swift; path = Momstrong/ModelControllers/FacebookClient.swift; sourceTree = SOURCE_ROOT; };
 		F7DE981A21C9660700722226 /* PlanTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanTableViewCell.swift; sourceTree = "<group>"; };
 		F7E7F3A721ADF94000BA8FF8 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		F7E7F3A921ADFD9D00BA8FF8 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 				F787C4B121B5A1650066D81C /* VimeoClient.swift */,
 				F70C157221BAD81600159C80 /* ChromeCastController.swift */,
 				F789034021BEE2F800705BC2 /* NotificationController.swift */,
+				F7DDA4BD2203FCCB007D0D74 /* FacebookClient.swift */,
 			);
 			path = ModelControllers;
 			sourceTree = "<group>";
@@ -584,7 +587,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F748D773219A6B9600C4A840 /* Build configuration list for PBXProject "MomStrong" */;
+			buildConfigurationList = F748D773219A6B9600C4A840 /* Build configuration list for PBXProject "Momstrong" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -637,12 +640,16 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MomStrong/Pods-MomStrong-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -716,6 +723,7 @@
 				F77926F521B1B252007D9DF9 /* SegmentProgressViewControllerDelegate.swift in Sources */,
 				F7D3C03A21A337AB005D6B8F /* AtHomeWorkoutTableViewCell.swift in Sources */,
 				F733A41821C9A3D300C29149 /* CustomButton.swift in Sources */,
+				F7DDA4BE2203FCCB007D0D74 /* FacebookClient.swift in Sources */,
 				F7A44BD321BDE1C60020D13F /* CalenderHelper.swift in Sources */,
 				F75F6B0421AB5FED007561B3 /* ProgressViewController.swift in Sources */,
 				F7DE981B21C9660700722226 /* PlanTableViewCell.swift in Sources */,
@@ -966,7 +974,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F748D773219A6B9600C4A840 /* Build configuration list for PBXProject "MomStrong" */ = {
+		F748D773219A6B9600C4A840 /* Build configuration list for PBXProject "Momstrong" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F748D78B219A6B9700C4A840 /* Debug */,

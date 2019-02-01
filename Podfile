@@ -8,5 +8,6 @@ target 'MomStrong' do
   # Pods for MomStrong
 
 pod 'google-cast-sdk', '~> 4.3'
+pod 'FacebookSDK'
 
 end

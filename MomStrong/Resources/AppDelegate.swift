@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import GoogleCast
 import UserNotifications
+import FBSDKCoreKit
 
 let googleAppID = "1DEA39C0"
 
@@ -27,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         UNUserNotificationCenter.current().delegate = self
         UNUserNotificationCenter.current().getNotificationSettings { (settings) in
@@ -72,6 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
+      FBSDKAppEvents.activateApp()
       UserController.shared.fetchCurrentUser { (user, networkError) in
         if networkError == NetworkError.AccountNoLongerActive || user == nil{
           self.window?.rootViewController = UIStoryboard.init(name: "Welcome", bundle: .main).instantiateViewController(withIdentifier: "welcomeNav")
@@ -81,7 +83,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillTerminate(_ application: UIApplication) {
         GCKCastContext.sharedInstance().sessionManager.currentCastSession?.end(with: .stopCasting)
-    }    
+    }
+  
+  func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+    let handled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
+    return handled
+  }
 }
 
 

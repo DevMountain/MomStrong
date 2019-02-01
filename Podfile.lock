@@ -1,4 +1,25 @@
 PODS:
+  - Bolts (1.9.0):
+    - Bolts/AppLinks (= 1.9.0)
+    - Bolts/Tasks (= 1.9.0)
+  - Bolts/AppLinks (1.9.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.9.0)
+  - FacebookSDK (4.38.0):
+    - Bolts (~> 1.9)
+    - FacebookSDK/CoreKit (= 4.38.0)
+    - FacebookSDK/MarketingKit (= 4.38.0)
+  - FacebookSDK/CoreKit (4.38.0):
+    - Bolts (~> 1.9)
+    - FBSDKCoreKit
+  - FacebookSDK/MarketingKit (4.38.0):
+    - Bolts (~> 1.9)
+    - FacebookSDK/CoreKit
+    - FBSDKMarketingKit
+  - FBSDKCoreKit (4.38.1):
+    - Bolts (~> 1.9)
+  - FBSDKMarketingKit (4.38.0):
+    - FBSDKCoreKit
   - google-cast-sdk (4.3.3):
     - google-cast-sdk/Core (= 4.3.3)
     - Protobuf (~> 3.0)
@@ -7,17 +28,26 @@ PODS:
   - Protobuf (3.6.1)
 
 DEPENDENCIES:
+  - FacebookSDK
   - google-cast-sdk (~> 4.3)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Bolts
+    - FacebookSDK
+    - FBSDKCoreKit
+    - FBSDKMarketingKit
     - google-cast-sdk
     - Protobuf
 
 SPEC CHECKSUMS:
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  FacebookSDK: 73f54b8b94e09b05647cdef0af147f470cd3edc6
+  FBSDKCoreKit: 8d47857400e2f5bdea697a80daff882e91c84ef6
+  FBSDKMarketingKit: e609f39d74ab273cf52e2f8b7e8829ed412b2827
   google-cast-sdk: 792980f4fa5afd4f9b91f41d582cc75251648f3a
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
 
-PODFILE CHECKSUM: 3378a0ae554ffaa3f63208c4152e4f394a2060df
+PODFILE CHECKSUM: 814ed5ab56402107d33c0926e22595b2febba729
 
 COCOAPODS: 1.5.3
