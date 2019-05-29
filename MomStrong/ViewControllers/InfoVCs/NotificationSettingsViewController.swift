@@ -44,8 +44,9 @@ class NotificationSettingsViewController: UIViewController {
         if isSubscribedForMegsMessage{
             NotificationScheduler.shared.unsubscribeFromMegsMessageAPNs { (_) in }
         }else{
-            guard let token = UserDefaults.standard.value(forKey: "deviceToken") as? Data else { return }
-            NotificationScheduler.shared.submitRegisteredAPN(token: token) { (_) in }
+          UIApplication.shared.registerForRemoteNotifications()
+//            guard let token = UserDefaults.standard.value(forKey: "deviceToken") as? Data else { return }
+//            NotificationScheduler.shared.submitRegisteredAPN(token: token) { (_) in }
         }
     }
 

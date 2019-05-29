@@ -9,6 +9,7 @@
 import UIKit
 import AVKit
 import MessageUI
+import GoogleCast
 
 extension UIViewController{
   
@@ -76,10 +77,21 @@ extension UIViewController{
   
   func setUpRootViewNavBar(){
     setNavHeaderView()
-    let rightImage = #imageLiteral(resourceName: "MegsMessageIcon").withRenderingMode(.alwaysOriginal)
+    displayChromeCastOrMegsMessageBarButtonAsNecessary()
     let leftImage = #imageLiteral(resourceName: "Group 15").withRenderingMode(.alwaysOriginal)
-    self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: rightImage, style: .plain, target: self, action: #selector(pushMegsMessage))
     self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: leftImage, style: .plain, target: self, action: #selector(pushInfoStack))
+  }
+  
+  func displayChromeCastOrMegsMessageBarButtonAsNecessary(){
+    if GCKCastContext.sharedInstance().sessionManager.hasConnectedSession() {
+      let castButton = GCKUICastButton(frame: CGRect(x: CGFloat(0), y: CGFloat(0),
+                                                     width: CGFloat(24), height: CGFloat(24)))
+      castButton.tintColor = .powerMomRed
+      self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: castButton)
+    }else {
+      let rightImage = #imageLiteral(resourceName: "MegsMessageIcon").withRenderingMode(.alwaysOriginal)
+      self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: rightImage, style: .plain, target: self, action: #selector(pushMegsMessage))
+    }
   }
   
   @objc func pushMegsMessage(){

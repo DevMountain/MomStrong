@@ -12,6 +12,7 @@ import UIKit
 class UserController{
   
   var currentUser: User?
+  
   lazy var trialUser: User = {
     return User(name: "Trial Account", state: nil, age: nil, subscription: .Both, id: 0, email: "tester@momstrong.com")
   }()
@@ -88,9 +89,13 @@ class UserController{
         }
         self.currentUser = user
         self.saveUserDataLocally(email: email, password: password)
-        let token = UserDefaults.standard.data(forKey: "deviceToken")
-        NotificationScheduler.shared.submitRegisteredAPN(for: user, token: token, completion: { (success) in print("Registered for APN \(success)")})
-        //                self.addSomeProgress()
+        DispatchQueue.main.async {
+          UIApplication.shared.registerForRemoteNotifications()
+        }
+//        let token = UserDefaults.standard.data(forKey: "deviceToken")
+//
+//        NotificationScheduler.shared.submitRegisteredAPN(for: user, token: token, completion: { (success) in print("Registered for APN \(success)")})
+//        //                self.addSomeProgress()
         completion(user, nil)
       }catch {
         print("There was as error in \(#function) :  \(error) \(error.localizedDescription)")
@@ -202,8 +207,8 @@ class UserController{
         let userService = try decoder.decode(UserService.self, from: data)
         let user = self.createUser(from: userService)
         let token = UserDefaults.standard.data(forKey: "deviceToken")
-        NotificationScheduler.shared.submitRegisteredAPN(for: user, token: token, completion: { (success) in print("Registered for APN \(success)")})
-        completion(user)
+//        NotificationScheduler.shared.submitRegisteredAPN(for: user, token: token, completion: { (success) in print("Registered for APN \(success)")})
+//        completion(user)
       }catch {
         print("There was as error in \(#function) :  \(error) \(error.localizedDescription)")
         completion(nil)

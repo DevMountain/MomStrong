@@ -27,5 +27,4 @@ class TransparentNavigationController: UINavigationController {
         navigationBar.isTranslucent = true
         view.backgroundColor = .clear
     }
-    
 }
