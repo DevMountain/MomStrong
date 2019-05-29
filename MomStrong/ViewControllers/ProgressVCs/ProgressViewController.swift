@@ -14,10 +14,6 @@ class ProgressViewController: UIViewController {
     @IBOutlet weak var weekContainerView: UIView!
     @IBOutlet weak var monthContainerView: UIView!
     @IBOutlet weak var yearContainerView: UIView!
-    @IBOutlet weak var timeHorizonLabel: UILabel!
-    @IBOutlet weak var headerLabelStackView: UIStackView!
-    @IBOutlet weak var leftArrowButton: UIButton!
-    @IBOutlet weak var rightArrowButton: UIButton!
     @IBOutlet weak var timeSectionLabel: UILabel!
     
     var selectedMonth: Int = CalendarHelper().currentMonth
@@ -54,7 +50,6 @@ class ProgressViewController: UIViewController {
         yearContainerView.isHidden = true
         UIView.animate(withDuration: 0.2) {
             self.timeSectionLabel.text = "Personal Goals"
-            self.headerLabelStackView.isHidden = true
         }
     }
     
@@ -64,10 +59,6 @@ class ProgressViewController: UIViewController {
         yearContainerView.isHidden = true
         UIView.animate(withDuration: 0.2) {
             self.timeSectionLabel.text = "Days I completed my workout"
-            self.headerLabelStackView.isHidden = false
-            self.leftArrowButton.isHidden = false
-            self.rightArrowButton.isHidden = false
-            self.timeHorizonLabel.text = CalendarHelper().monthName(for: self.selectedMonth)
         }
     }
     
@@ -77,10 +68,6 @@ class ProgressViewController: UIViewController {
         yearContainerView.isHidden = false
         UIView.animate(withDuration: 0.2) {
             self.timeSectionLabel.text = "My Year of Momstrong Move Progress"
-            self.headerLabelStackView.isHidden = false
-            self.leftArrowButton.isHidden = true
-            self.rightArrowButton.isHidden = true
-            self.timeHorizonLabel.text = "\(CalendarHelper().currentYear)"
         }
     }
     
@@ -112,15 +99,12 @@ class ProgressViewController: UIViewController {
         selectedMonth += 1
         if selectedMonth > 12 { selectedMonth = 1}
         
-        timeHorizonLabel.text = CalendarHelper().monthName(for: selectedMonth)
         monthProgressViewController?.selectedMonth = selectedMonth
     }
     
     @IBAction func leftArrowTapped(_ sender: Any) {
         selectedMonth -= 1
         if selectedMonth < 1 { selectedMonth = 12 }
-        
-        timeHorizonLabel.text = CalendarHelper().monthName(for: selectedMonth)
         monthProgressViewController?.selectedMonth = selectedMonth
     }
     

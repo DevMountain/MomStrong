@@ -20,11 +20,9 @@ extension UIColor{
 
 extension UIView{
     
-    func addShadow(){
-        self.layer.shadowOffset = CGSize(width: 0, height: 2)
-        self.layer.shadowRadius = (3.0 / 2.0)
-        self.layer.shadowOpacity = 0.3
-//        let rect = bounds.insetBy(dx: 1, dy: 1)
-//        self.layer.shadowPath = UIBezierPath(rect: rect).cgPath
+    func addShadow(offset: CGSize = CGSize(width: 0, height: 2), radius: CGFloat = 1.5, opacity: Float = 0.3){
+        self.layer.shadowOffset = offset
+        self.layer.shadowRadius = radius
+        self.layer.shadowOpacity = opacity
     }
 }

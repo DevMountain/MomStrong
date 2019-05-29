@@ -46,6 +46,10 @@
 		F75F6B1C21AB86A2007561B3 /* MegsMessage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F75F6B1B21AB86A2007561B3 /* MegsMessage.storyboard */; };
 		F760E1C721CDC4200027A9E6 /* PoppinsLightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F760E1C621CDC4200027A9E6 /* PoppinsLightButton.swift */; };
 		F764606C21E3E1AB006D1FDB /* GymWorkoutDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F764606B21E3E1AB006D1FDB /* GymWorkoutDetailViewController.swift */; };
+		F771F7DB229F206300870230 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771F7DA229F206300870230 /* CalendarViewController.swift */; };
+		F771F7DD229F212F00870230 /* DateCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771F7DC229F212F00870230 /* DateCalendarCell.swift */; };
+		F771F7DF229F260600870230 /* MonthHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771F7DE229F260600870230 /* MonthHeader.swift */; };
+		F771F7E1229F2AA600870230 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F771F7E0229F2AA600870230 /* Colors.xcassets */; };
 		F77926F321B1B068007D9DF9 /* Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77926F221B1B068007D9DF9 /* Float.swift */; };
 		F77926F521B1B252007D9DF9 /* SegmentProgressViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77926F421B1B252007D9DF9 /* SegmentProgressViewControllerDelegate.swift */; };
 		F77C7C0021D6B30900A6B301 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77C7BFF21D6B30900A6B301 /* AppUtility.swift */; };
@@ -145,6 +149,10 @@
 		F75F6B1B21AB86A2007561B3 /* MegsMessage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MegsMessage.storyboard; sourceTree = "<group>"; };
 		F760E1C621CDC4200027A9E6 /* PoppinsLightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PoppinsLightButton.swift; path = Momstrong/Views/CustomViews/CustomFontElements/PoppinsLightButton.swift; sourceTree = SOURCE_ROOT; };
 		F764606B21E3E1AB006D1FDB /* GymWorkoutDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GymWorkoutDetailViewController.swift; path = Momstrong/ViewControllers/GymVCs/GymWorkoutDetailViewController.swift; sourceTree = SOURCE_ROOT; };
+		F771F7DA229F206300870230 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalendarViewController.swift; path = Momstrong/ViewControllers/ProgressVCs/CalendarViewController.swift; sourceTree = SOURCE_ROOT; };
+		F771F7DC229F212F00870230 /* DateCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DateCalendarCell.swift; path = Momstrong/Views/Progress/DateCalendarCell.swift; sourceTree = SOURCE_ROOT; };
+		F771F7DE229F260600870230 /* MonthHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MonthHeader.swift; path = Momstrong/Views/Progress/MonthHeader.swift; sourceTree = SOURCE_ROOT; };
+		F771F7E0229F2AA600870230 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Colors.xcassets; path = Momstrong/Resources/Colors.xcassets; sourceTree = SOURCE_ROOT; };
 		F77926F221B1B068007D9DF9 /* Float.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Float.swift; sourceTree = "<group>"; };
 		F77926F421B1B252007D9DF9 /* SegmentProgressViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentProgressViewControllerDelegate.swift; sourceTree = "<group>"; };
 		F77C7BFF21D6B30900A6B301 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppUtility.swift; path = Momstrong/Resources/Helpers/AppUtility.swift; sourceTree = SOURCE_ROOT; };
@@ -331,6 +339,8 @@
 				F75F6B0521AB648C007561B3 /* WeeklyGoalTableViewCell.swift */,
 				F75F6B0921AB66AC007561B3 /* CalendarCollectionViewCell.swift */,
 				F75F6B0B21AB66B7007561B3 /* MonthCollectionViewCell.swift */,
+				F771F7DC229F212F00870230 /* DateCalendarCell.swift */,
+				F771F7DE229F260600870230 /* MonthHeader.swift */,
 			);
 			path = Progress;
 			sourceTree = "<group>";
@@ -391,6 +401,7 @@
 				F75F6AFF21AB5F16007561B3 /* MonthProgressViewController.swift */,
 				F75F6B0121AB5F20007561B3 /* YearProgressViewController.swift */,
 				F75F6B0321AB5FED007561B3 /* ProgressViewController.swift */,
+				F771F7DA229F206300870230 /* CalendarViewController.swift */,
 			);
 			path = ProgressVCs;
 			sourceTree = "<group>";
@@ -512,6 +523,7 @@
 			children = (
 				F748D77B219A6B9600C4A840 /* AppDelegate.swift */,
 				F748D785219A6B9700C4A840 /* Assets.xcassets */,
+				F771F7E0229F2AA600870230 /* Colors.xcassets */,
 				F748D78A219A6B9700C4A840 /* Info.plist */,
 				F748D782219A6B9600C4A840 /* MomStrong.xcdatamodeld */,
 				F7E7F3A921ADFD9D00BA8FF8 /* CoreDataStack.swift */,
@@ -587,7 +599,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F748D773219A6B9600C4A840 /* Build configuration list for PBXProject "Momstrong" */;
+			buildConfigurationList = F748D773219A6B9600C4A840 /* Build configuration list for PBXProject "MomStrong" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -623,6 +635,7 @@
 				F7F03488219B971D00CFD0AE /* Info.storyboard in Resources */,
 				F7F03499219DF53100CFD0AE /* Progress.storyboard in Resources */,
 				F7F03497219DF4B700CFD0AE /* Gymrat.storyboard in Resources */,
+				F771F7E1229F2AA600870230 /* Colors.xcassets in Resources */,
 				F7E8189821CD743600492330 /* Poppins-SemiBold.ttf in Resources */,
 				F748D781219A6B9600C4A840 /* Main.storyboard in Resources */,
 			);
@@ -642,6 +655,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-MomStrong/Pods-MomStrong-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -650,6 +664,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -725,6 +740,7 @@
 				F733A41821C9A3D300C29149 /* CustomButton.swift in Sources */,
 				F7DDA4BE2203FCCB007D0D74 /* FacebookClient.swift in Sources */,
 				F7A44BD321BDE1C60020D13F /* CalenderHelper.swift in Sources */,
+				F771F7DF229F260600870230 /* MonthHeader.swift in Sources */,
 				F75F6B0421AB5FED007561B3 /* ProgressViewController.swift in Sources */,
 				F7DE981B21C9660700722226 /* PlanTableViewCell.swift in Sources */,
 				F7E7F3AA21ADFD9D00BA8FF8 /* CoreDataStack.swift in Sources */,
@@ -758,6 +774,7 @@
 				F782C8B121C31F2B00D255F5 /* FollowViewController.swift in Sources */,
 				F7E8188D21CD726D00492330 /* PopinsLightLabel.swift in Sources */,
 				F7F03493219BEF2100CFD0AE /* User.swift in Sources */,
+				F771F7DB229F206300870230 /* CalendarViewController.swift in Sources */,
 				F741A1B821CB2F5800C1538B /* GymWorkoutListTableViewController.swift in Sources */,
 				F7E7F3AC21AE0B4E00BA8FF8 /* LaunchCopyViewController.swift in Sources */,
 				F7E8189221CD732A00492330 /* PoppinsSemiBoldLabel.swift in Sources */,
@@ -770,6 +787,7 @@
 				F71938C921AC9A8D00D8D349 /* WorkoutController.swift in Sources */,
 				F75F6B0C21AB66B7007561B3 /* MonthCollectionViewCell.swift in Sources */,
 				F741A1BA21CB302B00C1538B /* GymRatWorkoutTableViewCell.swift in Sources */,
+				F771F7DD229F212F00870230 /* DateCalendarCell.swift in Sources */,
 				F71938CB21ACB7D100D8D349 /* ProgressController.swift in Sources */,
 				F75C8F4C21E45CF3008A780A /* FillRedButton.swift in Sources */,
 				F75F6B0621AB648C007561B3 /* WeeklyGoalTableViewCell.swift in Sources */,
@@ -974,7 +992,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F748D773219A6B9600C4A840 /* Build configuration list for PBXProject "Momstrong" */ = {
+		F748D773219A6B9600C4A840 /* Build configuration list for PBXProject "MomStrong" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F748D78B219A6B9700C4A840 /* Debug */,
