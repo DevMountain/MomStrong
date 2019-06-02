@@ -8,10 +8,21 @@
 
 import UIKit
 
+protocol MarkAsCompleteViewDelegate: class{
+    func markAsCompletedButtonTapped(sender: MarkAsCompleteView)
+    func doItAgainButtonTapped(sender: MarkAsCompleteView)
+}
+
 class MarkAsCompleteView: UIView {
 
     @IBOutlet weak var completedButton: UIButton!
     @IBOutlet var contentView: UIView!
+    @IBOutlet weak var doItAgainButton : UIButton!
+    @IBOutlet weak var completionCountLabel
+    : UILabel!
+    
+    weak var delegate: MarkAsCompleteViewDelegate?
+    
     
     var workout: Workout?{
         didSet{
@@ -53,6 +64,9 @@ class MarkAsCompleteView: UIView {
     func markWorkoutComplete(){
         UIView.animate(withDuration: 0.2) {
             self.completedButton.setImage(#imageLiteral(resourceName: "IDidThis"), for: .normal)
+            self.doItAgainButton.isHidden = false
+            self.completionCountLabel.isHidden = false
+            self.updateCompletionCount()
             self.contentView.backgroundColor = UIColor.powerMomRed
             self.invalidateIntrinsicContentSize()
         }
@@ -62,8 +76,16 @@ class MarkAsCompleteView: UIView {
         UIView.animate(withDuration: 0.2) {
             self.completedButton.setImage(#imageLiteral(resourceName: "MarkAsComplete"), for: .normal)
             self.contentView.backgroundColor = UIColor.backgroudGray
+            self.doItAgainButton.isHidden = true
+            self.completionCountLabel.isHidden = true
             self.invalidateIntrinsicContentSize()
         }
+    }
+    
+    func updateCompletionCount() {
+        guard let workout = workout else { return }
+        let completionCount = ProgressController.shared.completionCount(workout: workout)
+        completionCountLabel.text = "\(completionCount)"
     }
     
     private func commonInit(){
@@ -80,5 +102,9 @@ class MarkAsCompleteView: UIView {
         guard let workout = workout else { return }
         ProgressController.shared.toggleIsCompleted(for: workout)
         updateIsCompleted()
+    }
+    
+    @IBAction func doItAgainButtonTapped(_ sender: Any) {
+        updateCompletionCount()
     }
 }

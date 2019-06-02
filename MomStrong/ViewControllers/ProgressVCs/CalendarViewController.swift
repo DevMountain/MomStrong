@@ -15,6 +15,7 @@ class CalendarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        calendarView.scrollToDate(Date(), animateScroll: false )
         calendarView.scrollingMode = .stopAtEachCalendarFrame
         calendarView.scrollDirection = .horizontal
     }
@@ -22,10 +23,11 @@ class CalendarViewController: UIViewController {
     func configureCell(view: JTAppleCell?, cellState: CellState) {
         guard let cell = view as? DateCalendarCell  else { return }
         cell.dateLabel.text = cellState.text
-        handleCellTextColor(cell: cell, cellState: cellState)
+        hideNonIncludedCells(cell: cell, cellState: cellState)
+        handleCheckMark(for: cell, cellState: cellState)
     }
     
-    func handleCellTextColor(cell: DateCalendarCell, cellState: CellState) {
+    func hideNonIncludedCells(cell: DateCalendarCell, cellState: CellState) {
         if cellState.dateBelongsTo == .thisMonth {
             cell.isHidden = false
         } else {
@@ -33,17 +35,22 @@ class CalendarViewController: UIViewController {
         }
     }
     
+    func handleCheckMark(for cell: DateCalendarCell, cellState: CellState){
+        let cellDate = cellState.date
+        let hasCompletedWorkout = ProgressController.shared.checkForProgressPoint(on: cellDate)
+        cell.checkImageView.image = hasCompletedWorkout ? #imageLiteral(resourceName: "Checkmark_fill") : nil
+    }
+    
     func calendar(_ calendar: JTAppleCalendarView, headerViewForDateRange range: (start: Date, end: Date), at indexPath: IndexPath) -> JTAppleCollectionReusableView {
-        let formatter = DateFormatter()  // Declare this outside, to avoid instancing this heavy class multiple times.
-        formatter.dateFormat = "MMM"
-
         let header = calendar.dequeueReusableJTAppleSupplementaryView(withReuseIdentifier: "DateHeader", for: indexPath) as! MonthHeader
-        header.monthTitle.text = formatter.string(from: range.start)
+        let monthName = CalendarHelper().monthName(for: range.start)
+        let year = CalendarHelper().year(for: range.start)
+        header.monthTitle.text = "\(monthName) \(year)"
         return header
     }
 
     func calendarSizeForMonths(_ calendar: JTAppleCalendarView?) -> MonthSize? {
-        return MonthSize(defaultSize: 70)
+        return MonthSize(defaultSize: 50)
     }
 }
 
@@ -51,11 +58,9 @@ class CalendarViewController: UIViewController {
 
 extension CalendarViewController: JTAppleCalendarViewDataSource {
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy MM dd"
-        let startDate = formatter.date(from: "2018 01 01")!
+        let startDate = CalendarHelper.oneYearAgo
         let endDate = Date()
-        return ConfigurationParameters(startDate: startDate, endDate: endDate, numberOfRows: 5, generateInDates: .forAllMonths, generateOutDates: .tillEndOfRow, firstDayOfWeek: .sunday, hasStrictBoundaries: false)
+        return ConfigurationParameters(startDate: startDate, endDate: endDate, generateInDates: .forAllMonths, generateOutDates: .tillEndOfRow, firstDayOfWeek: .sunday, hasStrictBoundaries: false)
     }
 }
 

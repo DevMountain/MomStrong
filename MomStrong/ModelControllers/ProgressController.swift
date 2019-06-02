@@ -174,4 +174,19 @@ class ProgressController{
     func filterCompletedWorkouts(for user: User = UserController.shared.currentUser!, workouts: [Workout]) -> [Workout]{
         return workouts.filter{ user.hasCompleted(workout: $0) }
     }
+    
+    func completionCount(for user: User = UserController.shared.currentUser!, workout: Workout) -> Int {
+        let filteredWorkouts = user.progress.progressPoints.filter{ $0.workoutId == workout.id }
+        return filteredWorkouts.count
+    }
+    
+    func checkForProgressPoint(on date: Date, user: User = UserController.shared.currentUser!) -> Bool {
+        let checkComponent = Calendar.current.dateComponents([.month, .year, .day], from: date)
+        let filteredPoints = user.progress.progressPoints.filter { (point) -> Bool in
+            guard let dateCompleted = point.dateCompleted else { return false }
+            let dateComponent = Calendar.current.dateComponents([.month, .day, .year], from: dateCompleted)
+            return checkComponent.matches(components: dateComponent, for: [.month, .day, .year])
+        }
+        return !filteredPoints.isEmpty
+    }
 }
